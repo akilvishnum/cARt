@@ -29,4 +29,5 @@ git push -u origin commitsByName
 Run this to reflect any changes done in the origin main repo in your local repo 
 ```sh
 git fetch origin main
+git push origin main
 ```
