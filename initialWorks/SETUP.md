@@ -26,7 +26,7 @@ git push -u origin commitsByName
 ### 4.Sync
 
 
-Run this to reflect any changes done in the main in your local repo
+Run this to reflect any changes done in the origin main repo in your local repo 
 ```sh
 git fetch origin main
 ```
