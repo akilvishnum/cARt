@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cart/screens/LoginPage.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -72,7 +73,10 @@ class _WelcomePageState extends State<WelcomePage> {
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: Color.fromRGBO(255, 255, 255, 1))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
                 ))
               ],
             )),
