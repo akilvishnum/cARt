@@ -45,9 +45,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -59,16 +59,21 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
-fonts:
- - family: Bold
-   fonts: 
-	- asset: assets/fonts/Bold.ttf
- - family: Medium
-   fonts: 
-	- asset: assets/fonts/Medium.ttf
- - family: Light
-   fonts: 
-	- asset: assets/fonts/Light.ttf
+
+  # example:
+  fonts:
+    - family: HomemadeApple
+      fonts:
+        - asset: assets/fonts/HomemadeApple-Regular.ttf
+    - family: Bold
+      fonts:
+        - asset: assets/fonts/Bold.ttf
+    - family: Medium
+      fonts:
+        - asset: assets/fonts/Medium.ttf
+    - family: Light
+      fonts:
+        - asset: assets/fonts/Light.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
