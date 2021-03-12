@@ -63,7 +63,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 )),
                 SizedBox(width: width * 0.03),
                 // Changed to new button UI 
-                Row(
+                Column(
                   children: [ Stack(
                     children:[
                       Positioned(child: Container(
@@ -109,9 +109,9 @@ class _WelcomePageState extends State<WelcomePage> {
                           ],
                           ),
                         ),
-		                ),
-                  ],
-                  ),
+		                  ),
+                     ],
+                   ),
                   ],
                 ),
               ],
