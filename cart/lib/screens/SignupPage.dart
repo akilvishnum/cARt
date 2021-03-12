@@ -1,5 +1,6 @@
 import 'package:cart/screens/LoginPage.dart';
 import 'package:cart/screens/welcomePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -10,7 +11,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   double width, height;
-  String email;
+  String email, password, repassword;
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -89,7 +90,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: Container(
                       child: TextFormField(
                         onChanged: (val) {
-                          email = val;
+                          password = val;
                         },
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -117,7 +118,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: Container(
                       child: TextFormField(
                         onChanged: (val) {
-                          email = val;
+                          repassword = val;
                         },
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -142,9 +143,15 @@ class _SignupPageState extends State<SignupPage> {
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: Color.fromRGBO(255, 255, 255, 1))),
-                onPressed: () {
+                onPressed: () async {
+                  // if (password == repassword) {
+                  // UserCredential user = await FirebaseAuth.instance
+                  //     .createUserWithEmailAndPassword(
+                  //         email: email, password: password);
+                  // print(FirebaseAuth.instance.currentUser.uid);
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignupPage()));
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  // } else {}
                 },
               )),
               Container(
