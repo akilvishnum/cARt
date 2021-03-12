@@ -100,26 +100,59 @@ class _LoginPageState extends State<LoginPage> {
                       )),
                 ),
                 SizedBox(height: height * 0.06),
-                ButtonTheme(
-                    child: MaterialButton(
-                  minWidth: width * 0.94,
-                  height: 60,
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  color: Color.fromRGBO(0, 0, 0, 1),
-                  child: Text("Login",
-                      style: TextStyle(
-                          fontFamily: 'Bold',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Color.fromRGBO(255, 255, 255, 1))),
-                  onPressed: () {
-                    Navigator.push(context,
+                Center(               // Changed to new button UI 
+                child:Column(
+                  children: [ Stack(
+                    children:[
+                      Positioned(child: Container(
+                          height: 60, width: width * 0.94,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+
+                        ),
+                      ),
+                      Positioned(
+                        child: InkWell( 
+                          onTap: () {
+                            Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginPage()));
-                  },
-                )),
+                          },
+                          child:Container(
+                            height: 60, width: width * 0.94,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter, end : Alignment.bottomCenter,
+                                colors: <Color>[Color.fromRGBO(255, 255, 255, 0.11), Color.fromRGBO(255, 255, 255, 0)],
+                                stops: [0.2, 0.6],
+                                ),
+                            ),
+                        ),
+                      ),
+                    ),
+                      Positioned( 
+                        child: Container(
+                          height: 60, width: width * 0.94,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                                children:[ Text("Login",
+                                style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              fontFamily: 'Bold',
+                              color: Colors.white)),
+                          ],
+                          ),
+                        ),
+		                ),
+                  ],
+                  ),
+                  ],
+                ),
+                ),
                 SizedBox(height: height * 0.01),
                 Container(
                   child: Row(
