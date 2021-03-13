@@ -62,36 +62,11 @@ class _WelcomePageState extends State<WelcomePage> {
                   },
                 )),
                 SizedBox(width: width * 0.03),
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
+
                 // Changed to new button UI
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-<<<<<<< Updated upstream
-=======
-=======
-                // Changed to new button UI 
-                Column(
-                  children: [ Stack(
-                    children:[
-                      Positioned(child: Container(
-                          height: 50, width: 150,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-
-                        ),
-                      ),
-                      Positioned(
-                        child: InkWell( 
-                          onTap: () {
-                            Navigator.push(context,
->>>>>>> 0d5e4ae352e2a0a2dddadf5a5af940d3b15ac6d9
->>>>>>> Stashed changes
                         MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                   child: Column(
@@ -126,10 +101,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               ),
                             ),
                           ),
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
+
                           Positioned(
                             child: Container(
                               height: 50,
@@ -152,16 +124,6 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                     ],
                   ),
-<<<<<<< Updated upstream
-=======
-=======
-                        ),
-		                  ),
-                     ],
-                   ),
-                  ],
->>>>>>> 0d5e4ae352e2a0a2dddadf5a5af940d3b15ac6d9
->>>>>>> Stashed changes
                 ),
               ],
             )),

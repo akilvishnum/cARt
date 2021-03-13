@@ -171,11 +171,8 @@ class _SignupPageState extends State<SignupPage> {
                                   stops: [0.2, 0.6],
                                 ),
                               ),
-<<<<<<< Updated upstream
                             ),
-=======
-                            ),
-<<<<<<< HEAD
+
                           ),
                           Positioned(
                             child: Container(
@@ -201,54 +198,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-=======
-                        ),
-                      ),
-                    ),
-                      Positioned( 
-                        child: Container(
-                          height: 60, width: width * 0.94,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                                children:[ Text("Signup",
-                                style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              fontFamily: 'Bold',
-                              color: Colors.white)),
-                              ],
->>>>>>> Stashed changes
-                          ),
-                          Positioned(
-                            child: Container(
-                              height: 60,
-                              width: width * 0.94,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text("Signup",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          fontFamily: 'Bold',
-                                          color: Colors.white)),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-<<<<<<< Updated upstream
-=======
-            ),
->>>>>>> 0d5e4ae352e2a0a2dddadf5a5af940d3b15ac6d9
->>>>>>> Stashed changes
+
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

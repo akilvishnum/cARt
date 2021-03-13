@@ -136,7 +136,6 @@ class _LoginPageState extends State<LoginPage> {
                                     ],
                                     stops: [0.2, 0.6],
                                   ),
-<<<<<<< Updated upstream
                                 ),
                               ),
                             ),
@@ -159,49 +158,12 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ],
-=======
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              child: Container(
-                                height: 60,
-                                width: width * 0.94,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text("Login",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            fontFamily: 'Bold',
-                                            color: Colors.white)),
-                                  ],
-                                ),
-                              ),
-                            ),
-<<<<<<< HEAD
-                          ],
                         ),
                       ],
                     ),
                   ),
                 ),
-=======
->>>>>>> Stashed changes
-                        ),
-                      ],
-                    ),
-                  ),
-<<<<<<< Updated upstream
-                ),
-=======
-                ],
-              ),
-            ),
->>>>>>> 0d5e4ae352e2a0a2dddadf5a5af940d3b15ac6d9
->>>>>>> Stashed changes
+
                 SizedBox(height: height * 0.01),
                 Container(
                   child: Row(
