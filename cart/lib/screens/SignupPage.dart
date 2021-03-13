@@ -172,6 +172,7 @@ class _SignupPageState extends State<SignupPage> {
                                 ),
                               ),
                             ),
+
                           ),
                           Positioned(
                             child: Container(
@@ -197,6 +198,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
+
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

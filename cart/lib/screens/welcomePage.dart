@@ -62,6 +62,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   },
                 )),
                 SizedBox(width: width * 0.03),
+
                 // Changed to new button UI
                 InkWell(
                   onTap: () {
@@ -100,6 +101,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               ),
                             ),
                           ),
+
                           Positioned(
                             child: Container(
                               height: 50,
