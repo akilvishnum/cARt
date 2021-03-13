@@ -128,65 +128,77 @@ class _SignupPageState extends State<SignupPage> {
                     )),
               ),
               SizedBox(height: height * 0.06),
-              Center(               // Changed to new button UI 
-                child:Column(
-                  children: [ Stack(
-                    children:[
-                      Positioned(child: Container(
-                          height: 60, width: width * 0.94,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-
-                        ),
-                      ),
-                      Positioned(
-                        child: InkWell( 
-                          onTap: () async {
-                            // if (password == repassword) {
-                            // UserCredential user = await FirebaseAuth.instance
-                            //     .createUserWithEmailAndPassword(
-                            //         email: email, password: password);
-                            // print(FirebaseAuth.instance.currentUser.uid);
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => LoginPage()));
-                            // } else {}
-                          },
-                          child:Container(
-                            height: 60, width: width * 0.94,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter, end : Alignment.bottomCenter,
-                                colors: <Color>[Color.fromRGBO(255, 255, 255, 0.11), Color.fromRGBO(255, 255, 255, 0)],
-                                stops: [0.2, 0.6],
-                                ),
+              InkWell(
+                onTap: () async {
+                  // if (password == repassword) {
+                  // UserCredential user = await FirebaseAuth.instance
+                  //     .createUserWithEmailAndPassword(
+                  //         email: email, password: password);
+                  // print(FirebaseAuth.instance.currentUser.uid);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  // } else {}
+                },
+                child: Center(
+                  // Changed to new button UI
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          Positioned(
+                            child: Container(
+                              height: 60,
+                              width: width * 0.94,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
-                        ),
-                      ),
-                    ),
-                      Positioned( 
-                        child: Container(
-                          height: 60, width: width * 0.94,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                                children:[ Text("Signup",
-                                style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              fontFamily: 'Bold',
-                              color: Colors.white)),
-                              ],
                           ),
-                        ),
-		                  ),
+                          Positioned(
+                            child: Container(
+                              height: 60,
+                              width: width * 0.94,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: <Color>[
+                                    Color.fromRGBO(255, 255, 255, 0.11),
+                                    Color.fromRGBO(255, 255, 255, 0)
+                                  ],
+                                  stops: [0.2, 0.6],
+                                ),
+                              ),
+                            ),
+
+                          ),
+                          Positioned(
+                            child: Container(
+                              height: 60,
+                              width: width * 0.94,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("Signup",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          fontFamily: 'Bold',
+                                          color: Colors.white)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
+
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
