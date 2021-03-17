@@ -18,6 +18,10 @@
 <tr>
 <td align = "center" > <p> Unity </p> </td>
 <td> <p> 
+	✔️ &nbsp; Created Marker based AR app using Vuforia 🎯 <br> 
+        ✔️ &nbsp; Created a AR spider model using ARFoundation 🎯 <br> 
+	✔️ &nbsp; Created a AR SOFA model using ARFoundation 🎯 <br> 
+	⏳ &nbsp; AR Phone Model 🎯 <br>
 	</p>
 </td>
 </tr>
