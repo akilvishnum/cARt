@@ -10,33 +10,51 @@ class _ProductPageState extends State<ProductPage> {
   PaletteColor productBackground;
   HSLColor light, dark;
   @override
-  
+
   void initState(){
-    super.initState(); 
+    super.initState();
     _findBackground();
   }
 
   _findBackground() async{
-    
-
-     final PaletteGenerator generator = 
+     final PaletteGenerator generator =
      await PaletteGenerator.fromImageProvider(
        AssetImage(productImage), size: Size(100000, 100000),
      );
-     productBackground = generator.dominantColor != null ? generator.dominantColor : PaletteColor(Colors.black, 2);
+     productBackground = generator.dominantColor != null ? generator.dominantColor : PaletteColor(Colors.white, 2);
      HSLColor productHSL = HSLColor.fromColor(productBackground.color);
-     light = productHSL.withLightness(0.7);
-     dark = productHSL.withLightness(0.3);
+     light = productHSL.withLightness(0.8);
+     dark = productHSL.withLightness(0.4);
      setState(() {});
   }
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Container(
       //backgroundColor:  productBackground != null ? productBackground.color : Color.fromRGBO(229, 229, 229, 1),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [light != null ? light.toColor() : Color.fromRGBO(229, 229, 229, 1), dark != null ? dark.toColor() : Color.fromRGBO(229, 229, 229, 1)]),
+        gradient: LinearGradient(
+          colors: [light != null ? light.toColor() : Color.fromRGBO(229, 229, 229, 1), dark != null ? dark.toColor() : Color.fromRGBO(229, 229, 229, 1)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: [0.0, 0.4],
+        ),
       ),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: height * 0.35),
+          Container(
+            height: height * 0.65,
+            width: width,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(229, 229, 229, 1),
+              borderRadius: BorderRadius.only(topRight: Radius.circular(40), topLeft: Radius.circular(40)),
+            ),
+          )
+        ],
+      )
     );
   }
 }
