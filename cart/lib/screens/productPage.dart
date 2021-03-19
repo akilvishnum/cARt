@@ -7,7 +7,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  String productImage = 'assets/products/cropPhone.png';
+  String productImage = 'assets/products/phone.png';
   PaletteColor productBackground;
   HSLColor light, dark;
   @override
@@ -73,17 +73,18 @@ class _ProductPageState extends State<ProductPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: height * 0.105),
-                          Row(    
-                            children:[
+                          Row(
+                            children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     child: Text("SMARTPHONE",
                                         style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 13,
                                             fontFamily: 'Medium',
-                                            color: Colors.black)),
+                                            color: Colors.black,
+                                            letterSpacing: 13 * 0.05)),
                                   ),
                                   SizedBox(height: height * 0.005),
                                   Container(
@@ -101,19 +102,29 @@ class _ProductPageState extends State<ProductPage> {
                                   child: Container(
                                     child: Text("\$719",
                                         style: TextStyle(
-                                            fontSize: 32,
+                                            fontSize: 38,
                                             fontFamily: 'Bold',
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.w600,
                                             color: Colors.black)),
                                   ),
                                 ),
                               ),
                             ],
                           ),
+                          SizedBox(height: height * 0.020),
+                          Flexible(
+                            child: Text(
+                                "5G speed. A14 Bionic, the fastest chip in a smartphone. An edge-to-edge OLED display. Ceramic Shield with four times better drop performance. And Night mode on every camera. iPhone 12 has it all — in two perfect sizes. 5G on iPhone is superfast. So you can download movies on the fly. Stream higher-quality video. Or FaceTime in HD over cellular. ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  height: 17.5 / 12,
+                                  fontFamily: 'Light',
+                                  color: Colors.black,
+                                )),
+                          ),
                         ],
                       ),
                     ),
-
                     Positioned(
                       bottom: height * 0.55,
                       left: 0,
@@ -128,8 +139,6 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 )
               ],
-            )
-          )
-        );
+            )));
   }
 }
