@@ -15,7 +15,7 @@ class _WelcomePageState extends State<WelcomePage> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
-        backgroundColor: Color.fromRGBO(229, 229, 229, 1),
+        backgroundColor: Color.fromRGBO(248, 248, 248, 1),
         body: Container(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Color.fromRGBO(197, 197, 197, 1),
+                  color: Color.fromRGBO(191, 191, 191, 100),
                   elevation: 0,
                   child: Text("Signup",
                       style: TextStyle(
