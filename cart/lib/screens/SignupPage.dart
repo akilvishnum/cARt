@@ -17,7 +17,7 @@ class _SignupPageState extends State<SignupPage> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(229, 229, 229, 1),
+      backgroundColor: Color.fromRGBO(248, 248, 248, 1),
       body: SingleChildScrollView(
         child: Container(
           height: height,
@@ -56,7 +56,7 @@ class _SignupPageState extends State<SignupPage> {
               Center(
                 child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[400],
+                      color: Color.fromRGBO(191, 191, 191, 100),
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     ),
                     width: width * 0.94,
@@ -82,7 +82,7 @@ class _SignupPageState extends State<SignupPage> {
               Center(
                 child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[400],
+                      color: Color.fromRGBO(191, 191, 191, 100),
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     ),
                     width: width * 0.94,
