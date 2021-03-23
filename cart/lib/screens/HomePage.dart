@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,6 +11,7 @@ class _HomePageState extends State<HomePage> {
   double width, height;
   String productImage = 'assets/products/phone.png';
   PaletteColor productBackground;
+  HSLColor light, dark;
   List<String> categories = [
     "All",
     "Chairs",
@@ -37,7 +39,10 @@ class _HomePageState extends State<HomePage> {
     );
     productBackground = generator.dominantColor != null
         ? generator.dominantColor
-        : PaletteColor(Colors.black, 2);
+        : PaletteColor(Colors.white, 2);
+    HSLColor productHSL = HSLColor.fromColor(productBackground.color);
+    light = productHSL.withLightness(0.8);
+    dark = productHSL.withLightness(0.4);
     setState(() {});
   }
 
@@ -172,21 +177,49 @@ class _HomePageState extends State<HomePage> {
                                         width: width * 0.4,
                                         height: 200,
                                         decoration: BoxDecoration(
-                                            color: productBackground != null
-                                                ? productBackground.color
-                                                : Color.fromRGBO(
-                                                    229, 229, 229, 1),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                light != null
+                                                    ? light.toColor()
+                                                    : Color.fromRGBO(
+                                                        229, 229, 229, 1),
+                                                dark != null
+                                                    ? dark.toColor()
+                                                    : Color.fromRGBO(
+                                                        229, 229, 229, 1)
+                                              ],
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              stops: [0.0, 0.4],
+                                            ),
                                             borderRadius:
                                                 BorderRadius.circular(40)),
                                         child: Column(
                                           children: [
                                             Center(
                                               child: Image(
-                                                  width: (width * 0.4) * 0.9,
-                                                  height: 200,
+                                                  // width: (width * 0.4) * 0.9,
+                                                  height: 150,
                                                   image: AssetImage(
                                                       "assets/products/phone.png")),
-                                            )
+                                            ),
+                                            Container(
+                                                decoration: BoxDecoration(
+                                                    color: Color.fromRGBO(
+                                                        225, 225, 225, 0.23),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30)),
+                                                width: (width * 0.4) * 0.8,
+                                                height: 50,
+                                                child: Center(
+                                                  child: Text(
+                                                    "Rs.719",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontFamily: 'Medium'),
+                                                  ),
+                                                ))
                                           ],
                                         )),
                                     SizedBox(width: width * 0.05),
@@ -194,24 +227,59 @@ class _HomePageState extends State<HomePage> {
                                         width: width * 0.4,
                                         height: 200,
                                         decoration: BoxDecoration(
-                                            color: ((index * 2) + 1 <
-                                                    categories.length)
-                                                ? (productBackground != null)
-                                                    ? productBackground.color
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                ((index * 2) + 1 <
+                                                        categories.length)
+                                                    ? light != null
+                                                        ? light.toColor()
+                                                        : Color.fromRGBO(
+                                                            229, 229, 229, 1)
                                                     : Color.fromRGBO(
-                                                        229, 229, 229, 1)
-                                                : Color.fromRGBO(
-                                                    229, 229, 229, 1),
+                                                        229, 229, 229, 1),
+                                                ((index * 2) + 1 <
+                                                        categories.length)
+                                                    ? dark != null
+                                                        ? dark.toColor()
+                                                        : Color.fromRGBO(
+                                                            229, 229, 229, 1)
+                                                    : Color.fromRGBO(
+                                                        229, 229, 229, 1),
+                                              ],
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              stops: [0.0, 0.4],
+                                            ),
                                             borderRadius:
                                                 BorderRadius.circular(40)),
                                         child: Column(
                                           children: [
                                             Center(
-                                              child: Image(
-                                                  height: 200,
-                                                  image: AssetImage(
-                                                      "assets/products/phone.png")),
-                                            )
+                                              child: ((index * 2) + 1 <
+                                                      categories.length)
+                                                  ? Image(
+                                                      height: 150,
+                                                      image: AssetImage(
+                                                          "assets/products/phone.png"))
+                                                  : Container(),
+                                            ),
+                                            Container(
+                                                decoration: BoxDecoration(
+                                                    color: Color.fromRGBO(
+                                                        225, 225, 225, 0.23),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30)),
+                                                width: (width * 0.4) * 0.8,
+                                                height: 50,
+                                                child: Center(
+                                                  child: Text(
+                                                    "Rs.719",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontFamily: 'Medium'),
+                                                  ),
+                                                ))
                                           ],
                                         )),
                                   ],

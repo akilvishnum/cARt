@@ -113,36 +113,35 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                           SizedBox(height: height * 0.020),
                           Expanded(
-                              child:ConstrainedBox(
+                            child: ConstrainedBox(
                               constraints: BoxConstraints.expand(),
-                              child:ListView(
+                              child: ListView(
                                 padding: EdgeInsets.all(0),
-                                children:[
-                                Flexible(
-                                  child: Text(
-                                      "5G speed. A14 Bionic, the fastest chip in a smartphone. A new OLED display. Ceramic Shield with four times better drop performance. And Night mode on every camera. iPhone 12 has it all — in two perfect sizes. 5G on iPhone is superfast. So you can download movies on the fly. Stream higher-quality video. Or FaceTime in HD over cellular. ",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        height: 17.5 / 12,
-                                        fontFamily: 'Light',
-                                        color: Colors.black,
-                                      )),
-                                ),
-                                SizedBox(height: height * 0.020),
-                                Container(height: 50, child: ColorButton()),
-                                SizedBox(height: height * 0.020),
-                                Container(
-                                        child: Text(
-                                          "VARIANTS",
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              fontFamily: 'Medium',
-                                              color: Colors.black,
-                                              letterSpacing: 13 * 0.015)
-                                        ),
-                                ),
-                                SizedBox(height: height * 0.0075),
-                                Container(height: 30, child: VariantButton()),
+                                children: [
+                                  Container(
+                                    child: Text(
+                                        "5G speed. A14 Bionic, the fastest chip in a smartphone. A new OLED display. Ceramic Shield with four times better drop performance. And Night mode on every camera. iPhone 12 has it all — in two perfect sizes. 5G on iPhone is superfast. So you can download movies on the fly. Stream higher-quality video. Or FaceTime in HD over cellular. ",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          height: 17.5 / 12,
+                                          fontFamily: 'Light',
+                                          color: Colors.black,
+                                        )),
+                                  ),
+                                  SizedBox(height: height * 0.020),
+                                  Container(height: 50, child: ColorButton()),
+                                  SizedBox(height: height * 0.020),
+                                  Container(
+                                    child: Text("VARIANTS",
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            fontFamily: 'Medium',
+                                            color: Colors.black,
+                                            letterSpacing: 13 * 0.015)),
+                                  ),
+                                  SizedBox(height: height * 0.0075),
+                                  Container(height: 30, child: VariantButton()),
+
                                 ],
                               ),
                             ),
@@ -167,26 +166,30 @@ class _ProductPageState extends State<ProductPage> {
             )));
   }
 }
-class VariantButton extends StatefulWidget{
+
+class VariantButton extends StatefulWidget {
   @override
   _VariantButtonState createState() => _VariantButtonState();
 }
-class _VariantButtonState extends State<VariantButton>{
+
+class _VariantButtonState extends State<VariantButton> {
   List<Variant> v = new List<Variant>();
   @override
-  void initState(){
+  void initState() {
+
     super.initState();
     v.add(new Variant(true, '4GB + 64GB'));
     v.add(new Variant(false, '8GB + 128GB'));
   }
-  Widget build(BuildContext context){
-        return ListView.builder(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: v.length,
-          itemBuilder: (BuildContext context, int index) {
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: v.length,
+        itemBuilder: (BuildContext context, int index) {
           return new InkWell(
-            onTap: (){
+            onTap: () {
+
               setState(() {
                 v.forEach((element) => element.isSelected = false);
                 v[index].isSelected = true;
@@ -194,30 +197,36 @@ class _VariantButtonState extends State<VariantButton>{
             },
             child: new VariantContainer(v[index]),
           );
-        }
-    );
+        });
   }
 }
-class VariantContainer extends StatelessWidget{
+
+class VariantContainer extends StatelessWidget {
   final Variant _item;
   VariantContainer(this._item);
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:[
-      Container(
-        decoration: BoxDecoration(
-          color: _item.isSelected ? Color.fromRGBO(255,255,255,100): Color.fromRGBO(231, 231, 231, 100),
-          border: Border.all(
-            color: Color.fromRGBO(196, 196, 196, 100),
-            width: 1,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: _item.isSelected
+                ? Color.fromRGBO(255, 255, 255, 100)
+                : Color.fromRGBO(231, 231, 231, 100),
+            border: Border.all(
+              color: Color.fromRGBO(196, 196, 196, 100),
+              width: 1,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-        ),
           padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
           child: Text(
             _item.info,
-            style: TextStyle(fontSize: 16, fontFamily: 'Medium',),
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: 'Medium',
+            ),
+
           ),
         ),
         SizedBox(width: MediaQuery.of(context).size.width * 0.020),
@@ -225,32 +234,36 @@ class VariantContainer extends StatelessWidget{
     );
   }
 }
-class Variant{
+class Variant {
+
   bool isSelected;
   final String info;
   Variant(this.isSelected, this.info);
 }
 
-class ColorButton extends StatefulWidget{
+class ColorButton extends StatefulWidget {
   @override
   _ColorButtonState createState() => _ColorButtonState();
 }
-class _ColorButtonState extends State<ColorButton>{
+
+class _ColorButtonState extends State<ColorButton> {
   List<ObjColor> v = new List<ObjColor>();
   @override
-  void initState(){
+  void initState() {
     super.initState();
     v.add(new ObjColor(true, 255, 80, 80, 100, 'Product Red'));
-    v.add(new ObjColor(false, 125,30,0,100, 'Brown'));
+    v.add(new ObjColor(false, 125, 30, 0, 100, 'Brown'));
   }
-  Widget build(BuildContext context){
-        return ListView.builder(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: v.length,
-          itemBuilder: (BuildContext context, int index) {
+
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: v.length,
+        itemBuilder: (BuildContext context, int index) {
           return new InkWell(
-            onTap: (){
+            onTap: () {
+
               setState(() {
                 v.forEach((element) => element.isSelected = false);
                 v[index].isSelected = true;
@@ -258,22 +271,24 @@ class _ColorButtonState extends State<ColorButton>{
             },
             child: new ColorContainer(v[index]),
           );
-        }
-    );
+        });
   }
 }
-class ColorContainer extends StatelessWidget{
+
+class ColorContainer extends StatelessWidget {
   final ObjColor _item;
   ColorContainer(this._item);
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:[
-      Container(
+      children: [
+        Container(
           child: Column(
-            children:[
+            children: [
               Container(
-                width: 30, height: 30,
+                width: 30,
+                height: 30,
+
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color.fromRGBO(_item.r, _item.g, _item.b, _item.o),
@@ -283,7 +298,10 @@ class ColorContainer extends StatelessWidget{
               Container(
                 child: Text(
                   _item.info,
-                  style: TextStyle(fontSize: 14, fontFamily: 'Medium',),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Medium',
+                  ),
                 ),
               ),
             ],
@@ -294,8 +312,13 @@ class ColorContainer extends StatelessWidget{
     );
   }
 }
-class ObjColor{
-  int r,g,b; double o; bool isSelected;
+
+
+class ObjColor {
+  int r, g, b;
+  double o;
+  bool isSelected;
+
   final String info;
   ObjColor(this.isSelected, this.r, this.g, this.b, this.o, this.info);
 }
