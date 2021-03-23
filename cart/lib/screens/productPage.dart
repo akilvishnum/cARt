@@ -141,6 +141,7 @@ class _ProductPageState extends State<ProductPage> {
                                   ),
                                   SizedBox(height: height * 0.0075),
                                   Container(height: 30, child: VariantButton()),
+
                                 ],
                               ),
                             ),
@@ -175,11 +176,11 @@ class _VariantButtonState extends State<VariantButton> {
   List<Variant> v = new List<Variant>();
   @override
   void initState() {
+
     super.initState();
     v.add(new Variant(true, '4GB + 64GB'));
     v.add(new Variant(false, '8GB + 128GB'));
   }
-
   Widget build(BuildContext context) {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
@@ -188,6 +189,7 @@ class _VariantButtonState extends State<VariantButton> {
         itemBuilder: (BuildContext context, int index) {
           return new InkWell(
             onTap: () {
+
               setState(() {
                 v.forEach((element) => element.isSelected = false);
                 v[index].isSelected = true;
@@ -224,6 +226,7 @@ class VariantContainer extends StatelessWidget {
               fontSize: 16,
               fontFamily: 'Medium',
             ),
+
           ),
         ),
         SizedBox(width: MediaQuery.of(context).size.width * 0.020),
@@ -231,8 +234,8 @@ class VariantContainer extends StatelessWidget {
     );
   }
 }
-
 class Variant {
+
   bool isSelected;
   final String info;
   Variant(this.isSelected, this.info);
@@ -260,6 +263,7 @@ class _ColorButtonState extends State<ColorButton> {
         itemBuilder: (BuildContext context, int index) {
           return new InkWell(
             onTap: () {
+
               setState(() {
                 v.forEach((element) => element.isSelected = false);
                 v[index].isSelected = true;
@@ -284,6 +288,7 @@ class ColorContainer extends StatelessWidget {
               Container(
                 width: 30,
                 height: 30,
+
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color.fromRGBO(_item.r, _item.g, _item.b, _item.o),
@@ -308,10 +313,12 @@ class ColorContainer extends StatelessWidget {
   }
 }
 
+
 class ObjColor {
   int r, g, b;
   double o;
   bool isSelected;
+
   final String info;
   ObjColor(this.isSelected, this.r, this.g, this.b, this.o, this.info);
 }
