@@ -1,3 +1,4 @@
+import 'package:cart/screens/HomePage.dart';
 import 'package:cart/screens/SignupPage.dart';
 import 'package:cart/screens/welcomePage.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   child: Center(
                     // Changed to new button UI
@@ -163,7 +164,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
                 SizedBox(height: height * 0.01),
                 Container(
                   child: Row(
