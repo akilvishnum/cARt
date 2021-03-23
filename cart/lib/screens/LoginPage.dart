@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(229, 229, 229, 1),
+      backgroundColor: Color.fromRGBO(248, 248, 248, 1),
       body: Container(
         height: height,
         child: SingleChildScrollView(
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[400],
+                        color: Color.fromRGBO(191, 191, 191, 100),
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                       width: width * 0.94,
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[400],
+                        color: Color.fromRGBO(191, 191, 191, 100),
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                       width: width * 0.94,
