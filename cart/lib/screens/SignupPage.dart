@@ -108,7 +108,7 @@ class _SignupPageState extends State<SignupPage> {
               Center(
                 child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[400],
+                      color: Color.fromRGBO(191, 191, 191, 100),
                       borderRadius: BorderRadius.all(
                         Radius.circular(10.0),
                       ),
