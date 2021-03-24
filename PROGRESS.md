@@ -22,6 +22,7 @@
         ✔️ &nbsp; Created a AR spider model using ARFoundation 🎯 <br> 
 	✔️ &nbsp; Created a AR SOFA model using ARFoundation 🎯 <br> 
 	⏳ &nbsp; AR Phone Model 🎯 <br>
+	✔️ &nbsp; Face Detection Trial 🎯 <br>
 	</p>
 </td>
 </tr>
