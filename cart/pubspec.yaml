@@ -33,13 +33,14 @@ dependencies:
   firebase_core: ^0.5.3
   flutter_launcher_icons: ^0.7.2+1
   palette_generator: ^0.2.0
+  flutter_svg:
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
-flutter_icons: 
+
+flutter_icons:
     ios: true
     android: "launcher_icon"
     image_path: "assets/launcher/FullLogo.png"
