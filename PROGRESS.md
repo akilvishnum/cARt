@@ -21,9 +21,10 @@
 	✔️ &nbsp; Created Marker based AR app using Vuforia 🎯 <br> 
         ✔️ &nbsp; Created a AR spider model using ARFoundation 🎯 <br> 
 	✔️ &nbsp; Created a AR SOFA model using ARFoundation 🎯 <br> 
+	✔️ &nbsp; Chair model added 🎯👻 <br>
 	⏳ &nbsp; AR Phone Model 🎯 <br>
 	✔️ &nbsp; Face Detection Trial 🎯 <br>
-	⏳ &nbsp; sunglasses apper on a tracked face 🎯 <br>
+	⏳ &nbsp; sunglasses appear on a tracked face 🎯 <br>
 	</p>
 </td>
 </tr>
