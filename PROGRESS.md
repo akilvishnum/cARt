@@ -23,6 +23,7 @@
 	✔️ &nbsp; Created a AR SOFA model using ARFoundation 🎯 <br> 
 	⏳ &nbsp; AR Phone Model 🎯 <br>
 	✔️ &nbsp; Face Detection Trial 🎯 <br>
+	⏳ &nbsp; sunglasses apper on a tracked face 🎯 <br>
 	</p>
 </td>
 </tr>
