@@ -4,9 +4,21 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: a67415d30b1276d4c8d4dffbd50c4edb
+  - enabled: 1
+    path: Assets/Scenes/body.unity
+    guid: 79d8b9122a918174d890acabab7d352f
+  - enabled: 0
+    path: Assets/GoogleARCore/Examples/AugmentedFaces/Scenes/AugmentedFaces.unity
+    guid: 7d2be221c0e8f4e259a08279fab0da42
   m_configObjects:
-    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 4d88ec437e8d64d459d71b3d0824d024,
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 0}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: b060109508aafec448838265c71079dd,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 85b8670e667b7a345ac02b624df950e2,
+    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 55fa99b21ac5f5e4ebbb9e91435f989e,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 58d5029505580b84aa64a0d4e375db3f,
       type: 2}
