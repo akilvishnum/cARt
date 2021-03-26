@@ -341,6 +341,8 @@ class _ProductPageState extends State<ProductPage> {
   }
 }
 actionSheet(context){
+  var width = MediaQuery.of(context).size.width;
+  var height = MediaQuery.of(context).size.height;
   showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -348,15 +350,13 @@ actionSheet(context){
       builder: (BuildContext context){
         return  Container(
           child: ClipRRect(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             child: BackdropFilter(
               filter: ImageFilter.blur(
                 sigmaX: 25, sigmaY: 25,
               ),
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.47,
+                height: MediaQuery.of(context).size.height * 0.55,
                 decoration: BoxDecoration(
-                  color: Colors.white12,
                   border: Border(top: BorderSide(width: 1, color: Color.fromRGBO(196, 196, 196, 100))),
                 ),
                 child: Column(
@@ -366,14 +366,275 @@ actionSheet(context){
                         widthFactor: 0.15,
                         child: Container(
                           margin: EdgeInsets.symmetric(vertical:  8),
-                          height: 4,
+                          height: 3,
                           decoration: BoxDecoration(
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(2),
                           )
                         ),
                       ),
-                    )
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: height * 0.060),
+                      child:Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:[
+                          Container(
+                            child: Text(
+                              'ORDER SUMMARY',
+                              style: TextStyle(fontFamily: 'Medium', fontSize: 18),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.010),
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: width * 0.65,
+                                    child: Text("IPhone 12",
+                                        style: TextStyle(
+                                            fontSize: 23,
+                                            fontFamily: 'Bold',
+                                            color: Colors.black)),
+                                  ),
+                                  Container(
+                                    width: width * 0.65,
+                                    child: Text(
+                                      '4GB + 64GB',
+                                      style: TextStyle(fontFamily: 'Medium', fontSize: 16), overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: width * 0.65,
+                                    child: Text(
+                                      'Black',
+                                      style: TextStyle(fontFamily: 'Medium', fontSize: 16), overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              // Expanded(
+                              //   child: Align(
+                              //     alignment: Alignment.centerRight,
+                              //     child: Container(
+                              //       child: Text("\$719",
+                              //           style: TextStyle(
+                              //               fontSize: 38,
+                              //               fontFamily: 'Bold',
+                              //               fontWeight: FontWeight.w600,
+                              //               color: Colors.black)),
+                              //     ),
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                          SizedBox(height :height * 0.020),
+                          Row(
+                            children:[
+                              Container(
+                                child: Text(
+                                  'Base price',
+                                  style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                                ),
+                              ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                    child: Text(
+                                      '\$719',
+                                      style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: height * 0.0075),
+                          FractionallySizedBox(
+                            widthFactor: 1,
+                            child: Container(
+                              height: 1,
+                              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(196, 196, 196, 100)
+                              )
+                            ),
+                          ),
+                          SizedBox(height :height * 0.020),
+                          Container(
+                            child: Text(
+                              'SUBTOTAL',
+                              style: TextStyle(fontFamily: 'Medium', fontSize: 18),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.0075),
+                          Row(
+                            children:[
+                              Container(
+                                width: width * 0.50,
+                                child: Text(
+                                  'IPhone 12',
+                                  style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: Text(
+                                    'x 3',
+                                    style: TextStyle(fontFamily: 'Medium', fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: height * 0.020),
+                          Row(
+                            children:[
+                              Container(
+                                width: width * 0.50,
+                                child: Text(
+                                  'TOTAL',
+                                  style: TextStyle(fontFamily: 'Medium', fontSize: 18),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                    child: Text(
+                                      '\$2157',
+                                      style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: height * 0.020),
+                          Container(
+                            //height: height * 0.108,
+                            child: Row(
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProductPage()));
+                                  },
+
+                                    child: Container(
+                                      width: width * 0.43,
+                                      height: height * 0.065,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Color.fromRGBO(196, 196, 196, 100),
+                                          width: 1,
+                                        ),
+                                        color: Color.fromRGBO(191, 191, 191, 100),
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children:[
+                                          Container(
+                                            child:Text('Add to Cart',
+                                            style: TextStyle(fontFamily: 'Bold', fontSize: 18,),
+                                            )
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                ),
+                                SizedBox(width: width * 0.04),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProductPage()));
+                                  },
+                                  child: Center(
+                                    // Changed to new button UI
+                                    child: Column(
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Positioned(
+                                              child: Container(
+                                                height: height * 0.065,
+                                                width: width * 0.43,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.black,
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              child: Container(
+                                                height: height * 0.065,
+                                                width: width * 0.43,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  gradient: LinearGradient(
+                                                    begin: Alignment.topCenter,
+                                                    end: Alignment.bottomCenter,
+                                                    colors: <Color>[
+                                                      Color.fromRGBO(
+                                                          255, 255, 255, 0.11),
+                                                      Color.fromRGBO(
+                                                          255, 255, 255, 0)
+                                                    ],
+                                                    stops: [0.2, 0.6],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              child: Container(
+                                                height: height * 0.065,
+                                                width: width * 0.43,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text("Checkout",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 18,
+                                                            fontFamily: 'Bold',
+                                                            color:
+                                                                Colors.white)),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ]
                 ),
               ),
