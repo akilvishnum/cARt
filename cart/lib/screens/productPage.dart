@@ -67,7 +67,8 @@ class _ProductPageState extends State<ProductPage> {
                             builder: (context) =>
                                 LoginPage()));
                   },
-                  child: Container(height: height * 0.35),
+                  child: Container
+                  (height: height * 0.35),
                 ),
                 Stack(
                   overflow: Overflow.visible,
@@ -259,11 +260,7 @@ class _ProductPageState extends State<ProductPage> {
                                 SizedBox(width: width * 0.03),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductPage()));
+                                    actionSheet(context);
                                   },
                                   child: Center(
                                     // Changed to new button UI
@@ -343,7 +340,49 @@ class _ProductPageState extends State<ProductPage> {
             )));
   }
 }
-
+actionSheet(context){
+  showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context){
+        return  Container(
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 25, sigmaY: 25,
+              ),
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.47,
+                decoration: BoxDecoration(
+                  color: Colors.white12,
+                  border: Border(top: BorderSide(width: 1, color: Color.fromRGBO(196, 196, 196, 100))),
+                ),
+                child: Column(
+                  children:[
+                    Center(
+                      child: FractionallySizedBox(
+                        widthFactor: 0.15,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical:  8),
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(2),
+                          )
+                        ),
+                      ),
+                    )
+                  ]
+                ),
+              ),
+            )
+          )
+        );
+      }
+  );
+}
 Widget buildBlur(
         {@required Widget child, double sigmaX = 10, double sigmaY = 10}) =>
     ClipRRect(
