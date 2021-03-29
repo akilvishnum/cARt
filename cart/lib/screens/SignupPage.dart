@@ -130,14 +130,14 @@ class _SignupPageState extends State<SignupPage> {
               SizedBox(height: height * 0.06),
               InkWell(
                 onTap: () async {
-                  // if (password == repassword) {
-                  // UserCredential user = await FirebaseAuth.instance
-                  //     .createUserWithEmailAndPassword(
-                  //         email: email, password: password);
-                  // print(FirebaseAuth.instance.currentUser.uid);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
-                  // } else {}
+                  if (password == repassword) {
+                    UserCredential user = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: email, password: password);
+                    print(FirebaseAuth.instance.currentUser.uid);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  } else {}
                 },
                 child: Center(
                   // Changed to new button UI
@@ -172,7 +172,6 @@ class _SignupPageState extends State<SignupPage> {
                                 ),
                               ),
                             ),
-
                           ),
                           Positioned(
                             child: Container(
@@ -198,7 +197,6 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
