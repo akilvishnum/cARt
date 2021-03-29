@@ -34,7 +34,7 @@ dependencies:
   flutter_launcher_icons: ^0.7.2+1
   palette_generator: ^0.2.0
   flutter_svg:
-
+  fluttertoast: ^7.1.1
 
 dev_dependencies:
   flutter_test:
