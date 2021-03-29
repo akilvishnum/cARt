@@ -16,6 +16,23 @@ class _LoginPageState extends State<LoginPage> {
   String email, password;
   String info = '';
   final _loginkey = new GlobalKey<FormState>();
+
+  void showToast(bool error, String info) {
+    Fluttertoast.showToast(
+      msg: (!error)
+          ? "Logged in Successfully"
+          : (info ==
+                  "There is no user record corresponding to this identifier. The user may have been deleted.")
+              ? "User Not Found"
+              : (info ==
+                      "The password is invalid or the user does not have a password.")
+                  ? "Invalid Password"
+                  : "Something Went Wrong!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -147,12 +164,10 @@ class _LoginPageState extends State<LoginPage> {
                           info = e.message.toString();
                         }
                         if (newUser != null) {
-                          Fluttertoast.showToast(
-                            msg: "Invalid username or password",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.TOP,
-                          );
-                        } else {}
+                          showToast(false, info);
+                        } else {
+                          showToast(true, info);
+                        }
                       }
                     },
                     child: Center(
