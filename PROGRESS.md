@@ -50,5 +50,42 @@
 	</p>
 </td>
 </tr>
+<tr>
+<td rowspan = "5" style = "background-color: white; vertical-align: top"> <p> 17 Mar - 30 Mar <br> <i> Small Description </i> </p> </td>
+<td align = "center" > <p> Flutter </p> </td>
+<td> <p> 
+	✔️ &nbsp; Build Homepage 👻 <br> 
+        ✔️ &nbsp; Build Product Page 🧘🏽‍♂️ <br> 
+        ⏳ &nbsp; Few UI Fixes. 🧘🏽‍♂️ 👻
+	</p>
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Unity </p> </td>
+<td> <p> 
+     </p>
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> UI Design </p> </td>
+<td> <p> 
+	✔️ &nbsp; Designed User Interface for Product and HomePage 🧘🏽‍♂️ <br> 
+	</p>
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Firebase </p> </td>
+<td> <p> 
+	✔️ &nbsp; Authentication using firebase 👻 <br> 
+	</p>
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Integration </p> </td>
+<td> <p> 
+	✔️ &nbsp; Integrated flutter and Unity using plugin.  🧘🏽‍♂️👻🎯  
+	</p>
+</td>
+</tr>
 </table>
 
