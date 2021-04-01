@@ -167,7 +167,7 @@ class _ProductPageState extends State<ProductPage> {
                                   SizedBox(height: height * 0.0075),
                                   // SpecContainer(),
                                   Container(
-                                    height: 100,
+                                    height: height * 0.145,
                                     child: SpecContainer(),
                                   ),
                                   SizedBox(height: height * 0.12),
@@ -375,14 +375,15 @@ actionSheet(context){
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: height * 0.060),
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.05,),
                       child:Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:[
+                          SizedBox(height: height * 0.060),
                           Container(
                             child: Text(
                               'ORDER SUMMARY',
-                              style: TextStyle(fontFamily: 'Medium', fontSize: 18),
+                              style: TextStyle(fontFamily: 'Medium', fontSize: 18, letterSpacing: 18 * 0.05),
                             ),
                           ),
                           SizedBox(height: height * 0.010),
@@ -415,19 +416,42 @@ actionSheet(context){
                                   ),
                                 ],
                               ),
-                              // Expanded(
-                              //   child: Align(
-                              //     alignment: Alignment.centerRight,
-                              //     child: Container(
-                              //       child: Text("\$719",
-                              //           style: TextStyle(
-                              //               fontSize: 38,
-                              //               fontFamily: 'Bold',
-                              //               fontWeight: FontWeight.w600,
-                              //               color: Colors.black)),
-                              //     ),
-                              //   ),
-                              // ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children:[
+                                      Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black,
+                                        ),
+                                        child: Center(
+                                          child: Text('+', style: TextStyle(color: Colors.white,)),
+                                        )
+                                      ),
+                                      SizedBox(width: width * 0.01),
+                                      Container(child: Text('1')),
+                                      SizedBox(width: width * 0.01),
+                                      Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black
+                                        ),
+                                        child: Center(
+                                          child: Text('-', style: TextStyle(color: Colors.white,)),
+                                        )
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                ),
+                              ),
                             ],
                           ),
                           SizedBox(height :height * 0.020),
@@ -467,7 +491,7 @@ actionSheet(context){
                           Container(
                             child: Text(
                               'SUBTOTAL',
-                              style: TextStyle(fontFamily: 'Medium', fontSize: 18),
+                              style: TextStyle(fontFamily: 'Medium', fontSize: 18, letterSpacing: 18 * 0.05),
                             ),
                           ),
                           SizedBox(height: height * 0.0075),
@@ -498,7 +522,7 @@ actionSheet(context){
                                 width: width * 0.50,
                                 child: Text(
                                   'TOTAL',
-                                  style: TextStyle(fontFamily: 'Medium', fontSize: 18),
+                                  style: TextStyle(fontFamily: 'Medium', fontSize: 18, letterSpacing: 18 * 0.05),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -611,7 +635,7 @@ actionSheet(context){
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: [
-                                                    Text("Checkout",
+                                                    Text("Buy now",
                                                         style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
