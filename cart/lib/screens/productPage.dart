@@ -393,7 +393,7 @@ actionSheet(context){
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: width * 0.65,
+                                    width: width * 0.55,
                                     child: Text("IPhone 12",
                                         style: TextStyle(
                                             fontSize: 23,
@@ -401,14 +401,14 @@ actionSheet(context){
                                             color: Colors.black)),
                                   ),
                                   Container(
-                                    width: width * 0.65,
+                                    width: width * 0.55,
                                     child: Text(
                                       '4GB + 64GB',
                                       style: TextStyle(fontFamily: 'Medium', fontSize: 16), overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   Container(
-                                    width: width * 0.65,
+                                    width: width * 0.55,
                                     child: Text(
                                       'Black',
                                       style: TextStyle(fontFamily: 'Medium', fontSize: 16), overflow: TextOverflow.ellipsis,
@@ -419,37 +419,7 @@ actionSheet(context){
                               Expanded(
                                 child: Align(
                                   alignment: Alignment.centerRight,
-                                  child: Container(child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children:[
-                                      Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.black,
-                                        ),
-                                        child: Center(
-                                          child: Text('+', style: TextStyle(color: Colors.white,)),
-                                        )
-                                      ),
-                                      SizedBox(width: width * 0.01),
-                                      Container(child: Text('1')),
-                                      SizedBox(width: width * 0.01),
-                                      Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.black
-                                        ),
-                                        child: Center(
-                                          child: Text('-', style: TextStyle(color: Colors.white,)),
-                                        )
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                  child: ProductCounter(),
                                 ),
                               ),
                             ],
@@ -676,7 +646,68 @@ Widget buildBlur(
         child: child,
       ),
     );
-
+class ProductCounter extends StatefulWidget {
+  @override
+  _ProductCounterState createState() => _ProductCounterState();
+}
+class _ProductCounterState extends State<ProductCounter> {
+  var count = 1;
+  void initState() {
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context){
+    var width = MediaQuery.of(context).size.width;
+    return Container(child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children:[
+          InkWell(
+            onTap: () {
+              setState(() {
+                if(count > 1){
+                  count--;
+                }
+                else count = 1;
+              });
+            },
+            child: Container(
+              width: width * 0.075,
+              height: width * 0.075,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.black
+              ),
+              child: Center(
+                child: Text('-', style: TextStyle(color: Colors.white, fontSize: width * 0.04, fontFamily: 'Bold')),
+              )
+            ),
+          ),
+          SizedBox(width: width * 0.01),
+          Container(child: Text(count.toString(), style: TextStyle(fontSize: width * 0.07, fontFamily: 'Medium'))),
+          SizedBox(width: width * 0.01),
+          InkWell(
+            onTap: () {
+              setState(() {
+                count++;
+              });
+            },
+            child: Container(
+              width: width * 0.075,
+              height: width * 0.075,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.black
+              ),
+              child: Center(
+                child: Text('+', style: TextStyle(color: Colors.white, fontSize: width * 0.04, fontFamily: 'Bold')),
+              )
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 class SpecContainer extends StatefulWidget {
   @override
   _SpecContainerState createState() => _SpecContainerState();
