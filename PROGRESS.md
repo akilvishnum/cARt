@@ -22,9 +22,6 @@
         ✔️ &nbsp; Created a AR spider model using ARFoundation 🎯 <br> 
 	✔️ &nbsp; Created a AR SOFA model using ARFoundation 🎯 <br> 
 	✔️ &nbsp; Chair model added 🎯👻 <br>
-	⏳ &nbsp; AR Phone Model 🎯 <br>
-	✔️ &nbsp; Face Detection Trial 🎯 <br>
-	⏳ &nbsp; sunglasses appear on a tracked face 🎯 <br>
 	</p>
 </td>
 </tr>
@@ -63,6 +60,9 @@
 <tr>
 <td align = "center" > <p> Unity </p> </td>
 <td> <p> 
+	⏳ &nbsp; AR Phone Model 🎯 <br>
+	✔️ &nbsp; Face Detection Trial 🎯 <br>
+	⏳ &nbsp; sunglasses appear on a tracked face 🎯 <br>
      </p>
 </td>
 </tr>
