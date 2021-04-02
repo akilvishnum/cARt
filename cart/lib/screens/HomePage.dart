@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:palette_generator/palette_generator.dart';
-
+import 'package:cart/screens/productPage.dart';
+import 'dart:ui';
+import 'package:flutter_svg/flutter_svg.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -22,28 +24,14 @@ class _HomePageState extends State<HomePage> {
     "Glasses",
     "Shirts",
     "Pants",
-    "shoes",
+    "Shoes",
+    "Watch",
   ];
   List<bool> selected = [];
   int count;
   void initState() {
     selected.add(true);
     for (int i = 0; i < categories.length - 1; i++) selected.add(false);
-    _findBackground();
-  }
-
-  _findBackground() async {
-    final PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
-      AssetImage(productImage),
-      size: Size(100000, 100000),
-    );
-    productBackground = generator.dominantColor != null
-        ? generator.dominantColor
-        : PaletteColor(Colors.white, 2);
-    HSLColor productHSL = HSLColor.fromColor(productBackground.color);
-    light = productHSL.withLightness(0.8);
-    dark = productHSL.withLightness(0.4);
-    setState(() {});
   }
 
   @override
@@ -68,25 +56,31 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         "Welcome Back!",
-                        style: TextStyle(fontFamily: 'Bold', fontSize: 25),
+                        style: TextStyle(fontFamily: 'Bold', fontSize: 26),
                       ),
-                      SizedBox(
-                        width: width * 0.3,
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: 26,
+                            width: 26,
+                            child: SvgPicture.asset(
+                              'assets/icons/cart.svg',
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.add_shopping_cart),
-                        onPressed: () {},
-                      )
                     ],
                   ),
                   SizedBox(height: height * 0.02),
                   Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[400],
+                        color: Color.fromRGBO(191, 191, 191, 100),
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                       width: width * 0.94,
-                      height: 60,
+                      height: 50,
                       child: Container(
                         child: TextFormField(
                           onChanged: (val) {
@@ -105,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontFamily: 'Bold', fontSize: 25),
                     ),
                   ),
-                  SizedBox(height: height * 0.02),
+                  SizedBox(height: height * 0.01),
                   Container(
                     width: width,
                     height: 50,
@@ -132,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                                 decoration: BoxDecoration(
                                   color: (selected[index])
                                       ? Colors.black
-                                      : Colors.grey[400],
+                                      : Color.fromRGBO(191, 191, 191, 100),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0)),
                                 ),
@@ -173,115 +167,9 @@ class _HomePageState extends State<HomePage> {
                                 child: Row(
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                        width: width * 0.4,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                light != null
-                                                    ? light.toColor()
-                                                    : Color.fromRGBO(
-                                                        229, 229, 229, 1),
-                                                dark != null
-                                                    ? dark.toColor()
-                                                    : Color.fromRGBO(
-                                                        229, 229, 229, 1)
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              stops: [0.0, 0.4],
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(40)),
-                                        child: Column(
-                                          children: [
-                                            Center(
-                                              child: Image(
-                                                  // width: (width * 0.4) * 0.9,
-                                                  height: 150,
-                                                  image: AssetImage(
-                                                      "assets/products/phone.png")),
-                                            ),
-                                            Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        225, 225, 225, 0.23),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30)),
-                                                width: (width * 0.4) * 0.8,
-                                                height: 50,
-                                                child: Center(
-                                                  child: Text(
-                                                    "Rs.719",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontFamily: 'Medium'),
-                                                  ),
-                                                ))
-                                          ],
-                                        )),
+                                    PDisplay(index),
                                     SizedBox(width: width * 0.05),
-                                    Container(
-                                        width: width * 0.4,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                ((index * 2) + 1 <
-                                                        categories.length)
-                                                    ? light != null
-                                                        ? light.toColor()
-                                                        : Color.fromRGBO(
-                                                            229, 229, 229, 1)
-                                                    : Color.fromRGBO(
-                                                        229, 229, 229, 1),
-                                                ((index * 2) + 1 <
-                                                        categories.length)
-                                                    ? dark != null
-                                                        ? dark.toColor()
-                                                        : Color.fromRGBO(
-                                                            229, 229, 229, 1)
-                                                    : Color.fromRGBO(
-                                                        229, 229, 229, 1),
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              stops: [0.0, 0.4],
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(40)),
-                                        child: Column(
-                                          children: [
-                                            Center(
-                                              child: ((index * 2) + 1 <
-                                                      categories.length)
-                                                  ? Image(
-                                                      height: 150,
-                                                      image: AssetImage(
-                                                          "assets/products/phone.png"))
-                                                  : Container(),
-                                            ),
-                                            Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        225, 225, 225, 0.23),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30)),
-                                                width: (width * 0.4) * 0.8,
-                                                height: 50,
-                                                child: Center(
-                                                  child: Text(
-                                                    "Rs.719",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontFamily: 'Medium'),
-                                                  ),
-                                                ))
-                                          ],
-                                        )),
+                                    ShowProduct(index, categories.length),
                                   ],
                                 ),
                               ),
@@ -297,5 +185,125 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ));
+  }
+}
+Widget buildBlur(
+        {@required Widget child, double sigmaX = 7, double sigmaY = 7}) =>
+    ClipRRect(
+      borderRadius:BorderRadius.circular(30),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
+        child: child,
+      ),
+    );
+Widget ShowProduct(int index, int l){
+  return ((index * 2) + 1 < l) ? PDisplay(index) : Container();
+}
+class PDisplay extends StatefulWidget{
+  int index;
+  PDisplay(this.index);
+  @override
+  _PDisplayState createState() => _PDisplayState();
+}
+class _PDisplayState extends State<PDisplay> {
+  PaletteColor productBackground;
+  HSLColor light, dark;
+  List<String> images = ["assets/products/blackIphone.png", "assets/products/phone.png", "assets/products/shoe.png"];
+  @override
+  void initState(){
+    super.initState();
+    _findBackground(images[widget.index % 3]);
+  }
+
+  _findBackground(String productImage) async {
+   final PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
+     AssetImage(productImage),
+     size: Size(10000, 10000),
+   );
+   productBackground = generator.dominantColor != null
+       ? generator.dominantColor
+       : PaletteColor(Colors.white, 2);
+   HSLColor productHSL = HSLColor.fromColor(productBackground.color);
+   light = productHSL.withLightness(0.8);
+   dark = productHSL.withLightness(0.3);
+   setState(() {});
+ }
+
+  Widget build(BuildContext context){
+    var width = MediaQuery.of(context).size.width;
+    return Container(
+        width: width * 0.4,
+        height: 200,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                light != null
+                    ? light.toColor()
+                    : Color.fromRGBO(
+                        229, 229, 229, 1),
+                dark != null
+                    ? dark.toColor()
+                    : Color.fromRGBO(
+                        229, 229, 229, 1)
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+            borderRadius:
+                BorderRadius.circular(40)),
+        child: InkWell(
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductPage()));
+          },
+          child: Stack(
+            children:[
+              Center(
+                child: Image(
+                    // width: (width * 0.4) * 0.9,
+                    height: 150,
+                    image: AssetImage(
+                        images[widget.index % 3])),
+              ),
+              Positioned(
+              bottom: 0, left: 0, right: 0,
+              child: Center(
+              child:buildBlur(
+                child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors:[
+                          Color.fromRGBO(225, 225, 225, 0.15),
+                          Color.fromRGBO(0,0,0,0),
+                        ],
+                        stops:[0.3, 1],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                        borderRadius:
+                            BorderRadius.circular(30),
+                            border: Border.all(color: Color.fromRGBO(196, 196, 196, 100), width: 0.75,),
+                        ),
+                    width: (width * 0.4) * 0.8,
+                    height: 50,
+                    child: Center(
+                      child: Text(
+                        "\$719",
+                        style: TextStyle(
+                            fontSize: 23,
+                            fontFamily: 'Bold',),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
