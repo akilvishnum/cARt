@@ -154,7 +154,7 @@ class _ProductPageState extends State<ProductPage> {
                                             letterSpacing: 13 * 0.015)),
                                   ),
                                   SizedBox(height: height * 0.0075),
-                                  Container(height: 30, child: VariantButton()),
+                                  Container(height: 30, child: VariantButton(0)),
                                   SizedBox(height: height * 0.020),
                                   Container(
                                     child: Text("SPECIFICATIONS",
@@ -778,6 +778,8 @@ class Spec {
 }
 
 class VariantButton extends StatefulWidget {
+  int variantIndex;
+  VariantButton(this.variantIndex);
   @override
   _VariantButtonState createState() => _VariantButtonState();
 }
@@ -803,6 +805,8 @@ class _VariantButtonState extends State<VariantButton> {
               setState(() {
                 v.forEach((element) => element.isSelected = false);
                 v[index].isSelected = true;
+                widget.variantIndex = index;
+                print(widget.variantIndex);
               });
             },
             child: new VariantContainer(v[index]),
