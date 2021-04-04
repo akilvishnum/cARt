@@ -97,7 +97,7 @@
 </td>
 <!-- <new row>-->
 </tr>
-<td rowspan = "3" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 4 Apr <br> <i> Small Description </i> </p> </td>
+<td rowspan = "2" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 4 Apr <br> <i> Small Description </i> </p> </td>
 <td align = "center" > <p> Flutter </p> </td>
 <td> <p> 
 	✔️ &nbsp; Home Page UI fixes 🧘🏽‍♂️ 👻 <br> 
