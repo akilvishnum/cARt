@@ -4,6 +4,7 @@ import 'package:palette_generator/palette_generator.dart';
 import 'package:cart/screens/productPage.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -27,7 +28,21 @@ class _HomePageState extends State<HomePage> {
     "Shoes",
     "Watch",
   ];
+  List<List<String>> products = [
+    ["1", "2", "3", "4", "5"],
+    ["Chairs1", "Chairs2", "Chairs3"],
+    ["Sofa1", "sofa2", "sofa3"],
+    ["Smart phone 1", "smart phone 2", "smart phone 3"],
+    ["head phones 1", "head phones 2", "head phones 3"],
+    ["cap 1", "cap 2", "cap3"],
+    ["glasses 1", "glasses 2", "glasses 3"],
+    ["shirt 1", "shirt 2", "shirt 3"],
+    ["pant 1", "pant 2", "pant 3"],
+    ["shoes 1", "shoes 2", "shoes 3"],
+    ["watch 1", "watch 2", "watch 3"]
+  ];
   List<bool> selected = [];
+  int selectedindex = 0;
   int count;
   void initState() {
     selected.add(true);
@@ -36,7 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    count = (categories.length / 2).round();
+    count = (products[selectedindex].length / 2).round();
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     print("count $count");
@@ -117,11 +132,12 @@ class _HomePageState extends State<HomePage> {
                                   for (int i = 0; i < categories.length; i++)
                                     selected[i] = false;
                                   selected[index] = true;
+                                  selectedindex = index;
                                 });
                                 print("Hello ${selected}");
                               },
                               child: Container(
-                                width: 100,
+                                width: 150,
                                 height: 30,
                                 decoration: BoxDecoration(
                                   color: (selected[index])
@@ -167,9 +183,16 @@ class _HomePageState extends State<HomePage> {
                                 child: Row(
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    PDisplay(index),
+                                    PDisplay(
+                                        index: index * 2,
+                                        products: products,
+                                        selectedindex: selectedindex),
                                     SizedBox(width: width * 0.05),
-                                    ShowProduct(index, categories.length),
+                                    ShowProduct(
+                                        index,
+                                        products[selectedindex].length,
+                                        products,
+                                        selectedindex),
                                   ],
                                 ),
                               ),
@@ -187,114 +210,126 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 }
+
 Widget buildBlur(
         {@required Widget child, double sigmaX = 7, double sigmaY = 7}) =>
     ClipRRect(
-      borderRadius:BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(30),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
         child: child,
       ),
     );
-Widget ShowProduct(int index, int l){
-  return ((index * 2) + 1 < l) ? PDisplay(index) : Container();
+Widget ShowProduct(
+    int index, int l, List<List<String>> products, int selectedindex) {
+  return ((index * 2) + 1 < l)
+      ? PDisplay(
+          index: (index * 2) + 1,
+          products: products,
+          selectedindex: selectedindex)
+      : Container();
 }
-class PDisplay extends StatefulWidget{
+
+class PDisplay extends StatefulWidget {
   int index;
-  PDisplay(this.index);
+  List<List<String>> products;
+  int selectedindex;
+  PDisplay({this.index, this.products, this.selectedindex});
   @override
   _PDisplayState createState() => _PDisplayState();
 }
+
 class _PDisplayState extends State<PDisplay> {
   PaletteColor productBackground;
   HSLColor light, dark;
-  List<String> images = ["assets/products/blackIphone.png", "assets/products/phone.png", "assets/products/shoe.png"];
+  List<String> images = [
+    "assets/products/blackIphone.png",
+    "assets/products/phone.png",
+    "assets/products/shoe.png"
+  ];
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _findBackground(images[widget.index % 3]);
   }
 
   _findBackground(String productImage) async {
-   final PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
-     AssetImage(productImage),
-     size: Size(10000, 10000),
-   );
-   productBackground = generator.dominantColor != null
-       ? generator.dominantColor
-       : PaletteColor(Colors.white, 2);
-   HSLColor productHSL = HSLColor.fromColor(productBackground.color);
-   light = productHSL.withLightness(0.8);
-   dark = productHSL.withLightness(0.3);
-   setState(() {});
- }
+    final PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
+      AssetImage(productImage),
+      size: Size(10000, 10000),
+    );
+    productBackground = generator.dominantColor != null
+        ? generator.dominantColor
+        : PaletteColor(Colors.white, 2);
+    HSLColor productHSL = HSLColor.fromColor(productBackground.color);
+    light = productHSL.withLightness(0.8);
+    dark = productHSL.withLightness(0.3);
+    setState(() {});
+  }
 
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Container(
-        width: width * 0.4,
-        height: 200,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                light != null
-                    ? light.toColor()
-                    : Color.fromRGBO(
-                        229, 229, 229, 1),
-                dark != null
-                    ? dark.toColor()
-                    : Color.fromRGBO(
-                        229, 229, 229, 1)
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+      width: width * 0.4,
+      height: 200,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              light != null
+                  ? light.toColor()
+                  : Color.fromRGBO(229, 229, 229, 1),
+              dark != null ? dark.toColor() : Color.fromRGBO(229, 229, 229, 1)
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          borderRadius: BorderRadius.circular(40)),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ProductPage()));
+        },
+        child: Stack(
+          children: [
+            Center(
+              child: Image(
+                  // width: (width * 0.4) * 0.9,
+                  height: 150,
+                  image: AssetImage(images[widget.index % 3])),
             ),
-            borderRadius:
-                BorderRadius.circular(40)),
-        child: InkWell(
-          onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ProductPage()));
-          },
-          child: Stack(
-            children:[
-              Center(
-                child: Image(
-                    // width: (width * 0.4) * 0.9,
-                    height: 150,
-                    image: AssetImage(
-                        images[widget.index % 3])),
-              ),
-              Positioned(
-              bottom: 0, left: 0, right: 0,
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
               child: Center(
-              child:buildBlur(
-                child: Container(
+                child: buildBlur(
+                  child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors:[
+                        colors: [
                           Color.fromRGBO(225, 225, 225, 0.15),
-                          Color.fromRGBO(0,0,0,0),
+                          Color.fromRGBO(0, 0, 0, 0),
                         ],
-                        stops:[0.3, 1],
+                        stops: [0.3, 1],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
-                        borderRadius:
-                            BorderRadius.circular(30),
-                            border: Border.all(color: Color.fromRGBO(196, 196, 196, 100), width: 0.75,),
-                        ),
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: Color.fromRGBO(196, 196, 196, 100),
+                        width: 0.75,
+                      ),
+                    ),
                     width: (width * 0.4) * 0.8,
                     height: 50,
                     child: Center(
                       child: Text(
-                        "\$719",
+                        "${widget.products[widget.selectedindex][widget.index]}",
+                        //"\$719",
                         style: TextStyle(
-                            fontSize: 23,
-                            fontFamily: 'Bold',),
+                          fontSize: 23,
+                          fontFamily: 'Bold',
+                        ),
                       ),
                     ),
                   ),

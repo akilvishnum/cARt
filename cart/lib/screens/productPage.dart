@@ -61,14 +61,10 @@ class _ProductPageState extends State<ProductPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                LoginPage()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
-                  child: Container
-                  (height: height * 0.35),
+                  child: Container(height: height * 0.35),
                 ),
                 Stack(
                   overflow: Overflow.visible,
@@ -154,7 +150,8 @@ class _ProductPageState extends State<ProductPage> {
                                             letterSpacing: 13 * 0.015)),
                                   ),
                                   SizedBox(height: height * 0.0075),
-                                  Container(height: 30, child: VariantButton(0)),
+                                  Container(
+                                      height: 30, child: VariantButton(0)),
                                   SizedBox(height: height * 0.020),
                                   Container(
                                     child: Text("SPECIFICATIONS",
@@ -187,16 +184,15 @@ class _ProductPageState extends State<ProductPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      LoginPage()));
+                                  builder: (context) => LoginPage()));
                         },
-                      child: Center(
-                        child: new Image.asset(
-                          productImage,
-                          height: height * 0.35,
+                        child: Center(
+                          child: new Image.asset(
+                            productImage,
+                            height: height * 0.35,
+                          ),
                         ),
                       ),
-                    ),
                     ),
                     Positioned(
                       bottom: 0,
@@ -212,8 +208,11 @@ class _ProductPageState extends State<ProductPage> {
                                 left: width * 0.05,
                                 right: width * 0.05),
                             decoration: BoxDecoration(
-                              border: Border(top: BorderSide(width: 1, color: Color.fromRGBO(196, 196, 196, 100)))
-                            ),
+                                border: Border(
+                                    top: BorderSide(
+                                        width: 1,
+                                        color: Color.fromRGBO(
+                                            196, 196, 196, 100)))),
                             child: Row(
                               children: <Widget>[
                                 InkWell(
@@ -224,38 +223,43 @@ class _ProductPageState extends State<ProductPage> {
                                             builder: (context) =>
                                                 ProductPage()));
                                   },
-
-                                    child: Container(
-                                      width: width * 0.23,
-                                      height: height * 0.065,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Color.fromRGBO(196, 196, 196, 100),
-                                          width: 1,
-                                        ),
-                                        color: Color.fromRGBO(191, 191, 191, 100),
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  child: Container(
+                                    width: width * 0.23,
+                                    height: height * 0.065,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color:
+                                            Color.fromRGBO(196, 196, 196, 100),
+                                        width: 1,
                                       ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children:[
-                                          Container(
-                                            height: height * 0.030,
-                                            child: SvgPicture.asset(
-                                              'assets/icons/AR.svg',
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                          Container(
-                                            child:Text('View in AR',
-                                            style: TextStyle(fontFamily: 'Bold', fontSize: 14,),
-                                            )
-                                          ),
-                                        ],
-                                      ),
+                                      color: Color.fromRGBO(191, 191, 191, 100),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
                                     ),
-
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: height * 0.030,
+                                          child: SvgPicture.asset(
+                                            'assets/icons/AR.svg',
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Container(
+                                            child: Text(
+                                          'View in AR',
+                                          style: TextStyle(
+                                            fontFamily: 'Bold',
+                                            fontSize: 14,
+                                          ),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(width: width * 0.03),
                                 InkWell(
@@ -340,304 +344,320 @@ class _ProductPageState extends State<ProductPage> {
             )));
   }
 }
-actionSheet(context){
+
+actionSheet(context) {
   var width = MediaQuery.of(context).size.width;
   var height = MediaQuery.of(context).size.height;
   showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       barrierColor: Colors.transparent,
-      builder: (BuildContext context){
-        return  Container(
-          child: ClipRRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 25, sigmaY: 25,
+      builder: (BuildContext context) {
+        return Container(
+            child: ClipRRect(
+                child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 25,
+            sigmaY: 25,
+          ),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.55,
+            decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+                      width: 1, color: Color.fromRGBO(196, 196, 196, 100))),
+            ),
+            child: Column(children: [
+              Center(
+                child: FractionallySizedBox(
+                  widthFactor: 0.15,
+                  child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 8),
+                      height: 3,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(2),
+                      )),
+                ),
               ),
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.55,
-                decoration: BoxDecoration(
-                  border: Border(top: BorderSide(width: 1, color: Color.fromRGBO(196, 196, 196, 100))),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.05,
                 ),
                 child: Column(
-                  children:[
-                    Center(
-                      child: FractionallySizedBox(
-                        widthFactor: 0.15,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(vertical:  8),
-                          height: 3,
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(2),
-                          )
-                        ),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: height * 0.060),
+                    Container(
+                      child: Text(
+                        'ORDER SUMMARY',
+                        style: TextStyle(
+                            fontFamily: 'Medium',
+                            fontSize: 18,
+                            letterSpacing: 18 * 0.05),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.05,),
-                      child:Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children:[
-                          SizedBox(height: height * 0.060),
-                          Container(
-                            child: Text(
-                              'ORDER SUMMARY',
-                              style: TextStyle(fontFamily: 'Medium', fontSize: 18, letterSpacing: 18 * 0.05),
+                    SizedBox(height: height * 0.010),
+                    Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: width * 0.55,
+                              child: Text("IPhone 12",
+                                  style: TextStyle(
+                                      fontSize: 23,
+                                      fontFamily: 'Bold',
+                                      color: Colors.black)),
+                            ),
+                            Container(
+                              width: width * 0.55,
+                              child: Text(
+                                '4GB + 64GB',
+                                style: TextStyle(
+                                    fontFamily: 'Medium', fontSize: 16),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Container(
+                              width: width * 0.55,
+                              child: Text(
+                                'Black',
+                                style: TextStyle(
+                                    fontFamily: 'Medium', fontSize: 16),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: ProductCounter(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: height * 0.020),
+                    Row(
+                      children: [
+                        Container(
+                          child: Text(
+                            'Base price',
+                            style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                          ),
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              child: Text(
+                                '\$719',
+                                style:
+                                    TextStyle(fontFamily: 'Bold', fontSize: 20),
+                              ),
                             ),
                           ),
-                          SizedBox(height: height * 0.010),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: height * 0.0075),
+                    FractionallySizedBox(
+                      widthFactor: 1,
+                      child: Container(
+                          height: 1,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.05),
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(196, 196, 196, 100))),
+                    ),
+                    SizedBox(height: height * 0.020),
+                    Container(
+                      child: Text(
+                        'SUBTOTAL',
+                        style: TextStyle(
+                            fontFamily: 'Medium',
+                            fontSize: 18,
+                            letterSpacing: 18 * 0.05),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.0075),
+                    Row(
+                      children: [
+                        Container(
+                          width: width * 0.50,
+                          child: Text(
+                            'IPhone 12',
+                            style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            child: Text(
+                              'x 3',
+                              style:
+                                  TextStyle(fontFamily: 'Medium', fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: height * 0.020),
+                    Row(
+                      children: [
+                        Container(
+                          width: width * 0.50,
+                          child: Text(
+                            'TOTAL',
+                            style: TextStyle(
+                                fontFamily: 'Medium',
+                                fontSize: 18,
+                                letterSpacing: 18 * 0.05),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              child: Text(
+                                '\$2157',
+                                style:
+                                    TextStyle(fontFamily: 'Bold', fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: height * 0.020),
+                    Container(
+                      //height: height * 0.108,
+                      child: Row(
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProductPage()));
+                            },
+                            child: Container(
+                              width: width * 0.43,
+                              height: height * 0.065,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Color.fromRGBO(196, 196, 196, 100),
+                                  width: 1,
+                                ),
+                                color: Color.fromRGBO(191, 191, 191, 100),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    width: width * 0.55,
-                                    child: Text("IPhone 12",
-                                        style: TextStyle(
-                                            fontSize: 23,
-                                            fontFamily: 'Bold',
-                                            color: Colors.black)),
-                                  ),
-                                  Container(
-                                    width: width * 0.55,
-                                    child: Text(
-                                      '4GB + 64GB',
-                                      style: TextStyle(fontFamily: 'Medium', fontSize: 16), overflow: TextOverflow.ellipsis,
+                                      child: Text(
+                                    'Add to Cart',
+                                    style: TextStyle(
+                                      fontFamily: 'Bold',
+                                      fontSize: 18,
                                     ),
-                                  ),
-                                  Container(
-                                    width: width * 0.55,
-                                    child: Text(
-                                      'Black',
-                                      style: TextStyle(fontFamily: 'Medium', fontSize: 16), overflow: TextOverflow.ellipsis,
-                                    ),
+                                  )),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: width * 0.04),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             ProductPage()));
+                            },
+                            child: Center(
+                              // Changed to new button UI
+                              child: Column(
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Positioned(
+                                        child: Container(
+                                          height: height * 0.065,
+                                          width: width * 0.43,
+                                          decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        child: Container(
+                                          height: height * 0.065,
+                                          width: width * 0.43,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: <Color>[
+                                                Color.fromRGBO(
+                                                    255, 255, 255, 0.11),
+                                                Color.fromRGBO(255, 255, 255, 0)
+                                              ],
+                                              stops: [0.2, 0.6],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        child: Container(
+                                          height: height * 0.065,
+                                          width: width * 0.43,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text("Buy now",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                      fontFamily: 'Bold',
+                                                      color: Colors.white)),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: ProductCounter(),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height :height * 0.020),
-                          Row(
-                            children:[
-                              Container(
-                                child: Text(
-                                  'Base price',
-                                  style: TextStyle(fontFamily: 'Bold', fontSize: 20),
-                                ),
-                              ),
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Container(
-                                    child: Text(
-                                      '\$719',
-                                      style: TextStyle(fontFamily: 'Bold', fontSize: 20),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: height * 0.0075),
-                          FractionallySizedBox(
-                            widthFactor: 1,
-                            child: Container(
-                              height: 1,
-                              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(196, 196, 196, 100)
-                              )
-                            ),
-                          ),
-                          SizedBox(height :height * 0.020),
-                          Container(
-                            child: Text(
-                              'SUBTOTAL',
-                              style: TextStyle(fontFamily: 'Medium', fontSize: 18, letterSpacing: 18 * 0.05),
-                            ),
-                          ),
-                          SizedBox(height: height * 0.0075),
-                          Row(
-                            children:[
-                              Container(
-                                width: width * 0.50,
-                                child: Text(
-                                  'IPhone 12',
-                                  style: TextStyle(fontFamily: 'Bold', fontSize: 20),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  child: Text(
-                                    'x 3',
-                                    style: TextStyle(fontFamily: 'Medium', fontSize: 20),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: height * 0.020),
-                          Row(
-                            children:[
-                              Container(
-                                width: width * 0.50,
-                                child: Text(
-                                  'TOTAL',
-                                  style: TextStyle(fontFamily: 'Medium', fontSize: 18, letterSpacing: 18 * 0.05),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Container(
-                                    child: Text(
-                                      '\$2157',
-                                      style: TextStyle(fontFamily: 'Bold', fontSize: 20),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: height * 0.020),
-                          Container(
-                            //height: height * 0.108,
-                            child: Row(
-                              children: <Widget>[
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductPage()));
-                                  },
-
-                                    child: Container(
-                                      width: width * 0.43,
-                                      height: height * 0.065,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Color.fromRGBO(196, 196, 196, 100),
-                                          width: 1,
-                                        ),
-                                        color: Color.fromRGBO(191, 191, 191, 100),
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children:[
-                                          Container(
-                                            child:Text('Add to Cart',
-                                            style: TextStyle(fontFamily: 'Bold', fontSize: 18,),
-                                            )
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-                                ),
-                                SizedBox(width: width * 0.04),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductPage()));
-                                  },
-                                  child: Center(
-                                    // Changed to new button UI
-                                    child: Column(
-                                      children: [
-                                        Stack(
-                                          children: [
-                                            Positioned(
-                                              child: Container(
-                                                height: height * 0.065,
-                                                width: width * 0.43,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.black,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              child: Container(
-                                                height: height * 0.065,
-                                                width: width * 0.43,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  gradient: LinearGradient(
-                                                    begin: Alignment.topCenter,
-                                                    end: Alignment.bottomCenter,
-                                                    colors: <Color>[
-                                                      Color.fromRGBO(
-                                                          255, 255, 255, 0.11),
-                                                      Color.fromRGBO(
-                                                          255, 255, 255, 0)
-                                                    ],
-                                                    stops: [0.2, 0.6],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              child: Container(
-                                                height: height * 0.065,
-                                                width: width * 0.43,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text("Buy now",
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 18,
-                                                            fontFamily: 'Bold',
-                                                            color:
-                                                                Colors.white)),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ]
+                  ],
                 ),
               ),
-            )
-          )
-        );
-      }
-  );
+            ]),
+          ),
+        )));
+      });
 }
+
 Widget buildBlur(
         {@required Widget child, double sigmaX = 10, double sigmaY = 10}) =>
     ClipRRect(
@@ -646,44 +666,52 @@ Widget buildBlur(
         child: child,
       ),
     );
+
 class ProductCounter extends StatefulWidget {
   @override
   _ProductCounterState createState() => _ProductCounterState();
 }
+
 class _ProductCounterState extends State<ProductCounter> {
   var count = 1;
   void initState() {
     super.initState();
   }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    return Container(child: Row(
+    return Container(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
-        children:[
+        children: [
           InkWell(
             onTap: () {
               setState(() {
-                if(count > 1){
+                if (count > 1) {
                   count--;
-                }
-                else count = 1;
+                } else
+                  count = 1;
               });
             },
             child: Container(
-              width: width * 0.075,
-              height: width * 0.075,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black
-              ),
-              child: Center(
-                child: Text('-', style: TextStyle(color: Colors.white, fontSize: width * 0.04, fontFamily: 'Bold')),
-              )
-            ),
+                width: width * 0.075,
+                height: width * 0.075,
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+                child: Center(
+                  child: Text('-',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: width * 0.04,
+                          fontFamily: 'Bold')),
+                )),
           ),
           SizedBox(width: width * 0.01),
-          Container(child: Text(count.toString(), style: TextStyle(fontSize: width * 0.07, fontFamily: 'Medium'))),
+          Container(
+              child: Text(count.toString(),
+                  style:
+                      TextStyle(fontSize: width * 0.07, fontFamily: 'Medium'))),
           SizedBox(width: width * 0.01),
           InkWell(
             onTap: () {
@@ -692,22 +720,24 @@ class _ProductCounterState extends State<ProductCounter> {
               });
             },
             child: Container(
-              width: width * 0.075,
-              height: width * 0.075,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black
-              ),
-              child: Center(
-                child: Text('+', style: TextStyle(color: Colors.white, fontSize: width * 0.04, fontFamily: 'Bold')),
-              )
-            ),
+                width: width * 0.075,
+                height: width * 0.075,
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+                child: Center(
+                  child: Text('+',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: width * 0.04,
+                          fontFamily: 'Bold')),
+                )),
           ),
         ],
       ),
     );
   }
 }
+
 class SpecContainer extends StatefulWidget {
   @override
   _SpecContainerState createState() => _SpecContainerState();
