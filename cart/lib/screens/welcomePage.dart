@@ -69,7 +69,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                   child: Column(
                     children: [
@@ -103,7 +103,6 @@ class _WelcomePageState extends State<WelcomePage> {
                               ),
                             ),
                           ),
-
                           Positioned(
                             child: Container(
                               height: 50,
