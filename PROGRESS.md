@@ -97,7 +97,7 @@
 </td>
 <!-- <new row>-->
 </tr>
-<td rowspan = "2" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 4 Apr <br> <i> Small Description </i> </p> </td>
+<td rowspan = "3" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 4 Apr <br> <i> Small Description </i> </p> </td>
 <td align = "center" > <p> Flutter </p> </td>
 <td> <p> 
 	✔️ &nbsp; Home Page UI fixes 🧘🏽‍♂️ 👻 <br> 
@@ -108,15 +108,13 @@
 </td>
 </tr>
 <tr>
-<!-- <td align = "center" > <p> Unity </p> </td>
+<td align = "center" > <p> Unity </p> </td>
 <td> <p> 
-	⏳ &nbsp; AR Phone Model 🎯 <br>
-	✔️ &nbsp; Face Detection Trial 🎯 <br>
-	⏳ &nbsp; sunglasses appear on a tracked face 🎯 <br>
+	✔️ &nbsp; sunglasses made appear on the face 🎯 <br>
      </p>
 </td>
 </tr>
-<tr>
+<!--<tr>
 <td align = "center" > <p> Firebase </p> </td>
 <td> <p> 
 	✔️ &nbsp; Authentication using firebase 👻 <br> 
