@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:palette_generator/palette_generator.dart';
@@ -47,6 +48,44 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     selected.add(true);
     for (int i = 0; i < categories.length - 1; i++) selected.add(false);
+    fetchproducts();
+  }
+
+  void fetchproducts() async {
+    List<List<String>> prod = [[], [], [], [], [], [], [], [], [], [], []];
+    await FirebaseFirestore.instance
+        .collection('Products')
+        .get()
+        .then((snapshot) {
+      snapshot.docs.forEach((element) {
+        prod[0].add(element.data()['productName']);
+        if (element.data()['category'] == "Chair")
+          prod[1].add(element.data()['productName']);
+        else if (element.data()['category'] == "Sofa")
+          prod[2].add(element.data()['productName']);
+        else if (element.data()['category'] == "Smart Phone")
+          prod[3].add(element.data()['productName']);
+        else if (element.data()['category'] == "Head Phones")
+          prod[4].add(element.data()['productName']);
+        else if (element.data()['category'] == "Cap")
+          prod[5].add(element.data()['productName']);
+        else if (element.data()['category'] == "Glasses")
+          prod[6].add(element.data()['productName']);
+        else if (element.data()['category'] == "Shirt")
+          prod[7].add(element.data()['productName']);
+        else if (element.data()['category'] == "Pants")
+          prod[8].add(element.data()['productName']);
+        else if (element.data()['category'] == "Shoes")
+          prod[9].add(element.data()['productName']);
+        else if (element.data()['category'] == "Watch")
+          prod[10].add(element.data()['productName']);
+        print("..........................");
+        print(prod);
+      });
+      setState(() {
+        products = prod;
+      });
+    });
   }
 
   @override
