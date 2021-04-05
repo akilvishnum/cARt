@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     "Glasses",
     "Shirts",
     "Pants",
-    "Shoes",
+    "shoes",
     "Watch",
   ];
   List<bool> selected = [];
@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     PDisplay(index),
                                     SizedBox(width: width * 0.05),
-                                    ShowProduct(index, categories.length),
+                                    ShowProduct(index + 1, categories.length),
                                   ],
                                 ),
                               ),
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 Widget buildBlur(
-        {@required Widget child, double sigmaX = 7, double sigmaY = 7}) =>
+        {@required Widget child, double sigmaX = 5, double sigmaY = 5}) =>
     ClipRRect(
       borderRadius:BorderRadius.circular(30),
       child: BackdropFilter(
@@ -285,7 +285,7 @@ class _PDisplayState extends State<PDisplay> {
                       ),
                         borderRadius:
                             BorderRadius.circular(30),
-                            border: Border.all(color: Color.fromRGBO(196, 196, 196, 100), width: 0.75,),
+                            border: Border.all(color: Color.fromRGBO(196, 196, 196, 100), width: 0.7,),
                         ),
                     width: (width * 0.4) * 0.8,
                     height: 50,
