@@ -139,10 +139,23 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         child: TextFormField(
                           onChanged: (val) {
-                            //email = val;
+                            print(categories
+                                .where((item) => item
+                                    .toLowerCase()
+                                    .contains(val.toLowerCase()))
+                                .toList());
                           },
                           decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.all(15),
+                            hintText: "Search",
+                            hintStyle: TextStyle(fontSize: 20),
                             border: InputBorder.none,
+                            suffixIcon: InkWell(
+                              child: Icon(
+                                Icons.search,
+                                size: 30,
+                              ),
+                            ),
                           ),
                           //validator: (agentName) {},
                         ),
