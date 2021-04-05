@@ -139,11 +139,11 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         child: TextFormField(
                           onChanged: (val) {
-                            print(categories
-                                .where((item) => item
-                                    .toLowerCase()
-                                    .contains(val.toLowerCase()))
-                                .toList());
+                            // print(categories
+                            //     .where((item) => item
+                            //         .toLowerCase()
+                            //         .contains(val.toLowerCase()))
+                            //     .toList());
                           },
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.all(15),
