@@ -71,7 +71,7 @@
 <td> <p> 
 	⏳ &nbsp; AR Phone Model 🎯 <br>
 	✔️ &nbsp; Face Detection Trial 🎯 <br>
-	⏳ &nbsp; sunglasses appear on a tracked face 🎯 <br>
+	✔️ &nbsp; sunglasses appear on a tracked face 🎯 <br>
      </p>
 </td>
 </tr>
