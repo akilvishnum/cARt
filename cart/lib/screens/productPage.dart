@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cart/screens/LoginPage.dart';
+import 'package:model_viewer/model_viewer.dart';
 
 class ProductPage extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  String productImage = 'assets/products/blackIphone.png';
+  String productImage = 'assets/products/phone.png';
   PaletteColor productBackground;
   HSLColor light, dark;
   @override
@@ -62,7 +63,7 @@ class _ProductPageState extends State<ProductPage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                        MaterialPageRoute(builder: (context) => ShowModel('assets/3dmodels/phone.glb')));
                   },
                   child: Container(height: height * 0.35),
                 ),
@@ -960,4 +961,64 @@ class ObjColor {
   bool isSelected;
   final String info;
   ObjColor(this.isSelected, this.r, this.g, this.b, this.o, this.info);
+}
+
+class ShowModel extends StatefulWidget {
+    final String path;
+  ShowModel(this.path);
+  @override
+  _ShowModelState createState() => _ShowModelState();
+}
+
+class _ShowModelState extends State<ShowModel> {
+  PaletteColor productBackground;
+  HSLColor light, dark;
+  String productImage = 'assets/products/phone.png';
+  @override
+  void initState() {
+    super.initState();
+    _findBackground();
+  }
+
+  _findBackground() async {
+    final PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
+      AssetImage(productImage),
+      size: Size(1000000000, 10000000000),
+    );
+    productBackground = generator.dominantColor != null
+        ? generator.dominantColor
+        : PaletteColor(Colors.white, 2);
+    HSLColor productHSL = HSLColor.fromColor(productBackground.color);
+    light = productHSL.withLightness(0.8);
+    dark = productHSL.withLightness(0.3);
+    setState(() {});
+  }
+
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              light != null
+                  ? light.toColor()
+                  : Color.fromRGBO(229, 229, 229, 1),
+              dark != null
+                  ? dark.toColor()
+                  : Color.fromRGBO(229, 229, 229, 1)
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.5, 1],
+          ),
+        ),
+        child: ModelViewer(
+          src: widget.path,
+          ar: true,
+          autoRotate: true,
+          cameraControls: true,
+        ),
+      ),
+    );
+  }
 }

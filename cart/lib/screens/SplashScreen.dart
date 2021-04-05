@@ -87,7 +87,6 @@ class ShimmerLayout extends StatelessWidget{
                         //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-
                             width: width * 0.4,
                             height: 200,
                             decoration: BoxDecoration(
@@ -110,7 +109,7 @@ class ShimmerLayout extends StatelessWidget{
                   ],
                 ),
               );
-              
+
             },
           ),
         )
