@@ -71,7 +71,7 @@
 <td> <p> 
 	⏳ &nbsp; AR Phone Model 🎯 <br>
 	✔️ &nbsp; Face Detection Trial 🎯 <br>
-	✔️ &nbsp; sunglasses appear on a tracked face 🎯 <br>
+	⏳ &nbsp; sunglasses appear on a tracked face 🎯 <br>
      </p>
 </td>
 </tr>
@@ -111,6 +111,8 @@
 <td align = "center" > <p> Unity </p> </td>
 <td> <p> 
 	✔️ &nbsp; sunglasses made appear on the face 🎯 <br>
+	✔️ &nbsp; AR watch model created with a transparent hand model 🎯 <br>
+	⏳ &nbsp; AR watch model trial 🎯 <br>
      </p>
 </td>
 </tr>
