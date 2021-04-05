@@ -36,6 +36,7 @@ dependencies:
   flutter_svg:
   fluttertoast: ^7.1.1
   shimmer:
+  flutter_unity_widget: ^4.0.1+1
 
 dev_dependencies:
   flutter_test:

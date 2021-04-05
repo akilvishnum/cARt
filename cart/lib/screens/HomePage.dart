@@ -29,19 +29,20 @@ class _HomePageState extends State<HomePage> {
     "shoes",
     "Watch",
   ];
-  List<List<String>> products = [
-    ["1", "2", "3", "4", "5"],
-    ["Chairs1", "Chairs2", "Chairs3"],
-    ["Sofa1", "sofa2", "sofa3"],
-    ["Smart phone 1", "smart phone 2", "smart phone 3"],
-    ["head phones 1", "head phones 2", "head phones 3"],
-    ["cap 1", "cap 2", "cap3"],
-    ["glasses 1", "glasses 2", "glasses 3"],
-    ["shirt 1", "shirt 2", "shirt 3"],
-    ["pant 1", "pant 2", "pant 3"],
-    ["shoes 1", "shoes 2", "shoes 3"],
-    ["watch 1", "watch 2", "watch 3"]
-  ];
+  List<List<String>> products = [[], [], [], [], [], [], [], [], [], [], []];
+  // List<List<String>> products = [
+  //   ["1", "2", "3", "4", "5"],
+  //   ["Chairs1", "Chairs2", "Chairs3"],
+  //   ["Sofa1", "sofa2", "sofa3"],
+  //   ["Smart phone 1", "smart phone 2", "smart phone 3"],
+  //   ["head phones 1", "head phones 2", "head phones 3"],
+  //   ["cap 1", "cap 2", "cap3"],
+  //   ["glasses 1", "glasses 2", "glasses 3"],
+  //   ["shirt 1", "shirt 2", "shirt 3"],
+  //   ["pant 1", "pant 2", "pant 3"],
+  //   ["shoes 1", "shoes 2", "shoes 3"],
+  //   ["watch 1", "watch 2", "watch 3"]
+  // ];
   List<bool> selected = [];
   int selectedindex = 0;
   int count;
