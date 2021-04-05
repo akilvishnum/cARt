@@ -103,7 +103,6 @@ class _WelcomePageState extends State<WelcomePage> {
                               ),
                             ),
                           ),
-
                           Positioned(
                             child: Container(
                               height: 50,

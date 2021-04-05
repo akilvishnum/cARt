@@ -15,7 +15,8 @@ EditorBuildSettings:
     path: Assets/GoogleARCore/Examples/AugmentedFaces/Scenes/AugmentedFaces.unity
     guid: 7d2be221c0e8f4e259a08279fab0da42
   m_configObjects:
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 0}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 450081a572347d14897f06375369db08,
+      type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: b060109508aafec448838265c71079dd,
       type: 2}
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 55fa99b21ac5f5e4ebbb9e91435f989e,
