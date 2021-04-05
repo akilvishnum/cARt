@@ -111,6 +111,7 @@
 <td align = "center" > <p> Unity </p> </td>
 <td> <p> 
 	✔️ &nbsp; sunglasses made appear on the face 🎯 <br>
+	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
 	✔️ &nbsp; AR watch model created with a transparent hand model 🎯 <br>
 	⏳ &nbsp; AR watch model trial 🎯 <br>
      </p>
