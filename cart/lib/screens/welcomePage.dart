@@ -1,5 +1,6 @@
 import 'package:cart/screens/productPage.dart';
 import 'package:cart/screens/SignupPage.dart';
+import 'package:cart/screens/sofaAR.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/screens/LoginPage.dart';
 import 'package:cart/screens/SplashScreen.dart';
@@ -60,7 +61,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           fontFamily: 'Bold')),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProductPage()));
+                        MaterialPageRoute(builder: (context) => MyHomePage()));
                   },
                 )),
                 SizedBox(width: width * 0.03),
@@ -68,8 +69,10 @@ class _WelcomePageState extends State<WelcomePage> {
                 // Changed to new button UI
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SplashScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SplashScreen()));
                   },
                   child: Column(
                     children: [
