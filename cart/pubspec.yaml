@@ -35,6 +35,7 @@ dependencies:
   palette_generator: ^0.2.0
   flutter_svg:
   fluttertoast: ^7.1.1
+  shimmer:
 
 dev_dependencies:
   flutter_test:

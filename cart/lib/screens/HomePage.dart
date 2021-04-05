@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     "Glasses",
     "Shirts",
     "Pants",
-    "Shoes",
+    "shoes",
     "Watch",
   ];
   List<List<String>> products = [
@@ -251,7 +251,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 Widget buildBlur(
-        {@required Widget child, double sigmaX = 7, double sigmaY = 7}) =>
+        {@required Widget child, double sigmaX = 5, double sigmaY = 5}) =>
     ClipRRect(
       borderRadius: BorderRadius.circular(30),
       child: BackdropFilter(

@@ -2,7 +2,7 @@ import 'package:cart/screens/productPage.dart';
 import 'package:cart/screens/SignupPage.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/screens/LoginPage.dart';
-import 'package:cart/screens/HomePage.dart';
+import 'package:cart/screens/SplashScreen.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -69,7 +69,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                        MaterialPageRoute(builder: (context) => SplashScreen()));
                   },
                   child: Column(
                     children: [
