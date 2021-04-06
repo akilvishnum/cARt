@@ -185,7 +185,7 @@ class _ProductPageState extends State<ProductPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginPage()));
+                                  builder: (context) => ShowModel('assets/3dmodels/phone.glb')));
                         },
                         child: Center(
                           child: new Image.asset(
@@ -1013,6 +1013,7 @@ class _ShowModelState extends State<ShowModel> {
           ),
         ),
         child: ModelViewer(
+	  backgroundColor: light != null ? light.toColor() : Color.fromRGBO(229, 229, 229, 1),
           src: widget.path,
           ar: true,
           autoRotate: true,
