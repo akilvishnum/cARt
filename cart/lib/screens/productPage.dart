@@ -1,3 +1,4 @@
+import 'package:cart/screens/ARDisplay.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:palette_generator/palette_generator.dart';
@@ -62,8 +63,11 @@ class _ProductPageState extends State<ProductPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ShowModel('assets/3dmodels/phone.glb')));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ShowModel('assets/3dmodels/phone.glb')));
                   },
                   child: Container(height: height * 0.35),
                 ),
@@ -185,7 +189,8 @@ class _ProductPageState extends State<ProductPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ShowModel('assets/3dmodels/phone.glb')));
+                                  builder: (context) =>
+                                      ShowModel('assets/3dmodels/phone.glb')));
                         },
                         child: Center(
                           child: new Image.asset(
@@ -222,7 +227,7 @@ class _ProductPageState extends State<ProductPage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ProductPage()));
+                                                ARDisplay(scene: "Sofa")));
                                   },
                                   child: Container(
                                     width: width * 0.23,
@@ -964,7 +969,7 @@ class ObjColor {
 }
 
 class ShowModel extends StatefulWidget {
-    final String path;
+  final String path;
   ShowModel(this.path);
   @override
   _ShowModelState createState() => _ShowModelState();
@@ -994,7 +999,7 @@ class _ShowModelState extends State<ShowModel> {
     setState(() {});
   }
 
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -1003,9 +1008,7 @@ class _ShowModelState extends State<ShowModel> {
               light != null
                   ? light.toColor()
                   : Color.fromRGBO(229, 229, 229, 1),
-              dark != null
-                  ? dark.toColor()
-                  : Color.fromRGBO(229, 229, 229, 1)
+              dark != null ? dark.toColor() : Color.fromRGBO(229, 229, 229, 1)
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -1013,7 +1016,9 @@ class _ShowModelState extends State<ShowModel> {
           ),
         ),
         child: ModelViewer(
-	  backgroundColor: light != null ? light.toColor() : Color.fromRGBO(229, 229, 229, 1),
+          backgroundColor: light != null
+              ? light.toColor()
+              : Color.fromRGBO(229, 229, 229, 1),
           src: widget.path,
           ar: true,
           autoRotate: true,

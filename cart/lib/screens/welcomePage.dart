@@ -1,6 +1,6 @@
 import 'package:cart/screens/productPage.dart';
 import 'package:cart/screens/SignupPage.dart';
-import 'package:cart/screens/sofaAR.dart';
+import 'package:cart/screens/ARDisplay.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/screens/LoginPage.dart';
 import 'package:cart/screens/SplashScreen.dart';
@@ -61,7 +61,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           fontFamily: 'Bold')),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()));
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                 )),
                 SizedBox(width: width * 0.03),
