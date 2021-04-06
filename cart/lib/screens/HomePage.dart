@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -5,6 +7,9 @@ import 'package:palette_generator/palette_generator.dart';
 import 'package:cart/screens/productPage.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
+
+final recentList = [];
+int resultIndex = -1;
 
 class HomePage extends StatefulWidget {
   @override
@@ -47,6 +52,11 @@ class _HomePageState extends State<HomePage> {
   int selectedindex = 0;
   int count;
   void initState() {
+    // if (resultIndex != -1)
+    //   setState(() {
+    //     searchResultIndex = resultIndex;
+    //     resultIndex = -1;
+    //   });
     selected.add(true);
     for (int i = 0; i < categories.length - 1; i++) selected.add(false);
     fetchproducts();
@@ -130,36 +140,31 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: height * 0.02),
                   Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(191, 191, 191, 100),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      ),
-                      width: width * 0.94,
-                      height: 50,
-                      child: Container(
-                        child: TextFormField(
-                          onChanged: (val) {
-                            // print(categories
-                            //     .where((item) => item
-                            //         .toLowerCase()
-                            //         .contains(val.toLowerCase()))
-                            //     .toList());
-                          },
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(15),
-                            hintText: "Search",
-                            hintStyle: TextStyle(fontSize: 20),
-                            border: InputBorder.none,
-                            suffixIcon: InkWell(
-                              child: Icon(
-                                Icons.search,
-                                size: 30,
-                              ),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(191, 191, 191, 100),
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    width: width * 0.94,
+                    height: 50,
+                    child: InkWell(
+                      onTap: () {
+                        showSearch(context: context, delegate: DataSearch());
+                      },
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                width: width * 0.54,
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text("Search",
+                                    style: TextStyle(fontSize: 20))),
+                            SizedBox(
+                              width: width * 0.25,
                             ),
-                          ),
-                          //validator: (agentName) {},
-                        ),
-                      )),
+                            Icon(Icons.search, size: 30)
+                          ]),
+                    ),
+                  ),
                   SizedBox(height: height * 0.02),
                   Container(
                     child: Text(
@@ -392,6 +397,116 @@ class _PDisplayState extends State<PDisplay> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class DataSearch extends SearchDelegate<String> {
+  final searchList = [
+    "Chairs",
+    "Sofa",
+    "Smart Phones",
+    "Head Phones",
+    "Caps",
+    "Glasses",
+    "Shirts",
+    "Pants",
+    "shoes",
+    "Watch"
+  ];
+  //List recentList = [];
+  // List recentList = ["Shirts", "Pants", "shoes", "Watch"];
+
+  //String result = "";
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = "";
+          close(context, null);
+        },
+      )
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: AnimatedIcon(
+          icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    final suggestionList = query.isEmpty
+        ? recentList
+        : searchList
+            .where((element) =>
+                element.toLowerCase().startsWith(query.toLowerCase()))
+            .toList();
+    return Container(
+      width: width,
+      height: height,
+      color: Colors.white,
+      child: ListView.builder(
+          itemCount: suggestionList.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                SizedBox(height: 2),
+                InkWell(
+                  onTap: () {
+                    print(suggestionList[index]);
+                    resultIndex = index;
+                    if (!recentList.contains(suggestionList[index])) {
+                      recentList.insert(0, suggestionList[index]);
+                      if (recentList.length > 5) recentList.removeLast();
+                    }
+                    Navigator.pop(context);
+                    //showResults(context);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(181, 181, 181, 100),
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    width: width * 0.99,
+                    height: 50,
+                    child: RichText(
+                      text: TextSpan(
+                          text:
+                              suggestionList[index].substring(0, query.length),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                          children: [
+                            TextSpan(
+                                text: suggestionList[index]
+                                    .substring(query.length),
+                                style: TextStyle(
+                                    color: Colors.grey[700], fontSize: 18))
+                          ]),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }),
     );
   }
 }
