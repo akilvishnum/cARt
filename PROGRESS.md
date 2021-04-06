@@ -6,7 +6,7 @@
 <th align = "left"> Work </th>
 <th align = "left"> Detail </th>
 <tr>
-<td rowspan = "6" style = "background-color: white; vertical-align: top"> <p> 9 Mar - 16 Mar<br> <i>Small Description </i> </p> </td>
+<td rowspan = "6" style = "background-color: white; vertical-align: top"> <p> 9 Mar - 16 Mar </p> </td>
 <td align = "center" > <p> Flutter </p> </td>
 <td> <p> 
 	✔️ &nbsp; Build Welcome Page 👻 <br>
@@ -57,7 +57,7 @@
 </td>
 </tr>
 <tr>
-<td rowspan = "5" style = "background-color: white; vertical-align: top"> <p> 17 Mar - 30 Mar <br> <i> Small Description </i> </p> </td>
+<td rowspan = "5" style = "background-color: white; vertical-align: top"> <p> 17 Mar - 30 Mar  </p> </td>
 <td align = "center" > <p> Flutter </p> </td>
 <td> <p> 
 	✔️ &nbsp; Build Homepage 👻 <br> 
@@ -69,9 +69,9 @@
 <tr>
 <td align = "center" > <p> Unity </p> </td>
 <td> <p> 
-	⏳ &nbsp; AR Phone Model 🎯 <br>
 	✔️ &nbsp; Face Detection Trial 🎯 <br>
 	⏳ &nbsp; sunglasses appear on a tracked face 🎯 <br>
+	⏳ &nbsp; AR Phone Model 🎯 <br>
      </p>
 </td>
 </tr>
@@ -97,13 +97,16 @@
 </td>
 <!-- <new row>-->
 </tr>
-<td rowspan = "3" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 4 Apr <br> <i> Small Description </i> </p> </td>
-<td align = "center" > <p> Flutter </p> </td>
+<td rowspan = "3" style = "background-color: white; vertical-align: top"> <p> 1 Apr - Till Date  </p> </td>
+<td align = "center" > <p> Flutter & Firebase </p> </td>
 <td> <p> 
 	✔️ &nbsp; Home Page UI fixes 🧘🏽‍♂️ 👻 <br> 
 	✔️ &nbsp; Done Login and SignUp page form validation 👻 <br> 
 	✔️ &nbsp; Handled all exceptions in login and signup page and made it robust 👻 <br> 
 	✔️ &nbsp; Build Product page action sheet 🧘🏽‍♂️ <br> 
+	✔️ &nbsp; Created custom Splash Screen 🧘🏽‍♂️ <br> 
+	✔️ &nbsp; Fetch products from Database for Homepage 👻 <br> 
+  	⏳ &nbsp; 3D Model viewer to display 3D models inside the phone. 🧘🏽‍♂️ <br> 
 	</p>
 </td>
 </tr>
@@ -111,19 +114,12 @@
 <td align = "center" > <p> Unity </p> </td>
 <td> <p> 
 	✔️ &nbsp; sunglasses made appear on the face 🎯 <br>
-	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
 	✔️ &nbsp; AR watch model created with a transparent hand model 🎯 <br>
 	⏳ &nbsp; AR watch model trial 🎯 <br>
+	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
      </p>
 </td>
 </tr>
-<!--<tr>
-<td align = "center" > <p> Firebase </p> </td>
-<td> <p> 
-	✔️ &nbsp; Authentication using firebase 👻 <br> 
-	</p>
-</td>
-</tr> -->
 <tr>
 <td align = "center" > <p> Flutter Unity Integration </p> </td>
 <td> <p> 
