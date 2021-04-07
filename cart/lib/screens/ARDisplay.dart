@@ -3,7 +3,7 @@ import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 
 class ARDisplay extends StatefulWidget {
   String scene;
-  ARDisplay({scene});
+  ARDisplay({this.scene});
   @override
   _ARDisplayState createState() => _ARDisplayState();
 }

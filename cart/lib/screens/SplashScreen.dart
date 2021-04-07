@@ -49,7 +49,10 @@ class ShimmerLayout extends StatelessWidget{
             Container(
               height: 26,
               width: width * 0.75,
-              color: Colors.grey,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(5),
+              ),
             ),
           ],
         ),
@@ -57,6 +60,7 @@ class ShimmerLayout extends StatelessWidget{
         Container(
             decoration: BoxDecoration(
               color: Colors.grey,
+              borderRadius: BorderRadius.circular(8),
             ),
             width: width * 0.94,
             height: 50,
@@ -66,7 +70,10 @@ class ShimmerLayout extends StatelessWidget{
           child: Container(
             height: 26,
             width: width * 0.40,
-            color: Colors.grey,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.grey,
+            ),
           ),
         ),
         SizedBox(height: height * 0.01 + 50),

@@ -12,7 +12,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  String productImage = 'assets/products/phone.png';
+  String productImage = 'assets/products/pinkSofa.png';
   PaletteColor productBackground;
   HSLColor light, dark;
   @override
@@ -67,7 +67,7 @@ class _ProductPageState extends State<ProductPage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                ShowModel('assets/3dmodels/phone.glb')));
+                                ShowModel('assets/3dmodels/pinkSofa.glb')));
                   },
                   child: Container(height: height * 0.35),
                 ),
@@ -190,7 +190,7 @@ class _ProductPageState extends State<ProductPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      ShowModel('assets/3dmodels/phone.glb')));
+                                      ShowModel('assets/3dmodels/pinkSofa.glb')));
                         },
                         child: Center(
                           child: new Image.asset(
@@ -978,7 +978,7 @@ class ShowModel extends StatefulWidget {
 class _ShowModelState extends State<ShowModel> {
   PaletteColor productBackground;
   HSLColor light, dark;
-  String productImage = 'assets/products/phone.png';
+  String productImage = 'assets/products/pinkSofa.png';
   @override
   void initState() {
     super.initState();
@@ -1002,19 +1002,7 @@ class _ShowModelState extends State<ShowModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              light != null
-                  ? light.toColor()
-                  : Color.fromRGBO(229, 229, 229, 1),
-              dark != null ? dark.toColor() : Color.fromRGBO(229, 229, 229, 1)
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.5, 1],
-          ),
-        ),
+        color: Color.fromRGBO(229, 229, 229, 1),
         child: ModelViewer(
           backgroundColor: light != null
               ? light.toColor()
