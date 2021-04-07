@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                                 width: width * 0.54,
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Text("Search",
-                                    style: TextStyle(fontSize: 20))),
+                                    style: TextStyle(fontFamily: 'Medium', fontSize: 20))),
                             SizedBox(
                               width: width * 0.25,
                             ),
@@ -448,6 +448,8 @@ class DataSearch extends SearchDelegate<String> {
   }
 
   @override
+  TextStyle get searchFieldStyle => TextStyle(fontFamily: 'Bold');
+  @override
   Widget buildSuggestions(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -460,7 +462,7 @@ class DataSearch extends SearchDelegate<String> {
     return Container(
       width: width,
       height: height,
-      color: Colors.white,
+      color: Color.fromRGBO(229, 229, 229, 1),
       child: ListView.builder(
           itemCount: suggestionList.length,
           itemBuilder: (context, index) {
@@ -480,8 +482,8 @@ class DataSearch extends SearchDelegate<String> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(181, 181, 181, 100),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      color: Color.fromRGBO(191, 191, 191, 100),
+                      border: Border(bottom: BorderSide(color: Color.fromRGBO(196, 196, 196, 100), width: 1,)),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     width: width * 0.99,
@@ -491,14 +493,15 @@ class DataSearch extends SearchDelegate<String> {
                           text:
                               suggestionList[index].substring(0, query.length),
                           style: TextStyle(
+                              fontFamily: 'Medium',
                               color: Colors.black,
-                              fontWeight: FontWeight.bold,
                               fontSize: 18),
                           children: [
                             TextSpan(
                                 text: suggestionList[index]
                                     .substring(query.length),
                                 style: TextStyle(
+                                  fontFamily: 'Medium',
                                     color: Colors.grey[700], fontSize: 18))
                           ]),
                     ),
