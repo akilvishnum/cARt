@@ -35,7 +35,7 @@ class _ARDisplayState extends State<ARDisplay> {
   void onUnityCreated(UnityWidgetController controller) {
     unityWidgetController = controller;
 
-    unityWidgetController.postMessage('SceneChanger', 'openScene', 'Sofa');
+    unityWidgetController.postMessage('SceneChanger', 'openScene', 'Sofa_pink');
   }
 
   void onUnitySceneLoaded(SceneLoaded sceneInfo) {
