@@ -157,7 +157,8 @@ class _HomePageState extends State<HomePage> {
                                 width: width * 0.54,
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Text("Search",
-                                    style: TextStyle(fontFamily: 'Medium', fontSize: 20))),
+                                    style: TextStyle(
+                                        fontFamily: 'Medium', fontSize: 20))),
                             SizedBox(
                               width: width * 0.25,
                             ),
@@ -301,7 +302,7 @@ class _PDisplayState extends State<PDisplay> {
   PaletteColor productBackground;
   HSLColor light, dark;
   List<String> images = [
-    "assets/products/blackIphone.png",
+    "assets/products/pinkSofa.png",
     "assets/products/phone.png",
     "assets/products/shoe.png"
   ];
@@ -483,7 +484,11 @@ class DataSearch extends SearchDelegate<String> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(191, 191, 191, 100),
-                      border: Border(bottom: BorderSide(color: Color.fromRGBO(196, 196, 196, 100), width: 1,)),
+                      border: Border(
+                          bottom: BorderSide(
+                        color: Color.fromRGBO(196, 196, 196, 100),
+                        width: 1,
+                      )),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     width: width * 0.99,
@@ -501,8 +506,9 @@ class DataSearch extends SearchDelegate<String> {
                                 text: suggestionList[index]
                                     .substring(query.length),
                                 style: TextStyle(
-                                  fontFamily: 'Medium',
-                                    color: Colors.grey[700], fontSize: 18))
+                                    fontFamily: 'Medium',
+                                    color: Colors.grey[700],
+                                    fontSize: 18))
                           ]),
                     ),
                   ),
