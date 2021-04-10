@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   String email, password;
   String info = '';
   final _loginkey = new GlobalKey<FormState>();
-
+  bool _obscureText = true;
   void showToast(bool error, String info) {
     Fluttertoast.showToast(
       msg: (!error)
@@ -127,11 +127,22 @@ class _LoginPageState extends State<LoginPage> {
                         height: 60,
                         child: Container(
                           child: TextFormField(
+                            obscureText: _obscureText,
                             onChanged: (val) {
                               password = val;
                             },
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               border: InputBorder.none,
+                              suffixIcon: IconButton(
+                                icon: Icon((_obscureText)
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscureText = !_obscureText;
+                                  });
+                                },
+                              ),
                             ),
                             validator: (pass) {
                               if (pass.isEmpty)
