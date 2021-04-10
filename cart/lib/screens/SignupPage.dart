@@ -13,6 +13,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   double width, height;
   String email, password, repassword;
+  bool _obscureText = true, _obscureText1 = true;
   final _signupkey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -106,11 +107,22 @@ class _SignupPageState extends State<SignupPage> {
                       height: 60,
                       child: Container(
                         child: TextFormField(
+                          obscureText: _obscureText,
                           onChanged: (val) {
                             password = val;
                           },
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             border: InputBorder.none,
+                            suffixIcon: IconButton(
+                              icon: Icon((_obscureText)
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                            ),
                           ),
                           validator: (pass) {
                             if (pass.isEmpty)
@@ -140,11 +152,22 @@ class _SignupPageState extends State<SignupPage> {
                       height: 60,
                       child: Container(
                         child: TextFormField(
+                          obscureText: _obscureText1,
                           onChanged: (val) {
                             repassword = val;
                           },
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             border: InputBorder.none,
+                            suffixIcon: IconButton(
+                              icon: Icon((_obscureText1)
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText1 = !_obscureText1;
+                                });
+                              },
+                            ),
                           ),
                           validator: (repass) {
                             if (repass.isEmpty)
