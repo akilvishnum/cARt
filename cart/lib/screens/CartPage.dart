@@ -46,24 +46,24 @@ class _CartPageState extends State<CartPage> {
                               onTap: () {
                                 Navigator.pop(context);
                               },
-                              child:Center(
-                              child: Container(
-                                height: height * 0.065,
-                                width: height * 0.065,
-                                decoration: BoxDecoration(
-                                  color: Color.fromRGBO(90, 90, 90, 100),
-                                  borderRadius:
-                                      BorderRadius.circular(height * 0.022),
-                                ),
-                                child: Center(
-                                  child: SvgPicture.asset(
-                                    'assets/icons/back.svg',
-                                    color: Colors.white,
+                              child: Center(
+                                child: Container(
+                                  height: height * 0.065,
+                                  width: height * 0.065,
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(90, 90, 90, 100),
+                                    borderRadius:
+                                        BorderRadius.circular(height * 0.022),
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(
+                                      'assets/icons/back.svg',
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
                           ),
                         ],
                       ),
@@ -72,33 +72,68 @@ class _CartPageState extends State<CartPage> {
                 )),
             Expanded(
               child: Container(
-                padding: EdgeInsets.only(left: 10, right: 10),
+                // padding:
+                //     EdgeInsets.only(left: width * 0.035, right: width * 0.035),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(height * 0.05),
-                      topLeft: Radius.circular(height * 0.05)),
+                  // borderRadius: BorderRadius.only(
+                  //     topRight: Radius.circular(height * 0.05),
+                  //     topLeft: Radius.circular(height * 0.05)),
                 ),
                 child: Stack(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: height * 0.025),
-                        ConstrainedBox(
-                          constraints: BoxConstraints(maxHeight: 5000),
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: BouncingScrollPhysics(),
-                              itemCount: 3,
-                              itemBuilder: (BuildContext context, int index) {
-                                return CartProductContainer();
-                          }),
-                        ),
-                        SizedBox(height: height * 0.0125),
-                        Text('SUMMARY'),
-                      ],
-                    ),
+                    SingleChildScrollView(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          left: width * 0.035, right: width * 0.035),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: height * 0.025),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(maxHeight: 5000),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                itemCount: 3,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return CartProductContainer();
+                                }),
+                          ),
+                          SizedBox(height: height * 0.0125),
+                          Container(
+                            child: Text(
+                              'ORDER SUMMARY',
+                              style: TextStyle(
+                                  fontFamily: 'Medium',
+                                  fontSize: 18,
+                                  letterSpacing: 18 * 0.05),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.0075),
+                          Container(
+                            padding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(248, 248, 248, 1),
+                              borderRadius: BorderRadius.all(Radius.circular(width * 0.05)),
+                            ),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(maxHeight: 50000000000),
+                              child: ListView.builder(
+                                  padding: EdgeInsets.all(0),
+                                  shrinkWrap: true,
+                                  physics: BouncingScrollPhysics(),
+                                  itemCount: 6,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return SubTotalContainer();
+                                  }),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.108 + 20)
+                        ],
+                      ),
+                    ), ),
                     Positioned(
                       bottom: 0,
                       left: 0,
@@ -196,6 +231,83 @@ class _CartPageState extends State<CartPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SubTotalContainer extends StatelessWidget {
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    return Container(
+      height: height * 0.080,
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: width * 0.075,
+                height: width * 0.075,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black,
+                ),
+                child: Center(
+                  child: Text(
+                    '1',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: width * 0.02),
+              Container(
+                width: width * 0.35,
+                child: Text('Soft Sofa - Peachy Pink',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 2),
+              ),
+              SizedBox(width: width * 0.05),
+              Container(
+                child: Text('x 3',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 2),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                      child: Text(
+                    '1123',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 1,
+                  )),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+        ],
       ),
     );
   }
@@ -313,7 +425,9 @@ class _ProductCounterState extends State<ProductCounter> {
                       count == 1 ? Colors.red.withOpacity(0.3) : Colors.black),
               child: Center(
                 child: SvgPicture.asset(
-                  count == 1 ? 'assets/icons/AR.svg' : 'assets/icons/back.svg',
+                  count == 1
+                      ? 'assets/icons/trash.svg'
+                      : 'assets/icons/minus.svg',
                   color: count == 1 ? Colors.red : Colors.white,
                   width: width * 0.035,
                   height: width * 0.035,
@@ -340,7 +454,7 @@ class _ProductCounterState extends State<ProductCounter> {
                   BoxDecoration(shape: BoxShape.circle, color: Colors.black),
               child: Center(
                 child: SvgPicture.asset(
-                  'assets/icons/back.svg',
+                  'assets/icons/plus.svg',
                   color: Colors.white,
                   width: width * 0.035,
                   height: width * 0.035,
