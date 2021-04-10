@@ -1,3 +1,4 @@
+import 'package:cart/Component/Products.dart';
 import 'package:cart/screens/ARDisplay.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
@@ -7,6 +8,8 @@ import 'package:cart/screens/LoginPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 
 class ProductPage extends StatefulWidget {
+  Products product;
+  ProductPage({this.product});
   @override
   _ProductPageState createState() => _ProductPageState();
 }
@@ -189,8 +192,8 @@ class _ProductPageState extends State<ProductPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      ShowModel('assets/3dmodels/pinkSofa.glb')));
+                                  builder: (context) => ShowModel(
+                                      'assets/3dmodels/pinkSofa.glb')));
                         },
                         child: Center(
                           child: new Image.asset(

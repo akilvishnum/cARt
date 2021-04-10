@@ -2,42 +2,47 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cart/screens/HomePage.dart';
 import 'package:shimmer/shimmer.dart';
-class SplashScreen extends StatefulWidget{
+
+class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
-class _SplashScreenState extends State<SplashScreen>{
-  bool loading = true; Widget h;
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool loading = true;
   @override
-  void initState(){
-      super.initState();
-      Timer timer = Timer(Duration(seconds: 2), () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
-      });
+  void initState() {
+    super.initState();
+    Timer timer = Timer(Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    });
   }
-  Widget build(BuildContext context){
+
+  Widget build(BuildContext context) {
     return ShimmerList();
   }
 }
-class ShimmerList extends StatelessWidget{
+
+class ShimmerList extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        color: Colors.white,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.symmetric(horizontal: 25),
-        child: Shimmer.fromColors(
-          highlightColor: Colors.grey[100],
-          baseColor: Colors.grey[300],
-          child: ShimmerLayout(),
-        ),
-      )
-    );
+        child: Container(
+      color: Colors.white,
+      height: MediaQuery.of(context).size.height,
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Shimmer.fromColors(
+        highlightColor: Colors.grey[100],
+        baseColor: Colors.grey[300],
+        child: ShimmerLayout(),
+      ),
+    ));
   }
 }
-class ShimmerLayout extends StatelessWidget{
-  Widget build(BuildContext context){
+
+class ShimmerLayout extends StatelessWidget {
+  Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Column(
@@ -58,12 +63,12 @@ class ShimmerLayout extends StatelessWidget{
         ),
         SizedBox(height: height * 0.02),
         Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            width: width * 0.94,
-            height: 50,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          width: width * 0.94,
+          height: 50,
         ),
         SizedBox(height: height * 0.02),
         Container(
@@ -97,17 +102,16 @@ class ShimmerLayout extends StatelessWidget{
                             width: width * 0.4,
                             height: 200,
                             decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(20)),
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(20)),
                           ),
                           SizedBox(width: width * 0.05),
                           Container(
-
                             width: width * 0.4,
                             height: 200,
                             decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(20)),
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(20)),
                           ),
                         ],
                       ),
@@ -116,7 +120,6 @@ class ShimmerLayout extends StatelessWidget{
                   ],
                 ),
               );
-
             },
           ),
         )
