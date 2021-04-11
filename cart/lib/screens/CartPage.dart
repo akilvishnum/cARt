@@ -350,7 +350,7 @@ class CartProductContainer extends StatelessWidget {
               SizedBox(width: 20),
               Container(
                 height: width * 0.2,
-                width: width * 0.4,
+                width: width * 0.385,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
