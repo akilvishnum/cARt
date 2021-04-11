@@ -7,6 +7,8 @@ import 'package:palette_generator/palette_generator.dart';
 import 'package:cart/screens/productPage.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:cart/Component/Products.dart';
 
 final recentList = [];
 int resultIndex = -1;
@@ -34,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     "shoes",
     "Watch",
   ];
-  List<List<String>> products = [[], [], [], [], [], [], [], [], [], [], []];
+  List<List<Products>> products = [[], [], [], [], [], [], [], [], [], [], []];
   // List<List<String>> products = [
   //   ["1", "2", "3", "4", "5"],
   //   ["Chairs1", "Chairs2", "Chairs3"],
@@ -63,33 +65,110 @@ class _HomePageState extends State<HomePage> {
   }
 
   void fetchproducts() async {
-    List<List<String>> prod = [[], [], [], [], [], [], [], [], [], [], []];
+    List<List<Products>> prod = [[], [], [], [], [], [], [], [], [], [], []];
     await FirebaseFirestore.instance
         .collection('Products')
         .get()
         .then((snapshot) {
       snapshot.docs.forEach((element) {
-        prod[0].add(element.data()['productName']);
+        prod[0].add(Products(
+            productId: element.data()['productId'],
+            productName: element.data()['productName'],
+            productType: element.data()['productType'],
+            category: element.data()['category'],
+            price: element.data()['price'],
+            description: element.data()['description'],
+            specification: element.data()['specification']));
         if (element.data()['category'] == "Chair")
-          prod[1].add(element.data()['productName']);
+          prod[1].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Sofa")
-          prod[2].add(element.data()['productName']);
+          prod[2].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Smart Phone")
-          prod[3].add(element.data()['productName']);
+          prod[3].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Head Phones")
-          prod[4].add(element.data()['productName']);
+          prod[4].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Cap")
-          prod[5].add(element.data()['productName']);
+          prod[5].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Glasses")
-          prod[6].add(element.data()['productName']);
+          prod[6].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Shirt")
-          prod[7].add(element.data()['productName']);
+          prod[7].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Pants")
-          prod[8].add(element.data()['productName']);
+          prod[8].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Shoes")
-          prod[9].add(element.data()['productName']);
+          prod[9].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         else if (element.data()['category'] == "Watch")
-          prod[10].add(element.data()['productName']);
+          prod[10].add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              specification: element.data()['specification']));
         print("..........................");
         print(prod);
       });
@@ -163,7 +242,8 @@ class _HomePageState extends State<HomePage> {
                                 width: width * 0.54,
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Text("Search",
-                                    style: TextStyle(fontFamily: 'Medium', fontSize: 20))),
+                                    style: TextStyle(
+                                        fontFamily: 'Medium', fontSize: 20))),
                             SizedBox(
                               width: width * 0.25,
                             ),
@@ -285,7 +365,7 @@ Widget buildBlur(
       ),
     );
 Widget ShowProduct(
-    int index, int l, List<List<String>> products, int selectedindex) {
+    int index, int l, List<List<Products>> products, int selectedindex) {
   return ((index * 2) + 1 < l)
       ? PDisplay(
           index: (index * 2) + 1,
@@ -296,7 +376,7 @@ Widget ShowProduct(
 
 class PDisplay extends StatefulWidget {
   int index;
-  List<List<String>> products;
+  List<List<Products>> products;
   int selectedindex;
   PDisplay({this.index, this.products, this.selectedindex});
   @override
@@ -307,10 +387,11 @@ class _PDisplayState extends State<PDisplay> {
   PaletteColor productBackground;
   HSLColor light, dark;
   List<String> images = [
-    "assets/products/blackIphone.png",
+    "assets/products/pinkSofa.png",
     "assets/products/phone.png",
     "assets/products/shoe.png"
   ];
+  bool ready = false;
   @override
   void initState() {
     super.initState();
@@ -322,6 +403,11 @@ class _PDisplayState extends State<PDisplay> {
       AssetImage(productImage),
       size: Size(10000, 10000),
     );
+    // if (generator.dominantColor != null) {
+    //   setState(() {
+    //     ready = true;
+    //   });
+    // }
     productBackground = generator.dominantColor != null
         ? generator.dominantColor
         : PaletteColor(Colors.white, 2);
@@ -351,7 +437,11 @@ class _PDisplayState extends State<PDisplay> {
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ProductPage()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProductPage(
+                      product: widget.products[widget.selectedindex]
+                          [widget.index])));
         },
         child: Stack(
           children: [
@@ -388,7 +478,7 @@ class _PDisplayState extends State<PDisplay> {
                     height: 50,
                     child: Center(
                       child: Text(
-                        "${widget.products[widget.selectedindex][widget.index]}",
+                        "${widget.products[widget.selectedindex][widget.index].price}",
                         //"\$719",
                         style: TextStyle(
                           fontSize: 23,
@@ -404,6 +494,16 @@ class _PDisplayState extends State<PDisplay> {
         ),
       ),
     );
+    // : Shimmer.fromColors(
+    //     highlightColor: Colors.grey[100],
+    //     baseColor: Colors.grey[300],
+    //     child: Container(
+    //       width: width * 0.4,
+    //       height: 200,
+    //       decoration: BoxDecoration(
+    //           color: Colors.grey, borderRadius: BorderRadius.circular(20)),
+    //     ),
+    //   );
   }
 }
 
@@ -489,7 +589,11 @@ class DataSearch extends SearchDelegate<String> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(191, 191, 191, 100),
-                      border: Border(bottom: BorderSide(color: Color.fromRGBO(196, 196, 196, 100), width: 1,)),
+                      border: Border(
+                          bottom: BorderSide(
+                        color: Color.fromRGBO(196, 196, 196, 100),
+                        width: 1,
+                      )),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     width: width * 0.99,
@@ -507,8 +611,9 @@ class DataSearch extends SearchDelegate<String> {
                                 text: suggestionList[index]
                                     .substring(query.length),
                                 style: TextStyle(
-                                  fontFamily: 'Medium',
-                                    color: Colors.grey[700], fontSize: 18))
+                                    fontFamily: 'Medium',
+                                    color: Colors.grey[700],
+                                    fontSize: 18))
                           ]),
                     ),
                   ),

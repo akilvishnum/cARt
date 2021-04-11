@@ -35,7 +35,7 @@ class _ARDisplayState extends State<ARDisplay> {
   void onUnityCreated(UnityWidgetController controller) {
     unityWidgetController = controller;
 
-    unityWidgetController.postMessage('SceneChanger', 'openScene', 'Sofa');
+    unityWidgetController.postMessage('SceneChanger', 'openScene', 'Sofa_red');
   }
 
   void onUnitySceneLoaded(SceneLoaded sceneInfo) {
@@ -49,7 +49,7 @@ class _ARDisplayState extends State<ARDisplay> {
     return WillPopScope(
       onWillPop: () {
         unityWidgetController.postMessage(
-            'SceneChanger', 'openScene', 'Scene2');
+            'SceneChanger', 'openScene', 'Loading');
         Navigator.pop(context);
       },
       child: Scaffold(
