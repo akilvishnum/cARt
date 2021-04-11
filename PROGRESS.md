@@ -97,7 +97,7 @@
 </td>
 <!-- <new row>-->
 </tr>
-<td rowspan = "3" style = "background-color: white; vertical-align: top"> <p> 1 Apr - Till Date  </p> </td>
+<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 1 Apr - Till Date  </p> </td>
 <td align = "center" > <p> Flutter & Firebase </p> </td>
 <td> <p> 
 	✔️ &nbsp; Home Page UI fixes 🧘🏽‍♂️ 👻 <br> 
@@ -106,6 +106,7 @@
 	✔️ &nbsp; Build Product page action sheet 🧘🏽‍♂️ <br> 
 	✔️ &nbsp; Created custom Splash Screen 🧘🏽‍♂️ <br> 
 	✔️ &nbsp; Fetch products from Database for Homepage 👻 <br> 
+	✔️ &nbsp; Created Cart Page 🧘🏽‍♂️ <br> 
   	⏳ &nbsp; 3D Model viewer to display 3D models inside the phone. 🧘🏽‍♂️ <br> 
 	</p>
 </td>
@@ -124,6 +125,15 @@
 <td align = "center" > <p> Flutter Unity Integration </p> </td>
 <td> <p> 
 	✔️ &nbsp; Switching between different Unity Scenes from Flutter 🧘🏽‍♂️👻🎯  
+	</p>
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Design </p> </td>
+<td> <p> 
+	✔️ &nbsp; UI Design for Cart page 🧘🏽‍♂️  <br>
+	✔️ &nbsp; Created Target Marker for AR 🧘🏽‍♂️  <br>
+	✔️ &nbsp; Converted 3D models to FBX and GLB to be used for AR 🧘🏽‍♂️ 
 	</p>
 </td>
 </tr>
