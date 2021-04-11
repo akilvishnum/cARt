@@ -4,6 +4,7 @@ import 'package:cart/screens/ARDisplay.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/screens/CartPage.dart';
 import 'package:cart/screens/SplashScreen.dart';
+import 'package:cart/screens/LoginPage.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
