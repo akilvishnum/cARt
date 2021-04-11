@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cart/screens/LoginPage.dart';
+import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 
 class ProductPage extends StatefulWidget {
@@ -551,7 +552,7 @@ actionSheet(context) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ProductPage()));
+                                      builder: (context) => CartPage()));
                             },
                             child: Container(
                               width: width * 0.43,
