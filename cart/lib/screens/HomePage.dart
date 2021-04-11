@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:cart/screens/CartPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -123,15 +123,21 @@ class _HomePageState extends State<HomePage> {
                         "Welcome Back!",
                         style: TextStyle(fontFamily: 'Bold', fontSize: 26),
                       ),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Container(
-                            height: 26,
-                            width: 26,
-                            child: SvgPicture.asset(
-                              'assets/icons/cart.svg',
-                              color: Colors.black,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CartPage()));
+                        },
+                        child:Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              height: 26,
+                              width: 26,
+                              child: SvgPicture.asset(
+                                'assets/icons/cart.svg',
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),

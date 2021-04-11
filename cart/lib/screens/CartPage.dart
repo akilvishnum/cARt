@@ -72,13 +72,13 @@ class _CartPageState extends State<CartPage> {
                 )),
             Expanded(
               child: Container(
-                // padding:
-                //     EdgeInsets.only(left: width * 0.035, right: width * 0.035),
+                padding:
+                     EdgeInsets.only(top: width * 0.035 / 2 + 4,),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  // borderRadius: BorderRadius.only(
-                  //     topRight: Radius.circular(height * 0.05),
-                  //     topLeft: Radius.circular(height * 0.05)),
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(height * 0.05),
+                      topLeft: Radius.circular(height * 0.05)),
                 ),
                 child: Stack(
                   children: [
@@ -89,10 +89,11 @@ class _CartPageState extends State<CartPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: height * 0.025),
+                          SizedBox(height: height * 0.025 / 2),
                           ConstrainedBox(
                             constraints: BoxConstraints(maxHeight: 5000),
                             child: ListView.builder(
+                                padding: EdgeInsets.all(0),
                                 shrinkWrap: true,
                                 physics: BouncingScrollPhysics(),
                                 itemCount: 3,
@@ -115,7 +116,7 @@ class _CartPageState extends State<CartPage> {
                             padding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(248, 248, 248, 1),
-                              borderRadius: BorderRadius.all(Radius.circular(width * 0.05)),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(width * 0.05), topRight: Radius.circular(width * 0.05),),
                             ),
                             child: ConstrainedBox(
                               constraints: BoxConstraints(maxHeight: 50000000000),
@@ -123,14 +124,14 @@ class _CartPageState extends State<CartPage> {
                                   padding: EdgeInsets.all(0),
                                   shrinkWrap: true,
                                   physics: BouncingScrollPhysics(),
-                                  itemCount: 6,
+                                  itemCount: 3,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return SubTotalContainer();
                                   }),
                             ),
                           ),
-                          SizedBox(height: height * 0.108 + 20)
+                          SizedBox(height: height * 0.108)
                         ],
                       ),
                     ), ),
@@ -252,14 +253,14 @@ class SubTotalContainer extends StatelessWidget {
                 height: width * 0.075,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.black,
+                  color: Color.fromRGBO(191, 191, 191, 100),
                 ),
                 child: Center(
                   child: Text(
                     '1',
                     style: TextStyle(
                       fontFamily: 'Bold',
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 20,
                     ),
                   ),
@@ -279,7 +280,18 @@ class SubTotalContainer extends StatelessWidget {
               ),
               SizedBox(width: width * 0.05),
               Container(
-                child: Text('x 3',
+                child: Text('x',
+                    style: TextStyle(
+                      fontFamily: 'Medium',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 2),
+              ),
+              SizedBox(width: width * 0.02),
+              Container(
+                child: Text('1',
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
@@ -293,7 +305,7 @@ class SubTotalContainer extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Container(
                       child: Text(
-                    '1123',
+                    '\$1123',
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
