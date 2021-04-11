@@ -123,12 +123,12 @@ class _HomePageState extends State<HomePage> {
                         "Welcome Back!",
                         style: TextStyle(fontFamily: 'Bold', fontSize: 26),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => CartPage()));
-                        },
-                        child:Expanded(
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => CartPage()));
+                          },
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Container(
