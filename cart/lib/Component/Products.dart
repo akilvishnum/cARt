@@ -5,7 +5,9 @@ class Products {
   String category;
   int price;
   String description;
-  List<Map<String, dynamic>> specification;
+  List<String> variants;
+  List<String> colors;
+  Map<String, dynamic> specification;
   Products(
       {this.productId,
       this.productName,
@@ -13,5 +15,7 @@ class Products {
       this.category,
       this.price,
       this.description,
+      this.variants,
+      this.colors,
       this.specification});
 }

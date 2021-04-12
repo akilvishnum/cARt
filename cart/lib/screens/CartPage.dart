@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cart/Component/Products.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -8,6 +11,80 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  @override
+  void initState() {
+    super.initState();
+    fetchCartProducts();
+  }
+
+  String data;
+  List<Products> cartlist = [];
+  void fetchCartProducts() async {
+    List<Products> cartdata = [];
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+        .get()
+        .then((value) {
+      for (int i = 0; i < value.data()['cartDetails'].length; i++) {
+        FirebaseFirestore.instance
+            .collection("Products")
+            .doc(value.data()['cartDetails'][i]['productId'])
+            .get()
+            .then((element) {
+          cartdata.add(Products(
+              productId: element.data()['productId'],
+              productName: element.data()['productName'],
+              productType: element.data()['productType'],
+              category: element.data()['category'],
+              price: element.data()['price'],
+              description: element.data()['description'],
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
+        });
+      }
+
+      print("11 $cartdata");
+      while (cartdata == null) {
+        print("data not loaded");
+      }
+      setState(() {
+        cartlist = cartdata;
+        print(cartlist);
+      });
+    });
+  }
+
+  Widget waitTimer() {
+    Timer(Duration(seconds: 2), () {
+      setState(() {
+        data = "done";
+      });
+    });
+    if (data == null)
+      return Container(
+          width: 40, height: 40, child: CircularProgressIndicator());
+    if (data != null)
+      setState(() {
+        data = null;
+      });
+    return ListView.builder(
+        padding: EdgeInsets.all(0),
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        itemCount: cartlist.length,
+        itemBuilder: (BuildContext context, int index) {
+          return CartProductContainer(product: cartlist[index]);
+        });
+  }
+
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -89,20 +166,14 @@ class _CartPageState extends State<CartPage> {
                         padding: EdgeInsets.only(
                             left: width * 0.035, right: width * 0.035),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: (data == null)
+                              ? CrossAxisAlignment.center
+                              : CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: height * 0.025 / 2),
                             ConstrainedBox(
                               constraints: BoxConstraints(maxHeight: 5000),
-                              child: ListView.builder(
-                                  padding: EdgeInsets.all(0),
-                                  shrinkWrap: true,
-                                  physics: BouncingScrollPhysics(),
-                                  itemCount: 3,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return CartProductContainer();
-                                  }),
+                              child: waitTimer(),
                             ),
                             SizedBox(height: height * 0.0125),
                             Container(
@@ -132,10 +203,11 @@ class _CartPageState extends State<CartPage> {
                                     padding: EdgeInsets.all(0),
                                     shrinkWrap: true,
                                     physics: BouncingScrollPhysics(),
-                                    itemCount: 3,
+                                    itemCount: cartlist.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      return SubTotalContainer();
+                                      return SubTotalContainer(
+                                          product: cartlist[index]);
                                     }),
                               ),
                             ),
@@ -247,6 +319,8 @@ class _CartPageState extends State<CartPage> {
 }
 
 class SubTotalContainer extends StatelessWidget {
+  Products product;
+  SubTotalContainer({this.product});
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -278,7 +352,7 @@ class SubTotalContainer extends StatelessWidget {
               SizedBox(width: width * 0.02),
               Container(
                 width: width * 0.35,
-                child: Text('Soft Sofa - Peachy Pink',
+                child: Text('${product.category} - ${product.productName}',
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
@@ -314,7 +388,7 @@ class SubTotalContainer extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Container(
                       child: Text(
-                    '\$1123',
+                    '₹ ${product.price}',
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
@@ -335,6 +409,8 @@ class SubTotalContainer extends StatelessWidget {
 }
 
 class CartProductContainer extends StatelessWidget {
+  Products product;
+  CartProductContainer({this.product});
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Column(
@@ -364,7 +440,7 @@ class CartProductContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Soft Sofa - Peachy Pink',
+                      '${product.category} - ${product.productName}',
                       style: TextStyle(
                         fontFamily: 'Bold',
                         color: Colors.black,
@@ -374,7 +450,7 @@ class CartProductContainer extends StatelessWidget {
                       maxLines: 2,
                     ),
                     Text(
-                      '\$1123',
+                      '₹ ${product.price}',
                       style: TextStyle(
                         fontFamily: 'Medium',
                         color: Colors.black,

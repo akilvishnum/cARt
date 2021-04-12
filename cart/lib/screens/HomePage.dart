@@ -78,7 +78,15 @@ class _HomePageState extends State<HomePage> {
             category: element.data()['category'],
             price: element.data()['price'],
             description: element.data()['description'],
-            specification: element.data()['specification']));
+            variants: (element.data()['variants'] != null)
+                ? List<String>.from(element.data()['variants'])
+                : [],
+            colors: (element.data()['colors'] != null)
+                ? List<String>.from(element.data()['colors'])
+                : [],
+            specification: (element.data()['specifications'] != null)
+                ? Map<String, dynamic>.from(element.data()['specifications'])
+                : {}));
         if (element.data()['category'] == "Chair")
           prod[1].add(Products(
               productId: element.data()['productId'],
@@ -87,7 +95,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Sofa")
           prod[2].add(Products(
               productId: element.data()['productId'],
@@ -96,7 +112,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Smart Phone")
           prod[3].add(Products(
               productId: element.data()['productId'],
@@ -105,7 +129,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Head Phones")
           prod[4].add(Products(
               productId: element.data()['productId'],
@@ -114,7 +146,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Cap")
           prod[5].add(Products(
               productId: element.data()['productId'],
@@ -123,7 +163,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Glasses")
           prod[6].add(Products(
               productId: element.data()['productId'],
@@ -132,7 +180,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Shirt")
           prod[7].add(Products(
               productId: element.data()['productId'],
@@ -141,7 +197,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Pants")
           prod[8].add(Products(
               productId: element.data()['productId'],
@@ -150,7 +214,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Shoes")
           prod[9].add(Products(
               productId: element.data()['productId'],
@@ -159,7 +231,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         else if (element.data()['category'] == "Watch")
           prod[10].add(Products(
               productId: element.data()['productId'],
@@ -168,7 +248,15 @@ class _HomePageState extends State<HomePage> {
               category: element.data()['category'],
               price: element.data()['price'],
               description: element.data()['description'],
-              specification: element.data()['specification']));
+              variants: (element.data()['variants'] != null)
+                  ? List<String>.from(element.data()['variants'])
+                  : [],
+              colors: (element.data()['colors'] != null)
+                  ? List<String>.from(element.data()['colors'])
+                  : [],
+              specification: (element.data()['specifications'] != null)
+                  ? Map<String, dynamic>.from(element.data()['specifications'])
+                  : {}));
         print("..........................");
         print(prod);
       });
@@ -206,7 +294,9 @@ class _HomePageState extends State<HomePage> {
                         child: InkWell(
                           onTap: () {
                             Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => CartPage()));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartPage()));
                           },
                           child: Align(
                             alignment: Alignment.centerRight,
