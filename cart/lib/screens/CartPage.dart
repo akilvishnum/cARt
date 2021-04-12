@@ -19,6 +19,7 @@ class _CartPageState extends State<CartPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 20),
             Container(
                 height: height * 0.12,
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -72,8 +73,9 @@ class _CartPageState extends State<CartPage> {
                 )),
             Expanded(
               child: Container(
-                padding:
-                     EdgeInsets.only(top: width * 0.035 / 2 + 4,),
+                padding: EdgeInsets.only(
+                  top: width * 0.035 / 2 + 4,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -83,43 +85,15 @@ class _CartPageState extends State<CartPage> {
                 child: Stack(
                   children: [
                     SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.only(
-                          left: width * 0.035, right: width * 0.035),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: height * 0.025 / 2),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: 5000),
-                            child: ListView.builder(
-                                padding: EdgeInsets.all(0),
-                                shrinkWrap: true,
-                                physics: BouncingScrollPhysics(),
-                                itemCount: 3,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return CartProductContainer();
-                                }),
-                          ),
-                          SizedBox(height: height * 0.0125),
-                          Container(
-                            child: Text(
-                              'ORDER SUMMARY',
-                              style: TextStyle(
-                                  fontFamily: 'Medium',
-                                  fontSize: 18,
-                                  letterSpacing: 18 * 0.05),
-                            ),
-                          ),
-                          SizedBox(height: height * 0.0075),
-                          Container(
-                            padding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
-                            decoration: BoxDecoration(
-                              color: Color.fromRGBO(248, 248, 248, 1),
-                              borderRadius: BorderRadius.only(topLeft: Radius.circular(width * 0.05), topRight: Radius.circular(width * 0.05),),
-                            ),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(maxHeight: 50000000000),
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            left: width * 0.035, right: width * 0.035),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: height * 0.025 / 2),
+                            ConstrainedBox(
+                              constraints: BoxConstraints(maxHeight: 5000),
                               child: ListView.builder(
                                   padding: EdgeInsets.all(0),
                                   shrinkWrap: true,
@@ -127,14 +101,49 @@ class _CartPageState extends State<CartPage> {
                                   itemCount: 3,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return SubTotalContainer();
+                                    return CartProductContainer();
                                   }),
                             ),
-                          ),
-                          SizedBox(height: height * 0.108)
-                        ],
+                            SizedBox(height: height * 0.0125),
+                            Container(
+                              child: Text(
+                                'ORDER SUMMARY',
+                                style: TextStyle(
+                                    fontFamily: 'Medium',
+                                    fontSize: 18,
+                                    letterSpacing: 18 * 0.05),
+                              ),
+                            ),
+                            SizedBox(height: height * 0.0075),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  left: 10, right: 10, top: 15, bottom: 15),
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(248, 248, 248, 1),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(width * 0.05),
+                                  topRight: Radius.circular(width * 0.05),
+                                ),
+                              ),
+                              child: ConstrainedBox(
+                                constraints:
+                                    BoxConstraints(maxHeight: 50000000000),
+                                child: ListView.builder(
+                                    padding: EdgeInsets.all(0),
+                                    shrinkWrap: true,
+                                    physics: BouncingScrollPhysics(),
+                                    itemCount: 3,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return SubTotalContainer();
+                                    }),
+                              ),
+                            ),
+                            SizedBox(height: height * 0.108)
+                          ],
+                        ),
                       ),
-                    ), ),
+                    ),
                     Positioned(
                       bottom: 0,
                       left: 0,
