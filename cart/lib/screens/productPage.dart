@@ -7,6 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cart/screens/LoginPage.dart';
 import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+int variantsIndex = 0, colorIndex = 0, productCount = 1;
 
 class ProductPage extends StatefulWidget {
   Products product;
@@ -98,7 +101,7 @@ class _ProductPageState extends State<ProductPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    child: Text("SMARTPHONE",
+                                    child: Text(widget.product.category,
                                         style: TextStyle(
                                             fontSize: 13,
                                             fontFamily: 'Medium',
@@ -107,7 +110,7 @@ class _ProductPageState extends State<ProductPage> {
                                   ),
                                   SizedBox(height: height * 0.006),
                                   Container(
-                                    child: Text("IPhone 12",
+                                    child: Text(widget.product.productName,
                                         style: TextStyle(
                                             fontSize: 26,
                                             fontFamily: 'Bold',
@@ -119,7 +122,7 @@ class _ProductPageState extends State<ProductPage> {
                                 child: Align(
                                   alignment: Alignment.centerRight,
                                   child: Container(
-                                    child: Text("\$719",
+                                    child: Text("₹ ${widget.product.price}",
                                         style: TextStyle(
                                             fontSize: 38,
                                             fontFamily: 'Bold',
@@ -138,8 +141,7 @@ class _ProductPageState extends State<ProductPage> {
                                 padding: EdgeInsets.all(0),
                                 children: [
                                   Container(
-                                    child: Text(
-                                        "5G speed. A14 Bionic, the fastest chip in a smartphone. A new OLED display. Ceramic Shield with four times better drop performance. And Night mode on every camera. iPhone 12 has it all — in two perfect sizes. 5G on iPhone is superfast. So you can download movies on the fly. Stream higher-quality video. Or FaceTime in HD over cellular. ",
+                                    child: Text(widget.product.description,
                                         style: TextStyle(
                                           fontSize: 16,
                                           height: 17.5 / 12,
@@ -148,7 +150,10 @@ class _ProductPageState extends State<ProductPage> {
                                         )),
                                   ),
                                   SizedBox(height: height * 0.020),
-                                  Container(height: 50, child: ColorButton()),
+                                  Container(
+                                      height: 50,
+                                      child:
+                                          ColorButton(product: widget.product)),
                                   SizedBox(height: height * 0.020),
                                   Container(
                                     child: Text("VARIANTS",
@@ -160,7 +165,10 @@ class _ProductPageState extends State<ProductPage> {
                                   ),
                                   SizedBox(height: height * 0.0075),
                                   Container(
-                                      height: 30, child: VariantButton(0)),
+                                      height: 30,
+                                      child: VariantButton(
+                                          variantIndex: 0,
+                                          product: widget.product)),
                                   SizedBox(height: height * 0.020),
                                   Container(
                                     child: Text("SPECIFICATIONS",
@@ -174,7 +182,8 @@ class _ProductPageState extends State<ProductPage> {
                                   // SpecContainer(),
                                   Container(
                                     height: height * 0.145,
-                                    child: SpecContainer(),
+                                    child:
+                                        SpecContainer(product: widget.product),
                                   ),
                                   SizedBox(height: height * 0.12),
                                 ],
@@ -274,7 +283,7 @@ class _ProductPageState extends State<ProductPage> {
                                 SizedBox(width: width * 0.03),
                                 InkWell(
                                   onTap: () {
-                                    actionSheet(context);
+                                    actionSheet(context, widget.product);
                                   },
                                   child: Center(
                                     // Changed to new button UI
@@ -355,7 +364,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 }
 
-actionSheet(context) {
+actionSheet(BuildContext context, Products product) {
   var width = MediaQuery.of(context).size.width;
   var height = MediaQuery.of(context).size.height;
   showModalBottomSheet(
@@ -415,7 +424,7 @@ actionSheet(context) {
                           children: [
                             Container(
                               width: width * 0.55,
-                              child: Text("IPhone 12",
+                              child: Text(product.productName,
                                   style: TextStyle(
                                       fontSize: 23,
                                       fontFamily: 'Bold',
@@ -424,7 +433,7 @@ actionSheet(context) {
                             Container(
                               width: width * 0.55,
                               child: Text(
-                                '4GB + 64GB',
+                                product.variants[variantsIndex],
                                 style: TextStyle(
                                     fontFamily: 'Medium', fontSize: 16),
                                 overflow: TextOverflow.ellipsis,
@@ -433,7 +442,7 @@ actionSheet(context) {
                             Container(
                               width: width * 0.55,
                               child: Text(
-                                'Black',
+                                product.colors[colorIndex],
                                 style: TextStyle(
                                     fontFamily: 'Medium', fontSize: 16),
                                 overflow: TextOverflow.ellipsis,
@@ -463,7 +472,7 @@ actionSheet(context) {
                             alignment: Alignment.centerRight,
                             child: Container(
                               child: Text(
-                                '\$719',
+                                '₹ ${product.price}',
                                 style:
                                     TextStyle(fontFamily: 'Bold', fontSize: 20),
                               ),
@@ -498,7 +507,7 @@ actionSheet(context) {
                         Container(
                           width: width * 0.50,
                           child: Text(
-                            'IPhone 12',
+                            product.productName,
                             style: TextStyle(fontFamily: 'Bold', fontSize: 20),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -506,7 +515,7 @@ actionSheet(context) {
                         Expanded(
                           child: Container(
                             child: Text(
-                              'x 3',
+                              'x $productCount',
                               style:
                                   TextStyle(fontFamily: 'Medium', fontSize: 20),
                             ),
@@ -533,7 +542,7 @@ actionSheet(context) {
                             alignment: Alignment.centerRight,
                             child: Container(
                               child: Text(
-                                '\$2157',
+                                "₹ ${(product.price) * productCount}",
                                 style:
                                     TextStyle(fontFamily: 'Bold', fontSize: 20),
                               ),
@@ -548,7 +557,20 @@ actionSheet(context) {
                       child: Row(
                         children: <Widget>[
                           InkWell(
-                            onTap: () {
+                            onTap: () async {
+                              await FirebaseFirestore.instance
+                                  .collection('Users')
+                                  .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+                                  .update({
+                                'cartDetails': FieldValue.arrayUnion([
+                                  {
+                                    'productId': product.productId,
+                                    'price': product.price,
+                                    'quantity': productCount,
+                                    'paid': false
+                                  }
+                                ])
+                              });
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -702,6 +724,7 @@ class _ProductCounterState extends State<ProductCounter> {
                   count--;
                 } else
                   count = 1;
+                productCount = count;
               });
             },
             child: Container(
@@ -727,6 +750,7 @@ class _ProductCounterState extends State<ProductCounter> {
             onTap: () {
               setState(() {
                 count++;
+                productCount = count;
               });
             },
             child: Container(
@@ -749,6 +773,8 @@ class _ProductCounterState extends State<ProductCounter> {
 }
 
 class SpecContainer extends StatefulWidget {
+  Products product;
+  SpecContainer({this.product});
   @override
   _SpecContainerState createState() => _SpecContainerState();
 }
@@ -757,12 +783,9 @@ class _SpecContainerState extends State<SpecContainer> {
   List<Spec> s = List<Spec>();
   void initState() {
     super.initState();
-    s.add(new Spec(
-        'Camera', '6.1-inch (15.5 cm diagonal) Super Retina XDR display'));
-    s.add(new Spec('Display',
-        'Advanced dual-camera system - 12MP Ultra Wide; Night mode, Deep Fusion. A14 Bionic chip, the fastest chip ever in a smartphone'));
-    s.add(new Spec(
-        'Processor', 'A14 Bionic chip, the fastest chip ever in a smartphone'));
+    widget.product.specification.forEach((key, value) {
+      s.add(new Spec(key, value));
+    });
   }
 
   @override
@@ -813,13 +836,14 @@ class _SpecContainerState extends State<SpecContainer> {
 }
 
 class Spec {
-  final String heading, text;
+  String heading, text;
   Spec(this.heading, this.text);
 }
 
 class VariantButton extends StatefulWidget {
   int variantIndex;
-  VariantButton(this.variantIndex);
+  Products product;
+  VariantButton({this.variantIndex, this.product});
   @override
   _VariantButtonState createState() => _VariantButtonState();
 }
@@ -829,8 +853,12 @@ class _VariantButtonState extends State<VariantButton> {
   @override
   void initState() {
     super.initState();
-    v.add(new Variant(true, '4GB + 64GB'));
-    v.add(new Variant(false, '8GB + 128GB'));
+    for (int i = 0; i < widget.product.variants.length; i++) {
+      if (i == 0)
+        v.add(new Variant(true, widget.product.variants[i]));
+      else
+        v.add(new Variant(false, widget.product.variants[i]));
+    }
   }
 
   Widget build(BuildContext context) {
@@ -847,6 +875,7 @@ class _VariantButtonState extends State<VariantButton> {
                 v[index].isSelected = true;
                 widget.variantIndex = index;
                 print(widget.variantIndex);
+                variantsIndex = widget.variantIndex;
               });
             },
             child: new VariantContainer(v[index]),
@@ -895,6 +924,8 @@ class Variant {
 }
 
 class ColorButton extends StatefulWidget {
+  Products product;
+  ColorButton({this.product});
   @override
   _ColorButtonState createState() => _ColorButtonState();
 }
@@ -904,8 +935,12 @@ class _ColorButtonState extends State<ColorButton> {
   @override
   void initState() {
     super.initState();
-    v.add(new ObjColor(true, 255, 80, 80, 100, 'Product Red'));
-    v.add(new ObjColor(false, 125, 30, 0, 100, 'Brown'));
+    for (int i = 0; i < widget.product.colors.length; i++) {
+      if (i == 0)
+        v.add(new ObjColor(true, 255, 80, 80, 100, widget.product.colors[i]));
+      else
+        v.add(new ObjColor(false, 125, 30, 0, 100, widget.product.colors[i]));
+    }
   }
 
   Widget build(BuildContext context) {
@@ -919,6 +954,7 @@ class _ColorButtonState extends State<ColorButton> {
               setState(() {
                 v.forEach((element) => element.isSelected = false);
                 v[index].isSelected = true;
+                colorIndex = index;
               });
             },
             child: new ColorContainer(v[index]),
