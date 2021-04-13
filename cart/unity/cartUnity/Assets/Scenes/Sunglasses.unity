@@ -208,7 +208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttemptUpdate: 1
   m_MatchFrameRate: 1
-  m_TrackingMode: 2
 --- !u!4 &1821587643
 Transform:
   m_ObjectHideFlags: 0
@@ -253,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caeceacb624484daf8e379c2252fd246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FacePrefab: {fileID: 1569523436110511005, guid: 74a28c1efbc03364ea04c4e8ef3bc9d7,
+  m_FacePrefab: {fileID: 6949062501594678250, guid: 4cf3daf0cc67c8d408c40fb45b17e15b,
     type: 3}
   m_MaximumFaceCount: 1
 --- !u!114 &1833232586
@@ -375,9 +374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FocusMode: -1
   m_LightEstimationMode: -1
-  m_AutoFocus: 1
-  m_LightEstimation: 0
-  m_FacingDirection: 1
 --- !u!114 &1840499337
 MonoBehaviour:
   m_ObjectHideFlags: 0
