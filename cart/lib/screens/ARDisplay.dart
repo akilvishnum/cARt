@@ -16,26 +16,13 @@ class _ARDisplayState extends State<ARDisplay> {
     setState(() {
       currentScene = widget.scene;
     });
-    print(
-        "..................$currentScene ++ ${widget.scene}..................?");
-  }
-
-  void _incrementCounter() {
-    // _counter++;
-    // if (_counter % 2 != 0)
-    //   unityWidgetController.postMessage('SceneChanger', 'openScene', 'Sofa');
-    // else
-    //   unityWidgetController.postMessage('SceneChanger', 'openScene', 'Scene2');
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //         builder: (context) => MyHomePage(title: 'Flutter Demo Home Page')));
   }
 
   void onUnityCreated(UnityWidgetController controller) {
     unityWidgetController = controller;
 
-    unityWidgetController.postMessage('SceneChanger', 'openScene', 'Sofa_red');
+    unityWidgetController.postMessage(
+        'SceneChanger', 'openScene', 'Sunglasses');
   }
 
   void onUnitySceneLoaded(SceneLoaded sceneInfo) {
