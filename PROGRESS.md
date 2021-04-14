@@ -118,6 +118,10 @@
 	✔️ &nbsp; AR watch model created with a transparent hand model 🎯 <br>
 	⏳ &nbsp; AR watch model trial 🎯 <br>
 	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
+	✔️ &nbsp; Sofa scene added 🎯 <br>
+	✔️ &nbsp; Laptop scene added 🎯 <br>
+	✔️ &nbsp; Spectacles scene added 🎯 <br>
+	✔️ &nbsp; Cap scene added 🎯 <br>
      </p>
 </td>
 </tr>
