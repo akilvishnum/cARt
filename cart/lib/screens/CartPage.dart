@@ -110,10 +110,10 @@ class _CartPageState extends State<CartPage> {
                             child: Container(
                               child: Text('Cart',
                                   style: TextStyle(
-                                      fontSize: height * 0.03,
+                                      fontSize: height * 0.027,
                                       fontFamily: 'Bold',
                                       color: Colors.white,
-                                      letterSpacing: height * 0.03 * 0.01)),
+                                      letterSpacing: height * 0.027 * 0.01)),
                             ),
                           ),
                           Positioned(
@@ -126,8 +126,8 @@ class _CartPageState extends State<CartPage> {
                               },
                               child: Center(
                                 child: Container(
-                                  height: height * 0.065,
-                                  width: height * 0.065,
+                                  height: height * 0.06,
+                                  width: height * 0.06,
                                   decoration: BoxDecoration(
                                     color: Color.fromRGBO(90, 90, 90, 100),
                                     borderRadius:
@@ -181,8 +181,8 @@ class _CartPageState extends State<CartPage> {
                                 'ORDER SUMMARY',
                                 style: TextStyle(
                                     fontFamily: 'Medium',
-                                    fontSize: 18,
-                                    letterSpacing: 18 * 0.05),
+                                    fontSize: width * 0.039,
+                                    letterSpacing: width * 0.039 * 0.05),
                               ),
                             ),
                             SizedBox(height: height * 0.0075),
@@ -290,7 +290,7 @@ class _CartPageState extends State<CartPage> {
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        fontSize: 18,
+                                                        fontSize: width * 0.043,
                                                         fontFamily: 'Bold',
                                                         color: Colors.white)),
                                               ],
@@ -344,7 +344,7 @@ class SubTotalContainer extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: width * 0.04,
                     ),
                   ),
                 ),
@@ -356,7 +356,7 @@ class SubTotalContainer extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: width * 0.042,
                     ),
                     overflow: TextOverflow.clip,
                     maxLines: 2),
@@ -367,7 +367,7 @@ class SubTotalContainer extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Medium',
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: width * 0.04,
                     ),
                     overflow: TextOverflow.clip,
                     maxLines: 2),
@@ -378,7 +378,7 @@ class SubTotalContainer extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: width * 0.042,
                     ),
                     overflow: TextOverflow.clip,
                     maxLines: 2),
@@ -392,7 +392,7 @@ class SubTotalContainer extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Bold',
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: width * 0.042,
                     ),
                     overflow: TextOverflow.clip,
                     maxLines: 1,
@@ -444,7 +444,7 @@ class CartProductContainer extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Bold',
                         color: Colors.black,
-                        fontSize: 20,
+                        fontSize: width * 0.042,
                       ),
                       overflow: TextOverflow.clip,
                       maxLines: 2,
@@ -454,7 +454,7 @@ class CartProductContainer extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Medium',
                         color: Colors.black,
-                        fontSize: 18,
+                        fontSize: width * 0.0385,
                       ),
                       overflow: TextOverflow.clip,
                       maxLines: 1,
