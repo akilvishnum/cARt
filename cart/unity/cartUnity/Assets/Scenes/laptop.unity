@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 66915357}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 743936398}
   m_RootOrder: 0
@@ -351,7 +351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttemptUpdate: 1
   m_MatchFrameRate: 1
-  m_TrackingMode: 2
 --- !u!4 &422143645
 Transform:
   m_ObjectHideFlags: 0
@@ -442,7 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RaycastPrefab: {fileID: 0}
 --- !u!114 &1008546423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,9 +560,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FocusMode: -1
   m_LightEstimationMode: -1
-  m_AutoFocus: 1
-  m_LightEstimation: 0
-  m_FacingDirection: 1
 --- !u!114 &1343510067
 MonoBehaviour:
   m_ObjectHideFlags: 0
