@@ -1007,9 +1007,9 @@ class _ColorButtonState extends State<ColorButton> {
     super.initState();
     for (int i = 0; i < widget.product.colors.length; i++) {
       if (i == 0)
-        v.add(new ObjColor(true, 255, 80, 80, 100, widget.product.colors[i]));
+        v.add(new ObjColor(true, "0xffb51248", widget.product.colors[i]));
       else
-        v.add(new ObjColor(false, 125, 30, 0, 100, widget.product.colors[i]));
+        v.add(new ObjColor(false, "0xffff5050", widget.product.colors[i]));
     }
   }
 
@@ -1048,7 +1048,7 @@ class ColorContainer extends StatelessWidget {
                 height: 30,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Color.fromRGBO(_item.r, _item.g, _item.b, _item.o),
+                  color: Color(int.parse(_item._color)),
                 ),
               ),
               SizedBox(height: 2),
@@ -1071,11 +1071,10 @@ class ColorContainer extends StatelessWidget {
 }
 
 class ObjColor {
-  int r, g, b;
-  double o;
+  String _color;
   bool isSelected;
   final String info;
-  ObjColor(this.isSelected, this.r, this.g, this.b, this.o, this.info);
+  ObjColor(this.isSelected, this._color, this.info);
 }
 
 class ShowModel extends StatefulWidget {
