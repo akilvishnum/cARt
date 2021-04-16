@@ -49,8 +49,11 @@ class _CartPageState extends State<CartPage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -332,8 +335,7 @@ class _CartPageState extends State<CartPage> {
                 padding:
                     EdgeInsets.only(left: width * 0.035, right: width * 0.035),
                 child: Column(
-                  crossAxisAlignment:
-                       CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: height * 0.025 / 2),
                     ConstrainedBox(
@@ -480,20 +482,20 @@ class _CartPageState extends State<CartPage> {
     });
     if (data == null)
       return Expanded(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: width * 0.035 / 2 + 4,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(height * 0.05),
-                topLeft: Radius.circular(height * 0.05)),
-          ),
-          child: Center(
-            child: Container(
-                width: 30, height: 30, child: CircularProgressIndicator()),
-          )));
+          child: Container(
+              padding: EdgeInsets.only(
+                top: width * 0.035 / 2 + 4,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(height * 0.05),
+                    topLeft: Radius.circular(height * 0.05)),
+              ),
+              child: Center(
+                child: Container(
+                    width: 30, height: 30, child: CircularProgressIndicator()),
+              )));
     if (data != null)
       setState(() {
         data = null;

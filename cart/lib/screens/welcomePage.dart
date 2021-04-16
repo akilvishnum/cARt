@@ -1,6 +1,7 @@
 import 'package:cart/screens/productPage.dart';
 import 'package:cart/screens/SignupPage.dart';
 import 'package:cart/screens/ARDisplay.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/screens/CartPage.dart';
 import 'package:cart/screens/SplashScreen.dart';
@@ -67,10 +68,31 @@ class _WelcomePageState extends State<WelcomePage> {
                                 fontSize: 18,
                                 fontFamily: 'Bold')),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()));
+                          FirebaseFirestore.instance
+                              .collection('Products')
+                              .doc("wesg001")
+                              .set({
+                            'productId': 'wesg001',
+                            'productName': 'Coolers',
+                            'productType': 'Wearable',
+                            'category': 'Eye Wear',
+                            'price': 499,
+                            'colorName': ["Black"],
+                            'colorHex': ["0xff000000"],
+                            'description':
+                                'Premium look & feel at a pocket-friendly price. Compact and lightweight, with anti-skid features for unhindered comfort. Perfect for outdoor activities as well as to make a statement',
+                            'variants': ['Powerless'],
+                            'specifications': {
+                              'Dimension':
+                                  'Medium Size, Frame Length : 58Mm, Wide : 14Mm, Height: 140Mm,',
+                              'Lens': 'PolyCarbonate Lens'
+                            }
+                          }).then((value) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
+                          });
                         },
                       )),
                       SizedBox(width: width * 0.03),

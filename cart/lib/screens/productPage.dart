@@ -20,7 +20,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  String productImage = 'assets/products/pinkSofa.png';
+  String productImage;
   PaletteColor productBackground;
   HSLColor light, dark;
   int productCount = 1;
@@ -30,6 +30,7 @@ class _ProductPageState extends State<ProductPage> {
   void initState() {
     super.initState();
     _findBackground();
+    productImage = 'assets/products/${widget.product.productId}s.png';
   }
 
   _findBackground() async {
@@ -121,7 +122,7 @@ class _ProductPageState extends State<ProductPage> {
                           Container(
                             width: width * 0.55,
                             child: Text(
-                              product.colors[colorIndex],
+                              product.colorName[colorIndex],
                               style:
                                   TextStyle(fontFamily: 'Medium', fontSize: 16),
                               overflow: TextOverflow.ellipsis,
@@ -458,8 +459,10 @@ class _ProductPageState extends State<ProductPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                ShowModel('assets/3dmodels/pinkSofa.glb')));
+                            builder: (context) => ShowModel(
+                                path:
+                                    'assets/3dmodels/${widget.product.productId}.glb',
+                                product: widget.product)));
                   },
                   child: Container(height: height * 0.35),
                 ),
@@ -588,7 +591,9 @@ class _ProductPageState extends State<ProductPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ShowModel(
-                                      'assets/3dmodels/pinkSofa.glb')));
+                                      path:
+                                          'assets/3dmodels/${widget.product.productId}.glb',
+                                      product: widget.product)));
                         },
                         child: Center(
                           child: new Image.asset(
@@ -1005,11 +1010,13 @@ class _ColorButtonState extends State<ColorButton> {
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < widget.product.colors.length; i++) {
+    for (int i = 0; i < widget.product.colorName.length; i++) {
       if (i == 0)
-        v.add(new ObjColor(true, "0xffb51248", widget.product.colors[i]));
+        v.add(new ObjColor(
+            true, widget.product.colorHex[i], widget.product.colorName[i]));
       else
-        v.add(new ObjColor(false, "0xffff5050", widget.product.colors[i]));
+        v.add(new ObjColor(
+            false, widget.product.colorHex[i], widget.product.colorName[i]));
     }
   }
 
@@ -1079,7 +1086,8 @@ class ObjColor {
 
 class ShowModel extends StatefulWidget {
   final String path;
-  ShowModel(this.path);
+  Products product;
+  ShowModel({this.path, this.product});
   @override
   _ShowModelState createState() => _ShowModelState();
 }
@@ -1087,11 +1095,12 @@ class ShowModel extends StatefulWidget {
 class _ShowModelState extends State<ShowModel> {
   PaletteColor productBackground;
   HSLColor light, dark;
-  String productImage = 'assets/products/pinkSofa.png';
+  String productImage;
   @override
   void initState() {
     super.initState();
     _findBackground();
+    productImage = 'assets/products/${widget.product.productId}s.png';
   }
 
   _findBackground() async {
