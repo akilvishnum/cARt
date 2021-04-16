@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   HSLColor light, dark;
   List<String> categories = [
     "All",
-    "Chairs",
+    "Eye Wear",
     "Sofa",
     "Smart Phones",
     "Head Phones",
@@ -81,8 +81,11 @@ class _HomePageState extends State<HomePage> {
             variants: (element.data()['variants'] != null)
                 ? List<String>.from(element.data()['variants'])
                 : [],
-            colors: (element.data()['colors'] != null)
-                ? List<String>.from(element.data()['colors'])
+            colorName: (element.data()['colorName'] != null)
+                ? List<String>.from(element.data()['colorName'])
+                : [],
+            colorHex: (element.data()['colorHex'] != null)
+                ? List<String>.from(element.data()['colorHex'])
                 : [],
             specification: (element.data()['specifications'] != null)
                 ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -98,8 +101,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -115,8 +121,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -132,8 +141,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -149,8 +161,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -166,8 +181,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -183,8 +201,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -200,8 +221,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -217,8 +241,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -234,8 +261,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -251,8 +281,11 @@ class _HomePageState extends State<HomePage> {
               variants: (element.data()['variants'] != null)
                   ? List<String>.from(element.data()['variants'])
                   : [],
-              colors: (element.data()['colors'] != null)
-                  ? List<String>.from(element.data()['colors'])
+              colorName: (element.data()['colorName'] != null)
+                  ? List<String>.from(element.data()['colorName'])
+                  : [],
+              colorHex: (element.data()['colorHex'] != null)
+                  ? List<String>.from(element.data()['colorHex'])
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
@@ -476,16 +509,12 @@ class PDisplay extends StatefulWidget {
 class _PDisplayState extends State<PDisplay> {
   PaletteColor productBackground;
   HSLColor light, dark;
-  List<String> images = [
-    "assets/products/pinkSofa.png",
-    "assets/products/phone.png",
-    "assets/products/shoe.png"
-  ];
   bool ready = false;
   @override
   void initState() {
     super.initState();
-    _findBackground(images[widget.index % 3]);
+    _findBackground(
+        "assets/products/${widget.products[widget.selectedindex][widget.index].productId}f.png");
   }
 
   _findBackground(String productImage) async {
@@ -539,7 +568,8 @@ class _PDisplayState extends State<PDisplay> {
               child: Image(
                   // width: (width * 0.4) * 0.9,
                   height: 150,
-                  image: AssetImage(images[widget.index % 3])),
+                  image: AssetImage(
+                      "assets/products/${widget.products[widget.selectedindex][widget.index].productId}f.png")),
             ),
             Positioned(
               bottom: 0,
