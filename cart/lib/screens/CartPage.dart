@@ -25,51 +25,57 @@ class _CartPageState extends State<CartPage> {
   List<int> productCount = [];
   void fetchCartProducts() async {
     List<Products> cartdata = [];
-    await FirebaseFirestore.instance
-        .collection('Users')
-        .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
-        .get()
-        .then((value) {
-      for (int i = 0; i < value.data()['cartDetails'].length; i++) {
-        FirebaseFirestore.instance
-            .collection("Products")
-            .doc(value.data()['cartDetails'][i]['productId'])
-            .get()
-            .then((element) {
-          cartDetails
-              .add(CartProducts(cartDetails: value.data()['cartDetails'][i]));
-          productCount.add(value.data()['cartDetails'][i]['quantity']);
-          cartdata.add(Products(
-              productId: element.data()['productId'],
-              productName: element.data()['productName'],
-              productType: element.data()['productType'],
-              category: element.data()['category'],
-              price: element.data()['price'],
-              description: element.data()['description'],
-              variants: (element.data()['variants'] != null)
-                  ? List<String>.from(element.data()['variants'])
-                  : [],
-              colorName: (element.data()['colorName'] != null)
-                  ? List<String>.from(element.data()['colorName'])
-                  : [],
-              colorHex: (element.data()['colorHex'] != null)
-                  ? List<String>.from(element.data()['colorHex'])
-                  : [],
-              specification: (element.data()['specifications'] != null)
-                  ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
-        });
-      }
+    try {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+          .get()
+          .then((value) {
+        for (int i = 0; i < value.data()['cartDetails'].length; i++) {
+          if (value.data()['cartDetails'][i]['paid'] == true) continue;
+          FirebaseFirestore.instance
+              .collection("Products")
+              .doc(value.data()['cartDetails'][i]['productId'])
+              .get()
+              .then((element) {
+            cartDetails
+                .add(CartProducts(cartDetails: value.data()['cartDetails'][i]));
+            productCount.add(value.data()['cartDetails'][i]['quantity']);
+            cartdata.add(Products(
+                productId: element.data()['productId'],
+                productName: element.data()['productName'],
+                productType: element.data()['productType'],
+                category: element.data()['category'],
+                price: element.data()['price'],
+                description: element.data()['description'],
+                variants: (element.data()['variants'] != null)
+                    ? List<String>.from(element.data()['variants'])
+                    : [],
+                colorName: (element.data()['colorName'] != null)
+                    ? List<String>.from(element.data()['colorName'])
+                    : [],
+                colorHex: (element.data()['colorHex'] != null)
+                    ? List<String>.from(element.data()['colorHex'])
+                    : [],
+                specification: (element.data()['specifications'] != null)
+                    ? Map<String, dynamic>.from(
+                        element.data()['specifications'])
+                    : {}));
+          });
+        }
 
-      print("11 $cartdata");
-      while (cartdata == null) {
-        print("data not loaded");
-      }
-      setState(() {
-        cartlist = cartdata;
-        print(cartlist);
+        print("11 $cartdata");
+        while (cartdata == null) {
+          print("data not loaded");
+        }
+        setState(() {
+          cartlist = cartdata;
+          print(cartlist);
+        });
       });
-    });
+    } catch (e) {
+      print(e);
+    }
   }
 
   void deleteProduct(int index) async {

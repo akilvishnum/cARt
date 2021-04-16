@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
             specification: (element.data()['specifications'] != null)
                 ? Map<String, dynamic>.from(element.data()['specifications'])
                 : {}));
-        if (element.data()['category'] == "Chair")
+        if (element.data()['category'] == "Eye Wear")
           prod[1].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],

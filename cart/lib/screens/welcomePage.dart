@@ -70,15 +70,15 @@ class _WelcomePageState extends State<WelcomePage> {
                         onPressed: () {
                           FirebaseFirestore.instance
                               .collection('Products')
-                              .doc("wesg001")
+                              .doc("nwso001")
                               .set({
-                            'productId': 'wesg001',
-                            'productName': 'Coolers',
-                            'productType': 'Wearable',
-                            'category': 'Eye Wear',
-                            'price': 499,
-                            'colorName': ["Black"],
-                            'colorHex': ["0xff000000"],
+                            'productId': 'nwso001',
+                            'productName': 'Peachy Pink Sofa',
+                            'productType': 'Non-Wearable',
+                            'category': 'Sofa',
+                            'price': 12000,
+                            'colorName': ["Peachy Pink"],
+                            'colorHex': ["0xffffb6c1"],
                             'description':
                                 'Premium look & feel at a pocket-friendly price. Compact and lightweight, with anti-skid features for unhindered comfort. Perfect for outdoor activities as well as to make a statement',
                             'variants': ['Powerless'],
