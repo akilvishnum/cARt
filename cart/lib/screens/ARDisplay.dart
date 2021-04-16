@@ -9,10 +9,10 @@ class ARDisplay extends StatefulWidget {
 }
 
 class _ARDisplayState extends State<ARDisplay> {
-  int _counter = 0;
   UnityWidgetController unityWidgetController;
   String currentScene = "Sofa";
   void initState() {
+    //super.initState();
     setState(() {
       currentScene = widget.scene;
     });
@@ -21,8 +21,7 @@ class _ARDisplayState extends State<ARDisplay> {
   void onUnityCreated(UnityWidgetController controller) {
     unityWidgetController = controller;
 
-    unityWidgetController.postMessage(
-        'SceneChanger', 'openScene', 'Sunglasses');
+    unityWidgetController.postMessage('SceneChanger', 'openScene', 'Sofa_red');
   }
 
   void onUnitySceneLoaded(SceneLoaded sceneInfo) {

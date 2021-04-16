@@ -9,7 +9,8 @@ import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-int variantsIndex = 0, colorIndex = 0, productCount = 1;
+int variantsIndex = 0, colorIndex = 0;
+//productCount = 1;
 
 class ProductPage extends StatefulWidget {
   Products product;
@@ -22,6 +23,9 @@ class _ProductPageState extends State<ProductPage> {
   String productImage = 'assets/products/pinkSofa.png';
   PaletteColor productBackground;
   HSLColor light, dark;
+  int productCount = 1;
+  PersistentBottomSheetController _controller;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -42,10 +46,391 @@ class _ProductPageState extends State<ProductPage> {
     setState(() {});
   }
 
+  void actionSheet(Products product) async {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    _controller =
+        _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
+      return Container(
+          child: ClipRRect(
+              child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 25,
+          sigmaY: 25,
+        ),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.55,
+          decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(
+                    width: 1, color: Color.fromRGBO(196, 196, 196, 100))),
+          ),
+          child: Column(children: [
+            Center(
+              child: FractionallySizedBox(
+                widthFactor: 0.15,
+                child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    height: 3,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(2),
+                    )),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.05,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: height * 0.060),
+                  Container(
+                    child: Text(
+                      'ORDER SUMMARY',
+                      style: TextStyle(
+                          fontFamily: 'Medium',
+                          fontSize: 18,
+                          letterSpacing: 18 * 0.05),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.010),
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: width * 0.55,
+                            child: Text(product.productName,
+                                style: TextStyle(
+                                    fontSize: 23,
+                                    fontFamily: 'Bold',
+                                    color: Colors.black)),
+                          ),
+                          Container(
+                            width: width * 0.55,
+                            child: Text(
+                              product.variants[variantsIndex],
+                              style:
+                                  TextStyle(fontFamily: 'Medium', fontSize: 16),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Container(
+                            width: width * 0.55,
+                            child: Text(
+                              product.colors[colorIndex],
+                              style:
+                                  TextStyle(fontFamily: 'Medium', fontSize: 16),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: productCounter(width, height),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: height * 0.020),
+                  Row(
+                    children: [
+                      Container(
+                        child: Text(
+                          'Base price',
+                          style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                        ),
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            child: Text(
+                              '₹ ${product.price}',
+                              style:
+                                  TextStyle(fontFamily: 'Bold', fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: height * 0.0075),
+                  FractionallySizedBox(
+                    widthFactor: 1,
+                    child: Container(
+                        height: 1,
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(196, 196, 196, 100))),
+                  ),
+                  SizedBox(height: height * 0.020),
+                  Container(
+                    child: Text(
+                      'SUBTOTAL',
+                      style: TextStyle(
+                          fontFamily: 'Medium',
+                          fontSize: 18,
+                          letterSpacing: 18 * 0.05),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.0075),
+                  Row(
+                    children: [
+                      Container(
+                        width: width * 0.50,
+                        child: Text(
+                          product.productName,
+                          style: TextStyle(fontFamily: 'Bold', fontSize: 20),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          child: Text(
+                            'x $productCount',
+                            style:
+                                TextStyle(fontFamily: 'Medium', fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: height * 0.020),
+                  Row(
+                    children: [
+                      Container(
+                        width: width * 0.50,
+                        child: Text(
+                          'TOTAL',
+                          style: TextStyle(
+                              fontFamily: 'Medium',
+                              fontSize: 18,
+                              letterSpacing: 18 * 0.05),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            child: Text(
+                              "₹ ${(product.price) * productCount}",
+                              style:
+                                  TextStyle(fontFamily: 'Bold', fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: height * 0.020),
+                  Container(
+                    //height: height * 0.108,
+                    child: Row(
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () async {
+                            await FirebaseFirestore.instance
+                                .collection('Users')
+                                .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+                                .update({
+                              'cartDetails': FieldValue.arrayUnion([
+                                {
+                                  'productId': product.productId,
+                                  'price': product.price,
+                                  'quantity': productCount,
+                                  'paid': false
+                                }
+                              ])
+                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CartPage()));
+                          },
+                          child: Container(
+                            width: width * 0.43,
+                            height: height * 0.065,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color.fromRGBO(196, 196, 196, 100),
+                                width: 1,
+                              ),
+                              color: Color.fromRGBO(191, 191, 191, 100),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                    child: Text(
+                                  'Add to Cart',
+                                  style: TextStyle(
+                                    fontFamily: 'Bold',
+                                    fontSize: 18,
+                                  ),
+                                )),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: width * 0.04),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             ProductPage()));
+                          },
+                          child: Center(
+                            // Changed to new button UI
+                            child: Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Positioned(
+                                      child: Container(
+                                        height: height * 0.065,
+                                        width: width * 0.43,
+                                        decoration: BoxDecoration(
+                                          color: Colors.black,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      child: Container(
+                                        height: height * 0.065,
+                                        width: width * 0.43,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: <Color>[
+                                              Color.fromRGBO(
+                                                  255, 255, 255, 0.11),
+                                              Color.fromRGBO(255, 255, 255, 0)
+                                            ],
+                                            stops: [0.2, 0.6],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      child: Container(
+                                        height: height * 0.065,
+                                        width: width * 0.43,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text("Buy now",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                    fontFamily: 'Bold',
+                                                    color: Colors.white)),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]),
+        ),
+      )));
+    });
+  }
+
+  Widget productCounter(double width, double height) {
+    return Container(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          InkWell(
+            onTap: () {
+              _controller.setState(() {
+                if (productCount > 1) {
+                  productCount--;
+                } else
+                  productCount = 1;
+                productCount = productCount;
+              });
+            },
+            child: Container(
+                width: width * 0.075,
+                height: width * 0.075,
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+                child: Center(
+                  child: Text('-',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: width * 0.04,
+                          fontFamily: 'Bold')),
+                )),
+          ),
+          SizedBox(width: width * 0.01),
+          Container(
+              child: Text(productCount.toString(),
+                  style:
+                      TextStyle(fontSize: width * 0.07, fontFamily: 'Medium'))),
+          SizedBox(width: width * 0.01),
+          InkWell(
+            onTap: () {
+              _controller.setState(() {
+                productCount++;
+                productCount = productCount;
+              });
+            },
+            child: Container(
+                width: width * 0.075,
+                height: width * 0.075,
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+                child: Center(
+                  child: Text('+',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: width * 0.04,
+                          fontFamily: 'Bold')),
+                )),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+        key: _scaffoldKey,
         body: Container(
             //backgroundColor:  productBackground != null ? productBackground.color : Color.fromRGBO(229, 229, 229, 1),
             width: width,
@@ -283,7 +668,7 @@ class _ProductPageState extends State<ProductPage> {
                                 SizedBox(width: width * 0.03),
                                 InkWell(
                                   onTap: () {
-                                    actionSheet(context, widget.product);
+                                    actionSheet(widget.product);
                                   },
                                   child: Center(
                                     // Changed to new button UI
@@ -364,332 +749,6 @@ class _ProductPageState extends State<ProductPage> {
   }
 }
 
-actionSheet(BuildContext context, Products product) {
-  var width = MediaQuery.of(context).size.width;
-  var height = MediaQuery.of(context).size.height;
-  showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.transparent,
-      builder: (BuildContext context) {
-        return Container(
-            child: ClipRRect(
-                child: BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: 25,
-            sigmaY: 25,
-          ),
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.55,
-            decoration: BoxDecoration(
-              border: Border(
-                  top: BorderSide(
-                      width: 1, color: Color.fromRGBO(196, 196, 196, 100))),
-            ),
-            child: Column(children: [
-              Center(
-                child: FractionallySizedBox(
-                  widthFactor: 0.15,
-                  child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
-                      height: 3,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(2),
-                      )),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.05,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: height * 0.060),
-                    Container(
-                      child: Text(
-                        'ORDER SUMMARY',
-                        style: TextStyle(
-                            fontFamily: 'Medium',
-                            fontSize: 18,
-                            letterSpacing: 18 * 0.05),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.010),
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: width * 0.55,
-                              child: Text(product.productName,
-                                  style: TextStyle(
-                                      fontSize: 23,
-                                      fontFamily: 'Bold',
-                                      color: Colors.black)),
-                            ),
-                            Container(
-                              width: width * 0.55,
-                              child: Text(
-                                product.variants[variantsIndex],
-                                style: TextStyle(
-                                    fontFamily: 'Medium', fontSize: 16),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            Container(
-                              width: width * 0.55,
-                              child: Text(
-                                product.colors[colorIndex],
-                                style: TextStyle(
-                                    fontFamily: 'Medium', fontSize: 16),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: ProductCounter(),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: height * 0.020),
-                    Row(
-                      children: [
-                        Container(
-                          child: Text(
-                            'Base price',
-                            style: TextStyle(fontFamily: 'Bold', fontSize: 20),
-                          ),
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              child: Text(
-                                '₹ ${product.price}',
-                                style:
-                                    TextStyle(fontFamily: 'Bold', fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: height * 0.0075),
-                    FractionallySizedBox(
-                      widthFactor: 1,
-                      child: Container(
-                          height: 1,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.05),
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(196, 196, 196, 100))),
-                    ),
-                    SizedBox(height: height * 0.020),
-                    Container(
-                      child: Text(
-                        'SUBTOTAL',
-                        style: TextStyle(
-                            fontFamily: 'Medium',
-                            fontSize: 18,
-                            letterSpacing: 18 * 0.05),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.0075),
-                    Row(
-                      children: [
-                        Container(
-                          width: width * 0.50,
-                          child: Text(
-                            product.productName,
-                            style: TextStyle(fontFamily: 'Bold', fontSize: 20),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            child: Text(
-                              'x $productCount',
-                              style:
-                                  TextStyle(fontFamily: 'Medium', fontSize: 20),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: height * 0.020),
-                    Row(
-                      children: [
-                        Container(
-                          width: width * 0.50,
-                          child: Text(
-                            'TOTAL',
-                            style: TextStyle(
-                                fontFamily: 'Medium',
-                                fontSize: 18,
-                                letterSpacing: 18 * 0.05),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              child: Text(
-                                "₹ ${(product.price) * productCount}",
-                                style:
-                                    TextStyle(fontFamily: 'Bold', fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: height * 0.020),
-                    Container(
-                      //height: height * 0.108,
-                      child: Row(
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () async {
-                              await FirebaseFirestore.instance
-                                  .collection('Users')
-                                  .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
-                                  .update({
-                                'cartDetails': FieldValue.arrayUnion([
-                                  {
-                                    'productId': product.productId,
-                                    'price': product.price,
-                                    'quantity': productCount,
-                                    'paid': false
-                                  }
-                                ])
-                              });
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CartPage()));
-                            },
-                            child: Container(
-                              width: width * 0.43,
-                              height: height * 0.065,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Color.fromRGBO(196, 196, 196, 100),
-                                  width: 1,
-                                ),
-                                color: Color.fromRGBO(191, 191, 191, 100),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                      child: Text(
-                                    'Add to Cart',
-                                    style: TextStyle(
-                                      fontFamily: 'Bold',
-                                      fontSize: 18,
-                                    ),
-                                  )),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: width * 0.04),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             ProductPage()));
-                            },
-                            child: Center(
-                              // Changed to new button UI
-                              child: Column(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Positioned(
-                                        child: Container(
-                                          height: height * 0.065,
-                                          width: width * 0.43,
-                                          decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        child: Container(
-                                          height: height * 0.065,
-                                          width: width * 0.43,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: <Color>[
-                                                Color.fromRGBO(
-                                                    255, 255, 255, 0.11),
-                                                Color.fromRGBO(255, 255, 255, 0)
-                                              ],
-                                              stops: [0.2, 0.6],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        child: Container(
-                                          height: height * 0.065,
-                                          width: width * 0.43,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text("Buy now",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                      fontFamily: 'Bold',
-                                                      color: Colors.white)),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
-          ),
-        )));
-      });
-}
-
 Widget buildBlur(
         {@required Widget child, double sigmaX = 10, double sigmaY = 10}) =>
     ClipRRect(
@@ -699,78 +758,89 @@ Widget buildBlur(
       ),
     );
 
-class ProductCounter extends StatefulWidget {
+class BottomSheet extends StatefulWidget {
   @override
-  _ProductCounterState createState() => _ProductCounterState();
+  _BottomSheetState createState() => _BottomSheetState();
 }
 
-class _ProductCounterState extends State<ProductCounter> {
-  var count = 1;
-  void initState() {
-    super.initState();
-  }
-
+class _BottomSheetState extends State<BottomSheet> {
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return Container(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          InkWell(
-            onTap: () {
-              setState(() {
-                if (count > 1) {
-                  count--;
-                } else
-                  count = 1;
-                productCount = count;
-              });
-            },
-            child: Container(
-                width: width * 0.075,
-                height: width * 0.075,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
-                child: Center(
-                  child: Text('-',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: width * 0.04,
-                          fontFamily: 'Bold')),
-                )),
-          ),
-          SizedBox(width: width * 0.01),
-          Container(
-              child: Text(count.toString(),
-                  style:
-                      TextStyle(fontSize: width * 0.07, fontFamily: 'Medium'))),
-          SizedBox(width: width * 0.01),
-          InkWell(
-            onTap: () {
-              setState(() {
-                count++;
-                productCount = count;
-              });
-            },
-            child: Container(
-                width: width * 0.075,
-                height: width * 0.075,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
-                child: Center(
-                  child: Text('+',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: width * 0.04,
-                          fontFamily: 'Bold')),
-                )),
-          ),
-        ],
-      ),
-    );
+    return Container();
   }
 }
+// class ProductCounter extends StatefulWidget {
+//   @override
+//   _ProductCounterState createState() => _ProductCounterState();
+// }
+
+// class _ProductCounterState extends State<ProductCounter> {
+//   var count = 1;
+//   void initState() {
+//     super.initState();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var width = MediaQuery.of(context).size.width;
+//     return Container(
+//       child: Row(
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           InkWell(
+//             onTap: () {
+//               setState(() {
+//                 if (count > 1) {
+//                   count--;
+//                 } else
+//                   count = 1;
+//                 productCount = count;
+//               });
+//             },
+//             child: Container(
+//                 width: width * 0.075,
+//                 height: width * 0.075,
+//                 decoration:
+//                     BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+//                 child: Center(
+//                   child: Text('-',
+//                       style: TextStyle(
+//                           color: Colors.white,
+//                           fontSize: width * 0.04,
+//                           fontFamily: 'Bold')),
+//                 )),
+//           ),
+//           SizedBox(width: width * 0.01),
+//           Container(
+//               child: Text(count.toString(),
+//                   style:
+//                       TextStyle(fontSize: width * 0.07, fontFamily: 'Medium'))),
+//           SizedBox(width: width * 0.01),
+//           InkWell(
+//             onTap: () {
+//               setState(() {
+//                 count++;
+//                 productCount = count;
+//               });
+//             },
+//             child: Container(
+//                 width: width * 0.075,
+//                 height: width * 0.075,
+//                 decoration:
+//                     BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+//                 child: Center(
+//                   child: Text('+',
+//                       style: TextStyle(
+//                           color: Colors.white,
+//                           fontSize: width * 0.04,
+//                           fontFamily: 'Bold')),
+//                 )),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class SpecContainer extends StatefulWidget {
   Products product;
