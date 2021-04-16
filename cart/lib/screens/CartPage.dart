@@ -11,14 +11,16 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int count = 0;
   @override
   void initState() {
     super.initState();
-    fetchCartProducts();
+    if (count == 0) fetchCartProducts();
   }
 
   String data;
   List<Products> cartlist = [];
+  List<int> productCount = [];
   void fetchCartProducts() async {
     List<Products> cartdata = [];
     await FirebaseFirestore.instance
@@ -32,6 +34,8 @@ class _CartPageState extends State<CartPage> {
             .doc(value.data()['cartDetails'][i]['productId'])
             .get()
             .then((element) {
+          //print("Quantity:  ${value.data()['cartDetails'][i]['quantity']}");
+          productCount.add(value.data()['cartDetails'][i]['quantity']);
           cartdata.add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],
@@ -62,7 +66,224 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
-  Widget waitTimer() {
+  Widget productCounter(double width, int index) {
+    return Container(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          InkWell(
+            onTap: () {
+              setState(() {
+                if (productCount[index] > 1) {
+                  productCount[index]--;
+                } else
+                  productCount[index] = 1;
+                count = 1;
+              });
+            },
+            child: Container(
+              width: width * 0.065,
+              height: width * 0.065,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: productCount[index] == 1
+                      ? Colors.red.withOpacity(0.3)
+                      : Colors.black),
+              child: Center(
+                child: SvgPicture.asset(
+                  productCount[index] == 1
+                      ? 'assets/icons/trash.svg'
+                      : 'assets/icons/minus.svg',
+                  color: productCount[index] == 1 ? Colors.red : Colors.white,
+                  width: width * 0.035,
+                  height: width * 0.035,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: width * 0.008),
+          Container(
+              child: Text(productCount[index].toString(),
+                  style:
+                      TextStyle(fontSize: width * 0.06, fontFamily: 'Medium'))),
+          SizedBox(width: width * 0.008),
+          InkWell(
+            onTap: () {
+              setState(() {
+                productCount[index]++;
+                count = 1;
+              });
+            },
+            child: Container(
+              width: width * 0.065,
+              height: width * 0.065,
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+              child: Center(
+                child: SvgPicture.asset(
+                  'assets/icons/plus.svg',
+                  color: Colors.white,
+                  width: width * 0.035,
+                  height: width * 0.035,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget cartProductContainer(Products product, int index, double width) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 10, right: 10, top: 12, bottom: 10),
+          // height: width * 0.2
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(248, 248, 248, 1),
+            borderRadius: BorderRadius.all(Radius.circular(width * 0.05)),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: new Image.asset(
+                  'assets/products/phone.png',
+                  width: width * 0.2,
+                  height: width * 0.2,
+                ),
+              ),
+              SizedBox(width: 20),
+              Container(
+                height: width * 0.2,
+                width: width * 0.385,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${product.category} - ${product.productName}',
+                      style: TextStyle(
+                        fontFamily: 'Bold',
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                      overflow: TextOverflow.clip,
+                      maxLines: 2,
+                    ),
+                    Text(
+                      '₹ ${product.price}',
+                      style: TextStyle(
+                        fontFamily: 'Medium',
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                      overflow: TextOverflow.clip,
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: productCounter(width, index),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 15),
+      ],
+    );
+  }
+
+  Widget subTotalContainer(
+      Products product, int index, double height, double width) {
+    return Container(
+      height: height * 0.080,
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: width * 0.075,
+                height: width * 0.075,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color.fromRGBO(191, 191, 191, 100),
+                ),
+                child: Center(
+                  child: Text(
+                    '${index + 1}',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: width * 0.02),
+              Container(
+                width: width * 0.35,
+                child: Text('${product.category} - ${product.productName}',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 2),
+              ),
+              SizedBox(width: width * 0.05),
+              Container(
+                child: Text('x',
+                    style: TextStyle(
+                      fontFamily: 'Medium',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 2),
+              ),
+              SizedBox(width: width * 0.02),
+              Container(
+                child: Text('${productCount[index]}',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 2),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                      child: Text(
+                    '₹ ${product.price * productCount[index]}',
+                    style: TextStyle(
+                      fontFamily: 'Bold',
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 1,
+                  )),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
+
+  Widget waitTimer(double width) {
     Timer(Duration(seconds: 2), () {
       setState(() {
         data = "done";
@@ -81,7 +302,7 @@ class _CartPageState extends State<CartPage> {
         physics: BouncingScrollPhysics(),
         itemCount: cartlist.length,
         itemBuilder: (BuildContext context, int index) {
-          return CartProductContainer(product: cartlist[index]);
+          return cartProductContainer(cartlist[index], index, width);
         });
   }
 
@@ -173,7 +394,7 @@ class _CartPageState extends State<CartPage> {
                             SizedBox(height: height * 0.025 / 2),
                             ConstrainedBox(
                               constraints: BoxConstraints(maxHeight: 5000),
-                              child: waitTimer(),
+                              child: waitTimer(width),
                             ),
                             SizedBox(height: height * 0.0125),
                             Container(
@@ -206,8 +427,10 @@ class _CartPageState extends State<CartPage> {
                                     itemCount: cartlist.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      return SubTotalContainer(
-                                          product: cartlist[index]);
+                                      // for (int i = 0; i < cartlist.length; i++)
+                                      //   productCount.add(1);
+                                      return subTotalContainer(cartlist[index],
+                                          index, height, width);
                                     }),
                               ),
                             ),
@@ -318,165 +541,6 @@ class _CartPageState extends State<CartPage> {
   }
 }
 
-class SubTotalContainer extends StatelessWidget {
-  Products product;
-  SubTotalContainer({this.product});
-  Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
-    return Container(
-      height: height * 0.080,
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: width * 0.075,
-                height: width * 0.075,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromRGBO(191, 191, 191, 100),
-                ),
-                child: Center(
-                  child: Text(
-                    '1',
-                    style: TextStyle(
-                      fontFamily: 'Bold',
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: width * 0.02),
-              Container(
-                width: width * 0.35,
-                child: Text('${product.category} - ${product.productName}',
-                    style: TextStyle(
-                      fontFamily: 'Bold',
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                    overflow: TextOverflow.clip,
-                    maxLines: 2),
-              ),
-              SizedBox(width: width * 0.05),
-              Container(
-                child: Text('x',
-                    style: TextStyle(
-                      fontFamily: 'Medium',
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                    overflow: TextOverflow.clip,
-                    maxLines: 2),
-              ),
-              SizedBox(width: width * 0.02),
-              Container(
-                child: Text('1',
-                    style: TextStyle(
-                      fontFamily: 'Bold',
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                    overflow: TextOverflow.clip,
-                    maxLines: 2),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                      child: Text(
-                    '₹ ${product.price}',
-                    style: TextStyle(
-                      fontFamily: 'Bold',
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                    overflow: TextOverflow.clip,
-                    maxLines: 1,
-                  )),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10),
-        ],
-      ),
-    );
-  }
-}
-
-class CartProductContainer extends StatelessWidget {
-  Products product;
-  CartProductContainer({this.product});
-  Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.only(left: 10, right: 10, top: 12, bottom: 10),
-          // height: width * 0.2
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(248, 248, 248, 1),
-            borderRadius: BorderRadius.all(Radius.circular(width * 0.05)),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                child: new Image.asset(
-                  'assets/products/phone.png',
-                  width: width * 0.2,
-                  height: width * 0.2,
-                ),
-              ),
-              SizedBox(width: 20),
-              Container(
-                height: width * 0.2,
-                width: width * 0.385,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${product.category} - ${product.productName}',
-                      style: TextStyle(
-                        fontFamily: 'Bold',
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
-                    ),
-                    Text(
-                      '₹ ${product.price}',
-                      style: TextStyle(
-                        fontFamily: 'Medium',
-                        color: Colors.black,
-                        fontSize: 18,
-                      ),
-                      overflow: TextOverflow.clip,
-                      maxLines: 1,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: ProductCounter(),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 15),
-      ],
-    );
-  }
-}
-
 Widget buildBlur(
         {@required Widget child, double sigmaX = 10, double sigmaY = 10}) =>
     ClipRRect(
@@ -485,82 +549,3 @@ Widget buildBlur(
         child: child,
       ),
     );
-
-class ProductCounter extends StatefulWidget {
-  @override
-  _ProductCounterState createState() => _ProductCounterState();
-}
-
-class _ProductCounterState extends State<ProductCounter> {
-  var count = 1;
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return Container(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          InkWell(
-            onTap: () {
-              setState(() {
-                if (count > 1) {
-                  count--;
-                } else
-                  count = 1;
-              });
-            },
-            child: Container(
-              width: width * 0.065,
-              height: width * 0.065,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color:
-                      count == 1 ? Colors.red.withOpacity(0.3) : Colors.black),
-              child: Center(
-                child: SvgPicture.asset(
-                  count == 1
-                      ? 'assets/icons/trash.svg'
-                      : 'assets/icons/minus.svg',
-                  color: count == 1 ? Colors.red : Colors.white,
-                  width: width * 0.035,
-                  height: width * 0.035,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: width * 0.008),
-          Container(
-              child: Text(count.toString(),
-                  style:
-                      TextStyle(fontSize: width * 0.06, fontFamily: 'Medium'))),
-          SizedBox(width: width * 0.008),
-          InkWell(
-            onTap: () {
-              setState(() {
-                count++;
-              });
-            },
-            child: Container(
-              width: width * 0.065,
-              height: width * 0.065,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.black),
-              child: Center(
-                child: SvgPicture.asset(
-                  'assets/icons/plus.svg',
-                  color: Colors.white,
-                  width: width * 0.035,
-                  height: width * 0.035,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
