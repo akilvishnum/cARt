@@ -97,7 +97,7 @@
 </td>
 <!-- <new row>-->
 </tr>
-<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 1 Apr - Till Date  </p> </td>
+<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 16 Apr  </p> </td>
 <td align = "center" > <p> Flutter & Firebase </p> </td>
 <td> <p> 
 	✔️ &nbsp; Home Page UI fixes 🧘🏽‍♂️ 👻 <br> 
@@ -107,7 +107,9 @@
 	✔️ &nbsp; Created custom Splash Screen 🧘🏽‍♂️ <br> 
 	✔️ &nbsp; Fetch products from Database for Homepage 👻 <br> 
 	✔️ &nbsp; Created Cart Page 🧘🏽‍♂️ <br> 
-  	⏳ &nbsp; 3D Model viewer to display 3D models inside the phone. 🧘🏽‍♂️ <br> 
+	✔️ &nbsp; Fetch products from Database for Product Page 👻 <br> 
+	✔️ &nbsp; Database functionality for Cart page 👻 <br> 
+  	✔️ &nbsp; 3D Model viewer to display 3D models inside the phone. 🧘🏽‍♂️ <br> 
 	</p>
 </td>
 </tr>
@@ -115,13 +117,13 @@
 <td align = "center" > <p> Unity </p> </td>
 <td> <p> 
 	✔️ &nbsp; sunglasses made appear on the face 🎯 <br>
-	✔️ &nbsp; AR watch model created with a transparent hand model 🎯 <br>
-	⏳ &nbsp; AR watch model trial 🎯 <br>
-	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
+	✔️ &nbsp; AR watch model created with a transparent hand model 🎯 <br
 	✔️ &nbsp; Sofa scene added 🎯 <br>
 	✔️ &nbsp; Laptop scene added 🎯 <br>
 	✔️ &nbsp; Spectacles scene added 🎯 <br>
 	✔️ &nbsp; Cap scene added 🎯 <br>
+	⏳ &nbsp; AR watch model trial 🎯 <br>
+	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
      </p>
 </td>
 </tr>
