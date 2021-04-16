@@ -29,8 +29,8 @@ class _ProductPageState extends State<ProductPage> {
   @override
   void initState() {
     super.initState();
-    _findBackground();
     productImage = 'assets/products/${widget.product.productId}s.png';
+    _findBackground();
   }
 
   _findBackground() async {
@@ -489,7 +489,8 @@ class _ProductPageState extends State<ProductPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    child: Text(widget.product.category,
+                                    child: Text(
+                                        widget.product.category.toUpperCase(),
                                         style: TextStyle(
                                             fontSize: 13,
                                             fontFamily: 'Medium',
