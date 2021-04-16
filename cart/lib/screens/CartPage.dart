@@ -332,9 +332,8 @@ class _CartPageState extends State<CartPage> {
                 padding:
                     EdgeInsets.only(left: width * 0.035, right: width * 0.035),
                 child: Column(
-                  crossAxisAlignment: (data == null)
-                      ? CrossAxisAlignment.center
-                      : CrossAxisAlignment.start,
+                  crossAxisAlignment:
+                       CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: height * 0.025 / 2),
                     ConstrainedBox(
@@ -480,9 +479,8 @@ class _CartPageState extends State<CartPage> {
       });
     });
     if (data == null)
-      return Container(
-          width: width,
-          height: height * 0.8,
+      return Expanded(
+        child: Container(
           padding: EdgeInsets.only(
             top: width * 0.035 / 2 + 4,
           ),
@@ -495,7 +493,7 @@ class _CartPageState extends State<CartPage> {
           child: Center(
             child: Container(
                 width: 30, height: 30, child: CircularProgressIndicator()),
-          ));
+          )));
     if (data != null)
       setState(() {
         data = null;
