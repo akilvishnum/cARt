@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cart/Component/Products.dart';
+import 'package:cart/Component/cartProducts.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _CartPageState extends State<CartPage> {
 
   String data;
   List<Products> cartlist = [];
+  List<CartProducts> cartDetails = [];
   List<int> productCount = [];
   void fetchCartProducts() async {
     List<Products> cartdata = [];
@@ -34,7 +36,8 @@ class _CartPageState extends State<CartPage> {
             .doc(value.data()['cartDetails'][i]['productId'])
             .get()
             .then((element) {
-          //print("Quantity:  ${value.data()['cartDetails'][i]['quantity']}");
+          cartDetails
+              .add(CartProducts(cartDetails: value.data()['cartDetails'][i]));
           productCount.add(value.data()['cartDetails'][i]['quantity']);
           cartdata.add(Products(
               productId: element.data()['productId'],
@@ -66,6 +69,31 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
+  void deleteProduct(int index) async {
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CartPage()));
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+        .update({
+      'cartDetails': FieldValue.arrayRemove([cartDetails[index].cartDetails])
+    });
+  }
+
+  findTotal(double width) {
+    int total = 0;
+    for (int i = 0; i < cartlist.length; i++) {
+      total = total + (cartlist[i].price * productCount[i]);
+    }
+    return Text("Pay   ₹$total",
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: width * 0.043,
+            fontFamily: 'Bold',
+            color: Colors.white));
+  }
+
   Widget productCounter(double width, int index) {
     return Container(
       child: Row(
@@ -76,8 +104,10 @@ class _CartPageState extends State<CartPage> {
               setState(() {
                 if (productCount[index] > 1) {
                   productCount[index]--;
-                } else
+                } else {
                   productCount[index] = 1;
+                  deleteProduct(index);
+                }
                 count = 1;
               });
             },
@@ -283,7 +313,167 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  Widget waitTimer(double width) {
+  Widget body(double width, double height) {
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.only(
+          top: width * 0.035 / 2 + 4,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(height * 0.05),
+              topLeft: Radius.circular(height * 0.05)),
+        ),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                padding:
+                    EdgeInsets.only(left: width * 0.035, right: width * 0.035),
+                child: Column(
+                  crossAxisAlignment: (data == null)
+                      ? CrossAxisAlignment.center
+                      : CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: height * 0.025 / 2),
+                    ConstrainedBox(
+                        constraints: BoxConstraints(maxHeight: 5000),
+                        child: ListView.builder(
+                            padding: EdgeInsets.all(0),
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: cartlist.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return cartProductContainer(
+                                  cartlist[index], index, width);
+                            })),
+                    SizedBox(height: height * 0.0125),
+                    Container(
+                      child: Text(
+                        'ORDER SUMMARY',
+                        style: TextStyle(
+                            fontFamily: 'Medium',
+                            fontSize: width * 0.039,
+                            letterSpacing: width * 0.039 * 0.05),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.0075),
+                    Container(
+                      padding: EdgeInsets.only(
+                          left: 10, right: 10, top: 15, bottom: 15),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(248, 248, 248, 1),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(width * 0.05),
+                          topRight: Radius.circular(width * 0.05),
+                        ),
+                      ),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(maxHeight: 50000000000),
+                        child: ListView.builder(
+                            padding: EdgeInsets.all(0),
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: cartlist.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              // for (int i = 0; i < cartlist.length; i++)
+                              //   productCount.add(1);
+                              return subTotalContainer(
+                                  cartlist[index], index, height, width);
+                            }),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.108)
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: buildBlur(
+                child: Center(
+                  child: Container(
+                    height: height * 0.108,
+                    padding: EdgeInsets.only(
+                        top: height * 0.02,
+                        bottom: height * 0.02,
+                        left: width * 0.075,
+                        right: width * 0.075),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            top: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(196, 196, 196, 100)))),
+                    child: InkWell(
+                      onTap: () {
+                        // actionSheet(context);
+                      },
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Stack(
+                              children: [
+                                Positioned(
+                                  child: Container(
+                                    height: height * 0.065,
+                                    width: width * 0.85,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  child: Container(
+                                    height: height * 0.065,
+                                    width: width * 0.85,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: <Color>[
+                                          Color.fromRGBO(255, 255, 255, 0.11),
+                                          Color.fromRGBO(255, 255, 255, 0)
+                                        ],
+                                        stops: [0.2, 0.6],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  child: Container(
+                                    height: height * 0.065,
+                                    width: width * 0.85,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [findTotal(width)],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget waitTimer(double width, double height) {
     Timer(Duration(seconds: 2), () {
       setState(() {
         data = "done";
@@ -291,19 +481,26 @@ class _CartPageState extends State<CartPage> {
     });
     if (data == null)
       return Container(
-          width: 40, height: 40, child: CircularProgressIndicator());
+          width: width,
+          height: height * 0.8,
+          padding: EdgeInsets.only(
+            top: width * 0.035 / 2 + 4,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(height * 0.05),
+                topLeft: Radius.circular(height * 0.05)),
+          ),
+          child: Center(
+            child: Container(
+                width: 30, height: 30, child: CircularProgressIndicator()),
+          ));
     if (data != null)
       setState(() {
         data = null;
       });
-    return ListView.builder(
-        padding: EdgeInsets.all(0),
-        shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
-        itemCount: cartlist.length,
-        itemBuilder: (BuildContext context, int index) {
-          return cartProductContainer(cartlist[index], index, width);
-        });
+    return body(width, height);
   }
 
   Widget build(BuildContext context) {
@@ -369,177 +566,14 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ],
                 )),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(
-                  top: width * 0.035 / 2 + 4,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(height * 0.05),
-                      topLeft: Radius.circular(height * 0.05)),
-                ),
-                child: Stack(
-                  children: [
-                    SingleChildScrollView(
-                      child: Container(
-                        padding: EdgeInsets.only(
-                            left: width * 0.035, right: width * 0.035),
-                        child: Column(
-                          crossAxisAlignment: (data == null)
-                              ? CrossAxisAlignment.center
-                              : CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: height * 0.025 / 2),
-                            ConstrainedBox(
-                              constraints: BoxConstraints(maxHeight: 5000),
-                              child: waitTimer(width),
-                            ),
-                            SizedBox(height: height * 0.0125),
-                            Container(
-                              child: Text(
-                                'ORDER SUMMARY',
-                                style: TextStyle(
-                                    fontFamily: 'Medium',
-                                    fontSize: width * 0.039,
-                                    letterSpacing: width * 0.039 * 0.05),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.0075),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10, top: 15, bottom: 15),
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(248, 248, 248, 1),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(width * 0.05),
-                                  topRight: Radius.circular(width * 0.05),
-                                ),
-                              ),
-                              child: ConstrainedBox(
-                                constraints:
-                                    BoxConstraints(maxHeight: 50000000000),
-                                child: ListView.builder(
-                                    padding: EdgeInsets.all(0),
-                                    shrinkWrap: true,
-                                    physics: BouncingScrollPhysics(),
-                                    itemCount: cartlist.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      // for (int i = 0; i < cartlist.length; i++)
-                                      //   productCount.add(1);
-                                      return subTotalContainer(cartlist[index],
-                                          index, height, width);
-                                    }),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.108)
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: buildBlur(
-                        child: Center(
-                          child: Container(
-                            height: height * 0.108,
-                            padding: EdgeInsets.only(
-                                top: height * 0.02,
-                                bottom: height * 0.02,
-                                left: width * 0.075,
-                                right: width * 0.075),
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    top: BorderSide(
-                                        width: 1,
-                                        color: Color.fromRGBO(
-                                            196, 196, 196, 100)))),
-                            child: InkWell(
-                              onTap: () {
-                                // actionSheet(context);
-                              },
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        Positioned(
-                                          child: Container(
-                                            height: height * 0.065,
-                                            width: width * 0.85,
-                                            decoration: BoxDecoration(
-                                              color: Colors.black,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          child: Container(
-                                            height: height * 0.065,
-                                            width: width * 0.85,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              gradient: LinearGradient(
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter,
-                                                colors: <Color>[
-                                                  Color.fromRGBO(
-                                                      255, 255, 255, 0.11),
-                                                  Color.fromRGBO(
-                                                      255, 255, 255, 0)
-                                                ],
-                                                stops: [0.2, 0.6],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          child: Container(
-                                            height: height * 0.065,
-                                            width: width * 0.85,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text("Pay \$719",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: width * 0.043,
-                                                        fontFamily: 'Bold',
-                                                        color: Colors.white)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            waitTimer(width, height),
           ],
         ),
       ),
     );
   }
 }
+
 Widget buildBlur(
         {@required Widget child, double sigmaX = 10, double sigmaY = 10}) =>
     ClipRRect(
