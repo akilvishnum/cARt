@@ -21,13 +21,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading.unity
     guid: 7e8f7df94d8ab4f45a7dc66ec155e6b7
   - enabled: 1
-    path: Assets/Scenes/laptop.unity
+    path: Assets/Scenes/nwlp001.unity
     guid: b052c08fb5946a042b1052dd7daf7892
   - enabled: 1
-    path: Assets/Scenes/nwsg001.unity
+    path: Assets/Scenes/wesg001.unity
     guid: 2e52d0e3541e1d84796a0a36dd8a0883
   - enabled: 1
-    path: Assets/Scenes/Cap.unity
+    path: Assets/Scenes/wecp001.unity
     guid: 64fb94e390bbfab479134336631df4b8
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e7795e01f2915184a9503b2d9b438391,
