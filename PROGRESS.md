@@ -122,6 +122,7 @@
 	✔️ &nbsp; Laptop scene added 🎯 <br>
 	✔️ &nbsp; Spectacles scene added 🎯 <br>
 	✔️ &nbsp; Cap scene added 🎯 <br>
+	✔️ &nbsp; Mask scene added 🎯 <br>
 	⏳ &nbsp; AR watch model trial 🎯 <br>
 	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
      </p>
