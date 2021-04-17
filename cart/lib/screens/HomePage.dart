@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:cart/screens/CartPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +88,10 @@ class _HomePageState extends State<HomePage> {
                 : [],
             specification: (element.data()['specifications'] != null)
                 ? Map<String, dynamic>.from(element.data()['specifications'])
-                : {}));
+                : {},
+            count: 0,
+            light: null,
+            dark: null));
         if (element.data()['category'] == "Eye Wear")
           prod[1].add(Products(
               productId: element.data()['productId'],
@@ -109,7 +111,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Sofa")
           prod[2].add(Products(
               productId: element.data()['productId'],
@@ -129,7 +134,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Smart Phone")
           prod[3].add(Products(
               productId: element.data()['productId'],
@@ -149,7 +157,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Head Phones")
           prod[4].add(Products(
               productId: element.data()['productId'],
@@ -169,7 +180,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Cap")
           prod[5].add(Products(
               productId: element.data()['productId'],
@@ -189,7 +203,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Laptop")
           prod[6].add(Products(
               productId: element.data()['productId'],
@@ -209,7 +226,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Shirt")
           prod[7].add(Products(
               productId: element.data()['productId'],
@@ -229,7 +249,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Pants")
           prod[8].add(Products(
               productId: element.data()['productId'],
@@ -249,7 +272,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Shoes")
           prod[9].add(Products(
               productId: element.data()['productId'],
@@ -269,7 +295,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         else if (element.data()['category'] == "Watch")
           prod[10].add(Products(
               productId: element.data()['productId'],
@@ -289,7 +318,10 @@ class _HomePageState extends State<HomePage> {
                   : [],
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
-                  : {}));
+                  : {},
+              count: 0,
+              light: null,
+              dark: null));
         print("..........................");
         print(prod);
       });
@@ -495,8 +527,8 @@ class PDisplay extends StatefulWidget {
 }
 
 class _PDisplayState extends State<PDisplay> {
-  PaletteColor productBackground = null;
-  HSLColor light = null, dark = null;
+  PaletteColor productBackground;
+  HSLColor light, dark;
   bool ready = false;
   @override
   void initState() {
@@ -519,11 +551,16 @@ class _PDisplayState extends State<PDisplay> {
     HSLColor productHSL = HSLColor.fromColor(productBackground.color);
     light = productHSL.withLightness(0.8);
     dark = productHSL.withLightness(0.3);
-    setState(() {});
+    setState(() {
+      widget.product.count = 1;
+      widget.product.light = light;
+      widget.product.dark = dark;
+    });
   }
 
   Widget build(BuildContext context) {
-    _findBackground("assets/products/${widget.product.productId}s.png");
+    if (widget.product.count == 0)
+      _findBackground("assets/products/${widget.product.productId}s.png");
     var width = MediaQuery.of(context).size.width;
     return Container(
       width: width * 0.4,
@@ -531,10 +568,12 @@ class _PDisplayState extends State<PDisplay> {
       decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              light != null
-                  ? light.toColor()
+              widget.product.light != null
+                  ? widget.product.light.toColor()
                   : Color.fromRGBO(229, 229, 229, 1),
-              dark != null ? dark.toColor() : Color.fromRGBO(229, 229, 229, 1)
+              widget.product.dark != null
+                  ? widget.product.dark.toColor()
+                  : Color.fromRGBO(229, 229, 229, 1)
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
