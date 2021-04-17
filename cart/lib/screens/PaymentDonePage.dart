@@ -14,7 +14,7 @@ class _PaymentDonePageState extends State<PaymentDonePage> with SingleTickerProv
   void initState() {
     super.initState();
     ct = AnimationController(
-      duration: const Duration(milliseconds: 1000), vsync: this);
+      duration: const Duration(seconds: 2), vsync: this);
     animation = (CurvedAnimation(parent: ct, curve: Curves.easeIn)); //CurvedAnimation(parent: ct, curve: Curves.easeIn);
     ct.forward();
     Timer timer = Timer(Duration(seconds: 5), () {
@@ -26,7 +26,7 @@ class _PaymentDonePageState extends State<PaymentDonePage> with SingleTickerProv
     var height = MediaQuery.of(context).size.height;
     ct.forward();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(0,1,25,100),
       body: FadeTransition(
         opacity: animation,
         child: Center(
