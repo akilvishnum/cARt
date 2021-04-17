@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     "Smart Phones",
     "Head Phones",
     "Caps",
-    "Glasses",
+    "Laptop",
     "Shirts",
     "Pants",
     "shoes",
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
               specification: (element.data()['specifications'] != null)
                   ? Map<String, dynamic>.from(element.data()['specifications'])
                   : {}));
-        else if (element.data()['category'] == "Glasses")
+        else if (element.data()['category'] == "Laptop")
           prod[6].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],
@@ -450,15 +450,15 @@ class _HomePageState extends State<HomePage> {
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     PDisplay(
-                                        index: index * 2,
-                                        products: products,
-                                        selectedindex: selectedindex),
+                                        product: products[selectedindex]
+                                            [index * 2]),
                                     SizedBox(width: width * 0.05),
-                                    ShowProduct(
-                                        index,
-                                        products[selectedindex].length,
-                                        products,
-                                        selectedindex),
+                                    ((index * 2) + 1 <
+                                            products[selectedindex].length)
+                                        ? PDisplay(
+                                            product: products[selectedindex]
+                                                [(index * 2) + 1])
+                                        : Container(),
                                   ],
                                 ),
                               ),
@@ -486,38 +486,25 @@ Widget buildBlur(
         child: child,
       ),
     );
-Widget ShowProduct(
-    int index, int l, List<List<Products>> products, int selectedindex) {
-  return ((index * 2) + 1 < l)
-      ? PDisplay(
-          index: (index * 2) + 1,
-          products: products,
-          selectedindex: selectedindex)
-      : Container();
-}
 
 class PDisplay extends StatefulWidget {
-  int index;
-  List<List<Products>> products;
-  int selectedindex;
-  PDisplay({this.index, this.products, this.selectedindex});
+  Products product;
+  PDisplay({this.product});
   @override
   _PDisplayState createState() => _PDisplayState();
 }
 
 class _PDisplayState extends State<PDisplay> {
-  PaletteColor productBackground;
-  HSLColor light, dark;
+  PaletteColor productBackground = null;
+  HSLColor light = null, dark = null;
   bool ready = false;
   @override
   void initState() {
     super.initState();
-    _findBackground(
-        "assets/products/${widget.products[widget.selectedindex][widget.index].productId}f.png");
   }
 
   _findBackground(String productImage) async {
-    final PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
+    PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
       AssetImage(productImage),
       size: Size(10000, 10000),
     );
@@ -536,6 +523,7 @@ class _PDisplayState extends State<PDisplay> {
   }
 
   Widget build(BuildContext context) {
+    _findBackground("assets/products/${widget.product.productId}s.png");
     var width = MediaQuery.of(context).size.width;
     return Container(
       width: width * 0.4,
@@ -557,9 +545,7 @@ class _PDisplayState extends State<PDisplay> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ProductPage(
-                      product: widget.products[widget.selectedindex]
-                          [widget.index])));
+                  builder: (context) => ProductPage(product: widget.product)));
         },
         child: Stack(
           children: [
@@ -568,7 +554,7 @@ class _PDisplayState extends State<PDisplay> {
                   // width: (width * 0.4) * 0.9,
                   height: 150,
                   image: AssetImage(
-                      "assets/products/${widget.products[widget.selectedindex][widget.index].productId}f.png")),
+                      "assets/products/${widget.product.productId}f.png")),
             ),
             Positioned(
               bottom: 0,
@@ -597,7 +583,7 @@ class _PDisplayState extends State<PDisplay> {
                     height: 50,
                     child: Center(
                       child: Text(
-                        "${widget.products[widget.selectedindex][widget.index].price}",
+                        "${widget.product.price}",
                         //"\$719",
                         style: TextStyle(
                           fontSize: 23,

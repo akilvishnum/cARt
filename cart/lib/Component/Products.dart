@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Products {
   String productId;
   String productName;
@@ -9,15 +11,16 @@ class Products {
   List<String> colorName;
   List<String> colorHex;
   Map<String, dynamic> specification;
-  Products(
-      {this.productId,
-      this.productName,
-      this.productType,
-      this.category,
-      this.price,
-      this.description,
-      this.variants,
-      this.colorName,
-      this.colorHex,
-      this.specification});
+  Products({
+    this.productId,
+    this.productName,
+    this.productType,
+    this.category,
+    this.price,
+    this.description,
+    this.variants,
+    this.colorName,
+    this.colorHex,
+    this.specification,
+  });
 }
