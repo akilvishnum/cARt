@@ -70,22 +70,28 @@ class _WelcomePageState extends State<WelcomePage> {
                         onPressed: () {
                           FirebaseFirestore.instance
                               .collection('Products')
-                              .doc("nwso001")
+                              .doc("nwlp001")
                               .set({
-                            'productId': 'nwso001',
-                            'productName': 'Peachy Pink Sofa',
+                            'productId': 'nwlp001',
+                            'productName':
+                                'MSI GF63 Thin 9SCXR-418IN Gaming Laptop',
                             'productType': 'Non-Wearable',
-                            'category': 'Sofa',
-                            'price': 12000,
-                            'colorName': ["Peachy Pink"],
-                            'colorHex': ["0xffffb6c1"],
+                            'category': 'Laptop',
+                            'price': 54990,
+                            'colorName': ["Black"],
+                            'colorHex': ["0xff000000"],
                             'description':
-                                'Premium look & feel at a pocket-friendly price. Compact and lightweight, with anti-skid features for unhindered comfort. Perfect for outdoor activities as well as to make a statement',
-                            'variants': ['Powerless'],
+                                'This MSI laptop can be your new device on which you can play fast-paced and contemporary games smoothly. Its powerful processor ensures that you get only smooth performance while using it. What’s more, it functions quietly, so using it will be a delightful experience for anyone who wants to work/game without causing any disturbance to others in the room.',
+                            'variants': ['4GB/512GB SSD', '8GB/512GB SSD'],
                             'specifications': {
-                              'Dimension':
-                                  'Medium Size, Frame Length : 58Mm, Wide : 14Mm, Height: 140Mm,',
-                              'Lens': 'PolyCarbonate Lens'
+                              'Processor':
+                                  'The performance is powerful and seamless, as it comes with an efficient 9th Intel Core i5 processor.',
+                              'Graphics':
+                                  'Dedicated graphic memory Type: GDDR6, Graphic memory capacity:  4GB',
+                              'Graphic Processor':
+                                  'NVIDIA GeForce GTX 1650 Max-Q',
+                              'Operating System':
+                                  'Windows 10 Home, OS Architecture: 64 bit'
                             }
                           }).then((value) {
                             Navigator.push(

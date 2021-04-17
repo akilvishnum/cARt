@@ -1100,8 +1100,8 @@ class _ShowModelState extends State<ShowModel> {
   @override
   void initState() {
     super.initState();
-    _findBackground();
     productImage = 'assets/products/${widget.product.productId}s.png';
+    _findBackground();
   }
 
   _findBackground() async {
