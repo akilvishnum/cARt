@@ -8,7 +8,7 @@ import 'package:cart/screens/LoginPage.dart';
 import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:cart/screens/PaymentDonePage.dart';
 int variantsIndex = 0, colorIndex = 0;
 //productCount = 1;
 
@@ -287,6 +287,10 @@ class _ProductPageState extends State<ProductPage> {
                         InkWell(
                           onTap: () {
                             Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PaymentDonePage()));
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(
@@ -495,15 +499,16 @@ class _ProductPageState extends State<ProductPage> {
                                             fontSize: 13,
                                             fontFamily: 'Medium',
                                             color: Colors.black,
-                                            letterSpacing: 13 * 0.05)),
+                                            letterSpacing: 13 * 0.05,), overflow: TextOverflow.clip, maxLines: 1),
                                   ),
                                   SizedBox(height: height * 0.006),
                                   Container(
+                                    width: width * 0.5,
                                     child: Text(widget.product.productName,
                                         style: TextStyle(
                                             fontSize: 26,
                                             fontFamily: 'Bold',
-                                            color: Colors.black)),
+                                            color: Colors.black), overflow: TextOverflow.clip, maxLines: 1),
                                   ),
                                 ],
                               ),
@@ -513,7 +518,7 @@ class _ProductPageState extends State<ProductPage> {
                                   child: Container(
                                     child: Text("₹ ${widget.product.price}",
                                         style: TextStyle(
-                                            fontSize: 38,
+                                            fontSize: 33,
                                             fontFamily: 'Bold',
                                             fontWeight: FontWeight.w600,
                                             color: Colors.black)),
