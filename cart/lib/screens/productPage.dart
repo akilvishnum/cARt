@@ -506,19 +506,19 @@ class _ProductPageState extends State<ProductPage> {
                                     width: width * 0.5,
                                     child: Text(widget.product.productName,
                                         style: TextStyle(
-                                            fontSize: 26,
+                                            fontSize: 22,
                                             fontFamily: 'Bold',
-                                            color: Colors.black), overflow: TextOverflow.clip, maxLines: 1),
+                                            color: Colors.black),),
                                   ),
                                 ],
                               ),
                               Expanded(
                                 child: Align(
-                                  alignment: Alignment.centerRight,
+                                  alignment: Alignment.topRight,
                                   child: Container(
                                     child: Text("₹ ${widget.product.price}",
                                         style: TextStyle(
-                                            fontSize: 33,
+                                            fontSize: 32,
                                             fontFamily: 'Bold',
                                             fontWeight: FontWeight.w600,
                                             color: Colors.black)),

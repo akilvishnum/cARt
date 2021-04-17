@@ -11,6 +11,8 @@ class Products {
   List<String> colorName;
   List<String> colorHex;
   Map<String, dynamic> specification;
+  int count;
+  HSLColor light, dark;
   Products({
     this.productId,
     this.productName,
@@ -22,5 +24,6 @@ class Products {
     this.colorName,
     this.colorHex,
     this.specification,
+    this.count, this.light, this.dark,
   });
 }
