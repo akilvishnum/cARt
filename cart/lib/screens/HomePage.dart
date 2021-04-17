@@ -401,7 +401,6 @@ class _HomePageState extends State<HomePage> {
                                   selected[index] = true;
                                   selectedindex = index;
                                 });
-                                print("Hello ${selected}");
                               },
                               child: Container(
                                 width: 150,

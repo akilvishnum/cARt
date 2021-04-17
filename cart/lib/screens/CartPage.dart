@@ -188,7 +188,7 @@ class _CartPageState extends State<CartPage> {
             children: [
               Container(
                 child: new Image.asset(
-                  'assets/products/phone.png',
+                  'assets/products/${product.productId}f.png',
                   width: width * 0.2,
                   height: width * 0.2,
                 ),
