@@ -10,18 +10,15 @@ class ARDisplay extends StatefulWidget {
 
 class _ARDisplayState extends State<ARDisplay> {
   UnityWidgetController unityWidgetController;
-  String currentScene = "Sofa";
   void initState() {
     //super.initState();
-    setState(() {
-      currentScene = widget.scene;
-    });
   }
 
   void onUnityCreated(UnityWidgetController controller) {
     unityWidgetController = controller;
 
-    unityWidgetController.postMessage('SceneChanger', 'openScene', 'nwtv001');
+    unityWidgetController.postMessage(
+        'SceneChanger', 'openScene', widget.scene);
   }
 
   void onUnitySceneLoaded(SceneLoaded sceneInfo) {
