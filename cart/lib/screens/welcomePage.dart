@@ -97,7 +97,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginPage()));
+                                    builder: (context) => SignupPage()));
                           });
                         },
                       )),

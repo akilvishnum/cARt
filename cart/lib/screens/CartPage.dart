@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cart/Component/Products.dart';
 import 'package:cart/Component/cartProducts.dart';
-
+import 'package:cart/screens/PaymentDonePage.dart';
 class CartPage extends StatefulWidget {
   @override
   _CartPageState createState() => _CartPageState();
@@ -417,6 +417,10 @@ class _CartPageState extends State<CartPage> {
                     child: InkWell(
                       onTap: () {
                         // actionSheet(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PaymentDonePage()));
                       },
                       child: Center(
                         child: Column(
