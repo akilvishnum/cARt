@@ -9,6 +9,7 @@ import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cart/screens/PaymentDonePage.dart';
+
 int variantsIndex = 0, colorIndex = 0;
 //productCount = 1;
 
@@ -496,19 +497,24 @@ class _ProductPageState extends State<ProductPage> {
                                     child: Text(
                                         widget.product.category.toUpperCase(),
                                         style: TextStyle(
-                                            fontSize: 13,
-                                            fontFamily: 'Medium',
-                                            color: Colors.black,
-                                            letterSpacing: 13 * 0.05,), overflow: TextOverflow.clip, maxLines: 1),
+                                          fontSize: 13,
+                                          fontFamily: 'Medium',
+                                          color: Colors.black,
+                                          letterSpacing: 13 * 0.05,
+                                        ),
+                                        overflow: TextOverflow.clip,
+                                        maxLines: 1),
                                   ),
                                   SizedBox(height: height * 0.006),
                                   Container(
                                     width: width * 0.5,
-                                    child: Text(widget.product.productName,
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontFamily: 'Bold',
-                                            color: Colors.black),),
+                                    child: Text(
+                                      widget.product.productName,
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontFamily: 'Bold',
+                                          color: Colors.black),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -635,8 +641,9 @@ class _ProductPageState extends State<ProductPage> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                ARDisplay(scene: "Sofa")));
+                                            builder: (context) => ARDisplay(
+                                                scene:
+                                                    widget.product.productId)));
                                   },
                                   child: Container(
                                     width: width * 0.23,

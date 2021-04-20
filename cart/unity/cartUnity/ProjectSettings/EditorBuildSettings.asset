@@ -38,6 +38,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/nwds001.unity
     guid: 42556579801083845a56b5b0d38125d5
+  - enabled: 1
+    path: Assets/Scenes/wemk001.unity
+    guid: 90363da2950d9074cab25b032c3ba32a
+  - enabled: 1
+    path: Assets/Scenes/wesh001.unity
+    guid: 6831d070647008b41a78111a08a286c6
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e7795e01f2915184a9503b2d9b438391,
       type: 2}
