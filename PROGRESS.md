@@ -97,7 +97,7 @@
 </td>
 <!-- <new row>-->
 </tr>
-<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 16 Apr  </p> </td>
+<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 1 Apr - 20 Apr  </p> </td>
 <td align = "center" > <p> Flutter & Firebase </p> </td>
 <td> <p> 
 	✔️ &nbsp; Home Page UI fixes 🧘🏽‍♂️ 👻 <br> 
@@ -110,6 +110,7 @@
 	✔️ &nbsp; Fetch products from Database for Product Page 👻 <br> 
 	✔️ &nbsp; Database functionality for Cart page 👻 <br> 
   	✔️ &nbsp; 3D Model viewer to display 3D models inside the phone. 🧘🏽‍♂️ <br> 
+	✔️ &nbsp; Done PaymentDone page with Animation (Fade in) 🧘🏽‍♂️ <br> 
 	</p>
 </td>
 </tr>
@@ -123,7 +124,8 @@
 	✔️ &nbsp; Spectacles scene added 🎯 <br>
 	✔️ &nbsp; Cap scene added 🎯 <br>
 	✔️ &nbsp; Mask scene added 🎯 <br>
-	✔️ &nbsp; TV scene added 🎯 <br>
+	✔️ &nbsp; Shirt scene added 🎯 <br>
+	⏳ &nbsp; TV scene testing 🎯 <br>
 	⏳ &nbsp; AR watch model trial 🎯 <br>
 	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
      </p>
@@ -142,6 +144,7 @@
 	✔️ &nbsp; UI Design for Cart page 🧘🏽‍♂️  <br>
 	✔️ &nbsp; Created Target Marker for AR 🧘🏽‍♂️  <br>
 	✔️ &nbsp; Converted 3D models to FBX and GLB to be used for AR 🧘🏽‍♂️ 
+	✔️ &nbsp; Designed an image stating that payment was done successfully. 🧘🏽‍♂️ 
 	</p>
 </td>
 </tr>
