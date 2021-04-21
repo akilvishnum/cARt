@@ -91,8 +91,9 @@ class _LoginPageState extends State<LoginPage> {
                               email = val;
                             },
                             decoration: const InputDecoration(
-                              border: InputBorder.none,
-                            ),
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 10)),
                             validator: (mail) {
                               if (mail.isEmpty) {
                                 return "Email  can't be empty";
@@ -131,6 +132,8 @@ class _LoginPageState extends State<LoginPage> {
                               password = val;
                             },
                             decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 10),
                               border: InputBorder.none,
                               suffixIcon: IconButton(
                                 icon: Icon((_obscureText)
