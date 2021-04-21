@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -165,7 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttemptUpdate: 1
   m_MatchFrameRate: 1
-  m_TrackingMode: 2
 --- !u!4 &50157833
 Transform:
   m_ObjectHideFlags: 0
@@ -319,7 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RaycastPrefab: {fileID: 0}
 --- !u!114 &326573224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,9 +572,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FocusMode: -1
   m_LightEstimationMode: -1
-  m_AutoFocus: 1
-  m_LightEstimation: 0
-  m_FacingDirection: 1
 --- !u!114 &1537481655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb25d367112741a459107bf67e43ef17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arObjectToSpawn: {fileID: 4342185055618390171, guid: b21148dcac40e0c48a02bfcd72f7bc58,
+  arObjectToSpawn: {fileID: 4721073215905276, guid: 80ad51424a735fb4998b4a2c307072d9,
     type: 3}
   placementIndicator: {fileID: 1721672393}
 --- !u!4 &1811638259
