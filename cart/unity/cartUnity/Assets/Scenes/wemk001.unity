@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caeceacb624484daf8e379c2252fd246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FacePrefab: {fileID: 2274848629139457338, guid: 693226111a281da429d4b961d6dc2409,
+  m_FacePrefab: {fileID: 1445732144399643140, guid: 10a9a62280508a448acaad63ee29c460,
     type: 3}
   m_MaximumFaceCount: 1
 --- !u!114 &299301210
