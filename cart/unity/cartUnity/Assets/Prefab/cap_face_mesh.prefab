@@ -47,7 +47,7 @@ Animator:
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -306,42 +306,42 @@ PrefabInstance:
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.01
+      value: 0.056
       objectReference: {fileID: 0}
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99026644
       objectReference: {fileID: 0}
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.13175134
       objectReference: {fileID: 0}
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.0012304833
       objectReference: {fileID: 0}
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.044860013
       objectReference: {fileID: 0}
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -15.132001
       objectReference: {fileID: 0}
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0.55700004
       objectReference: {fileID: 0}
     - target: {fileID: 757820797699979214, guid: 8851c63a84fd340409ac7dca6b101b86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -5.262
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8851c63a84fd340409ac7dca6b101b86, type: 3}
