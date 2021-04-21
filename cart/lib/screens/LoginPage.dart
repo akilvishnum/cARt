@@ -1,5 +1,6 @@
 import 'package:cart/screens/HomePage.dart';
 import 'package:cart/screens/SignupPage.dart';
+import 'package:cart/screens/SplashScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -166,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => SplashScreen()));
                         } catch (e) {
                           print(e.message);
                           newUser = null;

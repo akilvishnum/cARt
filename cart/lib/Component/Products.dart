@@ -24,6 +24,8 @@ class Products {
     this.colorName,
     this.colorHex,
     this.specification,
-    this.count, this.light, this.dark,
+    this.count,
+    this.light,
+    this.dark,
   });
 }

@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     "Eye Wear",
     "Sofa",
     "Smart Phones",
-    "Head Phones",
+    "Instruments",
     "Caps",
     "Laptop",
     "Shirts",
@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
               count: 0,
               light: null,
               dark: null));
-        else if (element.data()['category'] == "Head Phones")
+        else if (element.data()['category'] == "Instruments")
           prod[4].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],

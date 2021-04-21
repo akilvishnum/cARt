@@ -65,37 +65,32 @@ class _WelcomePageState extends State<WelcomePage> {
                                 fontSize: 18,
                                 fontFamily: 'Bold')),
                         onPressed: () {
-                          FirebaseFirestore.instance
-                              .collection('Products')
-                              .doc("nwlp001")
-                              .set({
-                            'productId': 'nwlp001',
-                            'productName':
-                                'MSI GF63 Thin 9SCXR-418IN Gaming Laptop',
-                            'productType': 'Non-Wearable',
-                            'category': 'Laptop',
-                            'price': 54990,
-                            'colorName': ["Black"],
-                            'colorHex': ["0xff000000"],
-                            'description':
-                                'This MSI laptop can be your new device on which you can play fast-paced and contemporary games smoothly. Its powerful processor ensures that you get only smooth performance while using it. What’s more, it functions quietly, so using it will be a delightful experience for anyone who wants to work/game without causing any disturbance to others in the room.',
-                            'variants': ['4GB/512GB SSD', '8GB/512GB SSD'],
-                            'specifications': {
-                              'Processor':
-                                  'The performance is powerful and seamless, as it comes with an efficient 9th Intel Core i5 processor.',
-                              'Graphics':
-                                  'Dedicated graphic memory Type: GDDR6, Graphic memory capacity:  4GB',
-                              'Graphic Processor':
-                                  'NVIDIA GeForce GTX 1650 Max-Q',
-                              'Operating System':
-                                  'Windows 10 Home, OS Architecture: 64 bit'
-                            }
-                          }).then((value) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignupPage()));
-                          });
+                          // FirebaseFirestore.instance
+                          //     .collection('Products')
+                          //     .doc("nwds001")
+                          //     .set({
+                          //   'productId': 'nwds001',
+                          //   'productName': 'Drums',
+                          //   'productType': 'Non-Wearable',
+                          //   'category': 'Instruments',
+                          //   'price': 14990,
+                          //   'colorName': ["Silver"],
+                          //   'colorHex': ["0xffc0c0c0"],
+                          //   'description':
+                          //       'An all-inclusive, outside-the-box drum set package for the new drummer that needs everything!The Drive configuration is a full-sized, totally playable drum set package complete with cymbals, durable hardware, drum throne, and a chain-drive pedal.',
+                          //   'variants': ['5-Ply Hardwood Shell'],
+                          //   'specifications': {
+                          //     'Kit Configuration':
+                          //         '16"*22" Bass Drum, 16"*16" Floor Tom, 9"*12" Rack Tom',
+                          //     'Stand':
+                          //         '200 Series Double-Braced Snare Stand, Double-Braces Cymbal Stand',
+                          //   }
+                          // }).then((value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignupPage()));
+                          // });
                         },
                       )),
                       SizedBox(width: width * 0.03),
@@ -106,7 +101,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SplashScreen()));
+                                  builder: (context) => LoginPage()));
                         },
                         child: Column(
                           children: [
