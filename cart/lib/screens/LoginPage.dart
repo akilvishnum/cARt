@@ -62,11 +62,11 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                            child: Text("Great to have you back,",
+                            child: Text("Great to have you back",
                                 style: TextStyle(
                                     fontSize: 28, fontFamily: 'Bold'))),
                         Container(
-                            child: Text("Now, indulge in AR",
+                            child: Text("Relish the AR Experience.",
                                 style: TextStyle(
                                     fontSize: 28, fontFamily: 'Bold'))),
                       ],
