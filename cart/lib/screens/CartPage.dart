@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cart/Component/Products.dart';
 import 'package:cart/Component/cartProducts.dart';
 import 'package:cart/screens/PaymentDonePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class CartPage extends StatefulWidget {
   @override
   _CartPageState createState() => _CartPageState();
@@ -19,16 +21,18 @@ class _CartPageState extends State<CartPage> {
     if (count == 0) fetchCartProducts();
   }
 
-  String data;
+  String data, user;
   List<Products> cartlist = [];
   List<CartProducts> cartDetails = [];
   List<int> productCount = [];
   void fetchCartProducts() async {
     List<Products> cartdata = [];
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    user = preferences.getString("user");
     try {
       await FirebaseFirestore.instance
           .collection('Users')
-          .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+          .doc(user)
           .get()
           .then((value) {
         for (int i = 0; i < value.data()['cartDetails'].length; i++) {
@@ -82,10 +86,7 @@ class _CartPageState extends State<CartPage> {
     Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CartPage()));
-    await FirebaseFirestore.instance
-        .collection('Users')
-        .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
-        .update({
+    await FirebaseFirestore.instance.collection('Users').doc(user).update({
       'cartDetails': FieldValue.arrayRemove([cartDetails[index].cartDetails])
     });
   }
@@ -113,6 +114,7 @@ class _CartPageState extends State<CartPage> {
               setState(() {
                 if (productCount[index] > 1) {
                   productCount[index]--;
+                  cartDetails[index].cartDetails['quantity']--;
                 } else {
                   productCount[index] = 1;
                   deleteProduct(index);
@@ -150,6 +152,7 @@ class _CartPageState extends State<CartPage> {
             onTap: () {
               setState(() {
                 productCount[index]++;
+                cartDetails[index].cartDetails['quantity']++;
                 count = 1;
               });
             },
@@ -337,64 +340,91 @@ class _CartPageState extends State<CartPage> {
         child: Stack(
           children: [
             SingleChildScrollView(
-              child: Container(
-                padding:
-                    EdgeInsets.only(left: width * 0.035, right: width * 0.035),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: height * 0.025 / 2),
-                    ConstrainedBox(
-                        constraints: BoxConstraints(maxHeight: 5000),
-                        child: ListView.builder(
-                            padding: EdgeInsets.all(0),
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            itemCount: cartlist.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return cartProductContainer(
-                                  cartlist[index], index, width);
-                            })),
-                    SizedBox(height: height * 0.0125),
-                    Container(
-                      child: Text(
-                        'ORDER SUMMARY',
-                        style: TextStyle(
-                            fontFamily: 'Medium',
-                            fontSize: width * 0.039,
-                            letterSpacing: width * 0.039 * 0.05),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.0075),
-                    Container(
-                      padding: EdgeInsets.only(
-                          left: 10, right: 10, top: 15, bottom: 15),
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(248, 248, 248, 1),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(width * 0.05),
-                          topRight: Radius.circular(width * 0.05),
+              child: (cartlist.isEmpty)
+                  ? Container(
+                      width: width,
+                      padding: EdgeInsets.symmetric(vertical: height * 0.25),
+                      child: Column(children: [
+                        Image(
+                          image: AssetImage("assets/images/Empty.png"),
+                          width: 80,
+                          height: 80,
                         ),
-                      ),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(maxHeight: 50000000000),
-                        child: ListView.builder(
-                            padding: EdgeInsets.all(0),
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            itemCount: cartlist.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              // for (int i = 0; i < cartlist.length; i++)
-                              //   productCount.add(1);
-                              return subTotalContainer(
-                                  cartlist[index], index, height, width);
-                            }),
+                        SizedBox(height: height * 0.04),
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.15),
+                          child: Text(
+                            "No products added to cart!",
+                            style: TextStyle(
+                                fontFamily: 'Medium',
+                                fontSize: width * 0.039,
+                                letterSpacing: width * 0.039 * 0.05),
+                          ),
+                        )
+                      ]),
+                    )
+                  : Container(
+                      padding: EdgeInsets.only(
+                          left: width * 0.035, right: width * 0.035),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: height * 0.025 / 2),
+                          ConstrainedBox(
+                              constraints: BoxConstraints(maxHeight: 5000),
+                              child: ListView.builder(
+                                  padding: EdgeInsets.all(0),
+                                  shrinkWrap: true,
+                                  physics: BouncingScrollPhysics(),
+                                  itemCount: cartlist.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return cartProductContainer(
+                                        cartlist[index], index, width);
+                                  })),
+                          SizedBox(height: height * 0.0125),
+                          Container(
+                            child: Text(
+                              'ORDER SUMMARY',
+                              style: TextStyle(
+                                  fontFamily: 'Medium',
+                                  fontSize: width * 0.039,
+                                  letterSpacing: width * 0.039 * 0.05),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.0075),
+                          Container(
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, top: 15, bottom: 15),
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(248, 248, 248, 1),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(width * 0.05),
+                                topRight: Radius.circular(width * 0.05),
+                              ),
+                            ),
+                            child: ConstrainedBox(
+                              constraints:
+                                  BoxConstraints(maxHeight: 50000000000),
+                              child: ListView.builder(
+                                  padding: EdgeInsets.all(0),
+                                  shrinkWrap: true,
+                                  physics: BouncingScrollPhysics(),
+                                  itemCount: cartlist.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    // for (int i = 0; i < cartlist.length; i++)
+                                    //   productCount.add(1);
+                                    return subTotalContainer(
+                                        cartlist[index], index, height, width);
+                                  }),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.108)
+                        ],
                       ),
                     ),
-                    SizedBox(height: height * 0.108)
-                  ],
-                ),
-              ),
             ),
             Positioned(
               bottom: 0,
@@ -516,68 +546,81 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        width: width,
-        height: height,
-        color: Colors.black,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            Container(
-                height: height * 0.12,
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          Center(
-                            child: Container(
-                              child: Text('Cart',
-                                  style: TextStyle(
-                                      fontSize: height * 0.027,
-                                      fontFamily: 'Bold',
-                                      color: Colors.white,
-                                      letterSpacing: height * 0.027 * 0.01)),
+    return WillPopScope(
+      onWillPop: () async {
+        List<Map<String, dynamic>> cartdatalist = [];
+        for (int i = 0; i < cartDetails.length; i++)
+          cartdatalist.add(cartDetails[i].cartDetails);
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(user)
+            .update({'cartDetails': cartdatalist}).then((_) {
+          Navigator.pop(context);
+        });
+      },
+      child: Scaffold(
+        body: Container(
+          width: width,
+          height: height,
+          color: Colors.black,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20),
+              Container(
+                  height: height * 0.12,
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: Container(
+                                child: Text('Cart',
+                                    style: TextStyle(
+                                        fontSize: height * 0.027,
+                                        fontFamily: 'Bold',
+                                        color: Colors.white,
+                                        letterSpacing: height * 0.027 * 0.01)),
+                              ),
                             ),
-                          ),
-                          Positioned(
-                            left: 0,
-                            top: 0,
-                            bottom: 0,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Center(
-                                child: Container(
-                                  height: height * 0.055,
-                                  width: height * 0.055,
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(90, 90, 90, 100),
-                                    borderRadius:
-                                        BorderRadius.circular(height * 0.022),
-                                  ),
-                                  child: Center(
-                                    child: SvgPicture.asset(
-                                      'assets/icons/back.svg',
-                                      color: Colors.white,
+                            Positioned(
+                              left: 0,
+                              top: 0,
+                              bottom: 0,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Center(
+                                  child: Container(
+                                    height: height * 0.055,
+                                    width: height * 0.055,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(90, 90, 90, 100),
+                                      borderRadius:
+                                          BorderRadius.circular(height * 0.022),
+                                    ),
+                                    child: Center(
+                                      child: SvgPicture.asset(
+                                        'assets/icons/back.svg',
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )),
-            waitTimer(width, height),
-          ],
+                    ],
+                  )),
+              waitTimer(width, height),
+            ],
+          ),
         ),
       ),
     );

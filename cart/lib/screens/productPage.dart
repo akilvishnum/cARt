@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:cart/screens/LoginPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -238,9 +238,12 @@ class _ProductPageState extends State<ProductPage> {
                       children: <Widget>[
                         InkWell(
                           onTap: () async {
+                            SharedPreferences preferences =
+                                await SharedPreferences.getInstance();
+                            String user = preferences.getString("user");
                             await FirebaseFirestore.instance
                                 .collection('Users')
-                                .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+                                .doc(user)
                                 .update({
                               'cartDetails': FieldValue.arrayUnion([
                                 {

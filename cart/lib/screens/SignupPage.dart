@@ -1,5 +1,6 @@
 import 'package:cart/screens/LoginPage.dart';
 import 'package:cart/screens/welcomePage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -191,20 +192,42 @@ class _SignupPageState extends State<SignupPage> {
                 InkWell(
                   onTap: () async {
                     if (_signupkey.currentState.validate()) {
-                      dynamic newUser;
+                      String newUser;
                       try {
-                        UserCredential user = await FirebaseAuth.instance
+                        await FirebaseAuth.instance
                             .createUserWithEmailAndPassword(
                                 email: email, password: password);
                         newUser = FirebaseAuth.instance.currentUser.uid;
                         print(FirebaseAuth.instance.currentUser.uid);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()));
                       } catch (e) {
                         print(e.message);
                         newUser = null;
+                      }
+                      if (newUser != null) {
+                        FirebaseFirestore.instance
+                            .collection('Users')
+                            .doc(newUser)
+                            .set({
+                          'userId': newUser,
+                          'userEmail': email,
+                          'userContact': [
+                            {
+                              'addressLine1': "",
+                              'addressLine2': "",
+                              'city': "",
+                              'phoneNumber': "",
+                              'pincode': ""
+                            }
+                          ],
+                          'cartDetails': []
+                        }).then((_) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        });
+                      } else {
+                        _signupkey.currentState.reset();
                       }
                       Fluttertoast.showToast(
                         msg: (newUser != null)

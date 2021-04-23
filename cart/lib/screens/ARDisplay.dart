@@ -17,7 +17,7 @@ class _ARDisplayState extends State<ARDisplay> {
   void onUnityCreated(UnityWidgetController controller) {
     unityWidgetController = controller;
 
-    unityWidgetController.postMessage('SceneChanger', 'openScene', 'wecp001');
+    unityWidgetController.postMessage('SceneChanger', 'openScene', 'wesg002');
   }
 
   void onUnitySceneLoaded(SceneLoaded sceneInfo) {

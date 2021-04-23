@@ -4,6 +4,7 @@ import 'package:cart/screens/SplashScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -160,25 +161,29 @@ class _LoginPageState extends State<LoginPage> {
                   InkWell(
                     onTap: () async {
                       if (_loginkey.currentState.validate()) {
-                        dynamic newUser;
+                        String newUser;
                         try {
-                          newUser = await FirebaseAuth.instance
+                          await FirebaseAuth.instance
                               .signInWithEmailAndPassword(
                                   email: email, password: password);
                           newUser = FirebaseAuth.instance.currentUser.uid;
                           print(newUser);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SplashScreen()));
                         } catch (e) {
                           print(e.message);
                           newUser = null;
                           info = e.message.toString();
                         }
                         if (newUser != null) {
+                          SharedPreferences preferences =
+                              await SharedPreferences.getInstance();
+                          preferences.setString("user", newUser);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SplashScreen()));
                           showToast(false, info);
                         } else {
+                          _loginkey.currentState.reset();
                           showToast(true, info);
                         }
                       }
