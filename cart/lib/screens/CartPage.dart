@@ -89,6 +89,19 @@ class _CartPageState extends State<CartPage> {
     await FirebaseFirestore.instance.collection('Users').doc(user).update({
       'cartDetails': FieldValue.arrayRemove([cartDetails[index].cartDetails])
     });
+    cartDetails.remove(cartDetails[index]);
+    productCount.remove(productCount[index]);
+    cartlist.remove(cartlist[index]);
+  }
+
+  void updateQuantity(int index) async {
+    List<Map<String, dynamic>> cartdatalist = [];
+    for (int i = 0; i < cartDetails.length; i++)
+      cartdatalist.add(cartDetails[i].cartDetails);
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(user)
+        .update({'cartDetails': cartdatalist});
   }
 
   findTotal(double width) {
@@ -115,6 +128,7 @@ class _CartPageState extends State<CartPage> {
                 if (productCount[index] > 1) {
                   productCount[index]--;
                   cartDetails[index].cartDetails['quantity']--;
+                  updateQuantity(index);
                 } else {
                   productCount[index] = 1;
                   deleteProduct(index);
@@ -154,6 +168,7 @@ class _CartPageState extends State<CartPage> {
                 productCount[index]++;
                 cartDetails[index].cartDetails['quantity']++;
                 count = 1;
+                updateQuantity(index);
               });
             },
             child: Container(
@@ -357,8 +372,9 @@ class _CartPageState extends State<CartPage> {
                           child: Text(
                             "No products added to cart!",
                             style: TextStyle(
-                                fontFamily: 'Bold',
-                                fontSize: width * 0.039,),
+                              fontFamily: 'Bold',
+                              fontSize: width * 0.039,
+                            ),
                           ),
                         )
                       ]),
@@ -545,81 +561,68 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return WillPopScope(
-      onWillPop: () async {
-        List<Map<String, dynamic>> cartdatalist = [];
-        for (int i = 0; i < cartDetails.length; i++)
-          cartdatalist.add(cartDetails[i].cartDetails);
-        await FirebaseFirestore.instance
-            .collection('Users')
-            .doc(user)
-            .update({'cartDetails': cartdatalist}).then((_) {
-          Navigator.pop(context);
-        });
-      },
-      child: Scaffold(
-        body: Container(
-          width: width,
-          height: height,
-          color: Colors.black,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20),
-              Container(
-                  height: height * 0.12,
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Stack(
-                          children: [
-                            Center(
-                              child: Container(
-                                child: Text('Cart',
-                                    style: TextStyle(
-                                        fontSize: height * 0.027,
-                                        fontFamily: 'Bold',
-                                        color: Colors.white,
-                                        letterSpacing: height * 0.027 * 0.01)),
-                              ),
+    return Scaffold(
+      body: Container(
+        width: width,
+        height: height,
+        color: Colors.black,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 20),
+            Container(
+                height: height * 0.12,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: Container(
+                              child: Text('Cart',
+                                  style: TextStyle(
+                                      fontSize: height * 0.027,
+                                      fontFamily: 'Bold',
+                                      color: Colors.white,
+                                      letterSpacing: height * 0.027 * 0.01)),
                             ),
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              bottom: 0,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Center(
-                                  child: Container(
-                                    height: height * 0.055,
-                                    width: height * 0.055,
-                                    decoration: BoxDecoration(
-                                      color: Color.fromRGBO(90, 90, 90, 100),
-                                      borderRadius:
-                                          BorderRadius.circular(height * 0.022),
-                                    ),
-                                    child: Center(
-                                      child: SvgPicture.asset(
-                                        'assets/icons/back.svg',
-                                        color: Colors.white,
-                                      ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Container(
+                                  height: height * 0.055,
+                                  width: height * 0.055,
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(90, 90, 90, 100),
+                                    borderRadius:
+                                        BorderRadius.circular(height * 0.022),
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(
+                                      'assets/icons/back.svg',
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  )),
-              waitTimer(width, height),
-            ],
-          ),
+                    ),
+                  ],
+                )),
+            waitTimer(width, height),
+          ],
         ),
       ),
     );
