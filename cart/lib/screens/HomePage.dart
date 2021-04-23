@@ -28,10 +28,10 @@ class _HomePageState extends State<HomePage> {
     "Sofa",
     "Smart Phones",
     "Instruments",
-    "Caps",
+    "Mask",
     "Laptop",
+    "Cap",
     "Shirts",
-    "Pants",
     "shoes",
     "Watch",
   ];
@@ -184,7 +184,7 @@ class _HomePageState extends State<HomePage> {
               count: 0,
               light: null,
               dark: null));
-        else if (element.data()['category'] == "Cap")
+        else if (element.data()['category'] == "Mask")
           prod[5].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],
@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage> {
               count: 0,
               light: null,
               dark: null));
-        else if (element.data()['category'] == "Shirt")
+        else if (element.data()['category'] == "Cap")
           prod[7].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],
@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
               count: 0,
               light: null,
               dark: null));
-        else if (element.data()['category'] == "Pants")
+        else if (element.data()['category'] == "Shirts")
           prod[8].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],

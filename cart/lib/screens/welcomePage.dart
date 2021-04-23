@@ -67,30 +67,29 @@ class _WelcomePageState extends State<WelcomePage> {
                         onPressed: () {
                           // FirebaseFirestore.instance
                           //     .collection('Products')
-                          //     .doc("nwds001")
+                          //     .doc("wecp001")
                           //     .set({
-                          //   'productId': 'nwds001',
-                          //   'productName': 'Drums',
-                          //   'productType': 'Non-Wearable',
-                          //   'category': 'Instruments',
-                          //   'price': 14990,
-                          //   'colorName': ["Silver"],
-                          //   'colorHex': ["0xffc0c0c0"],
+                          //   'productId': 'wecp001',
+                          //   'productName': 'Cap',
+                          //   'productType': 'Wearable',
+                          //   'category': 'Cap',
+                          //   'price': 169,
+                          //   'colorName': ["Blue"],
+                          //   'colorHex': ["0xff0000ff"],
                           //   'description':
-                          //       'An all-inclusive, outside-the-box drum set package for the new drummer that needs everything!The Drive configuration is a full-sized, totally playable drum set package complete with cymbals, durable hardware, drum throne, and a chain-drive pedal.',
-                          //   'variants': ['5-Ply Hardwood Shell'],
+                          //       'Durable velcro closure on back,one size fits all adults. Pre-curved sandwich peak,same color as embroideries and eyelets. Perspiration-absorptive sweatband,comfortable in outdoor activities.',
+                          //   'variants': ['Blue cap'],
                           //   'specifications': {
-                          //     'Kit Configuration':
-                          //         '16"*22" Bass Drum, 16"*16" Floor Tom, 9"*12" Rack Tom',
-                          //     'Stand':
-                          //         '200 Series Double-Braced Snare Stand, Double-Braces Cymbal Stand',
+                          //     'Material': 'Cotton',
+                          //     'Flex Fit':
+                          //         'Head circumfrence 54-60cm/21.5-23 in.Adjustable Metal Buckle Back Closure.',
                           //   }
                           // }).then((value) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => SignupPage()));
-                          // });
+                          //});
                         },
                       )),
                       SizedBox(width: width * 0.03),
