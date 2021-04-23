@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sofa.unity
+    path: Assets/Scenes/nwso002.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Scene2.unity
@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/nwso001.unity
     guid: 8b9c3fd91c7405245ace597f20af3742
   - enabled: 1
-    path: Assets/Scenes/Sofa_red.unity
+    path: Assets/Scenes/nwso003.unity
     guid: 7891f91434857594d83cd98aa620fda0
   - enabled: 1
     path: Assets/Scenes/Loading.unity

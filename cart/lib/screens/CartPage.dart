@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cart/Component/Products.dart';
 import 'package:cart/Component/cartProducts.dart';
 import 'package:cart/screens/PaymentDonePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class CartPage extends StatefulWidget {
   @override
   _CartPageState createState() => _CartPageState();
@@ -19,16 +21,18 @@ class _CartPageState extends State<CartPage> {
     if (count == 0) fetchCartProducts();
   }
 
-  String data;
+  String data, user = null;
   List<Products> cartlist = [];
   List<CartProducts> cartDetails = [];
   List<int> productCount = [];
   void fetchCartProducts() async {
     List<Products> cartdata = [];
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    user = preferences.getString("user");
     try {
       await FirebaseFirestore.instance
           .collection('Users')
-          .doc("m9eNwcFc9AXzkzOwrNxKHOH7wpG3")
+          .doc(user)
           .get()
           .then((value) {
         for (int i = 0; i < value.data()['cartDetails'].length; i++) {
