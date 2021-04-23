@@ -346,9 +346,9 @@ class _CartPageState extends State<CartPage> {
                       padding: EdgeInsets.symmetric(vertical: height * 0.25),
                       child: Column(children: [
                         Image(
-                          image: AssetImage("assets/images/Empty.png"),
-                          width: 80,
-                          height: 80,
+                          image: AssetImage("assets/images/CartEmpty.png"),
+                          width: width * 0.4,
+                          height: width * 0.4,
                         ),
                         SizedBox(height: height * 0.04),
                         Container(
@@ -357,9 +357,8 @@ class _CartPageState extends State<CartPage> {
                           child: Text(
                             "No products added to cart!",
                             style: TextStyle(
-                                fontFamily: 'Medium',
-                                fontSize: width * 0.039,
-                                letterSpacing: width * 0.039 * 0.05),
+                                fontFamily: 'Bold',
+                                fontSize: width * 0.039,),
                           ),
                         )
                       ]),
