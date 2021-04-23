@@ -38,6 +38,8 @@ dependencies:
   shimmer:
   flutter_unity_widget: ^4.0.1+1
   model_viewer: ^ 0.8.1
+  shared_preferences:
+
 
 dev_dependencies:
   flutter_test:
