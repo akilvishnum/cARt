@@ -39,6 +39,7 @@ dependencies:
   flutter_unity_widget: ^4.0.1+1
   model_viewer: ^ 0.8.1
   shared_preferences:
+  razorpay_flutter: ^1.2.2
 
 
 dev_dependencies:
