@@ -11,3 +11,5 @@
 11) Shirt - wesh001
 12) Suitcase - nwst001
 13) HeadSet - wehs001
+14) HeadSet_Black-wehs002
+15) Trouser - wetr001
