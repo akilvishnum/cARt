@@ -6,3 +6,8 @@
 6) mask-wemk001
 7) sunglasses-wesg001
 8) sunglasses2 - wesg002
+9) Sofa2 - nwso002
+10) Sofa3 - nwso003
+11) Shirt - wesh001
+12) Suitcase - nwst001
+13) HeadSet - wehs001
