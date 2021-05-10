@@ -65,31 +65,31 @@ class _WelcomePageState extends State<WelcomePage> {
                                 fontSize: 18,
                                 fontFamily: 'Bold')),
                         onPressed: () {
-                          FirebaseFirestore.instance
-                              .collection('Products')
-                              .doc("nwbg002")
-                              .set({
-                            'productId': 'nwbg002',
-                            'productName': 'Trolley Bag',
-                            'productType': 'Non-Wearable',
-                            'category': 'Bag',
-                            'price': 2439,
-                            'colorName': ["Yellow"],
-                            'colorHex': ["0xffffff00"],
-                            'description':
-                                'Durable velcro closure on back,one size fits all adults. Pre-curved sandwich peak,same color as embroideries and eyelets. Perspiration-absorptive sweatband,comfortable in outdoor activities.',
-                            'variants': ['Blue cap'],
-                            'specifications': {
-                              'Material': 'Cotton',
-                              'Flex Fit':
-                                  'Head circumfrence 54-60cm/21.5-23 in.Adjustable Metal Buckle Back Closure.',
-                            }
-                          }).then((value) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignupPage()));
-                          });
+                          // FirebaseFirestore.instance
+                          //     .collection('Products')
+                          //     .doc("nwbg002")
+                          //     .set({
+                          //   'productId': 'nwbg002',
+                          //   'productName': 'Trolley Bag',
+                          //   'productType': 'Non-Wearable',
+                          //   'category': 'Bag',
+                          //   'price': 2439,
+                          //   'colorName': ["Yellow"],
+                          //   'colorHex': ["0xffffff00"],
+                          //   'description':
+                          //       'Durable velcro closure on back,one size fits all adults. Pre-curved sandwich peak,same color as embroideries and eyelets. Perspiration-absorptive sweatband,comfortable in outdoor activities.',
+                          //   'variants': ['Blue cap'],
+                          //   'specifications': {
+                          //     'Material': 'Cotton',
+                          //     'Flex Fit':
+                          //         'Head circumfrence 54-60cm/21.5-23 in.Adjustable Metal Buckle Back Closure.',
+                          //   }
+                          // }).then((value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignupPage()));
+                          //});
                         },
                       )),
                       SizedBox(width: width * 0.03),
