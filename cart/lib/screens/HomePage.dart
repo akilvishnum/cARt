@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
     "Laptop",
     "Cap",
     "Shirts",
-    "shoes",
-    "Watch",
+    "Trousers",
+    "HeadPhones",
   ];
   List<List<Products>> products = [[], [], [], [], [], [], [], [], [], [], []];
   // List<List<String>> products = [
@@ -277,7 +277,7 @@ class _HomePageState extends State<HomePage> {
               count: 0,
               light: null,
               dark: null));
-        else if (element.data()['category'] == "Shoes")
+        else if (element.data()['category'] == "Trousers")
           prod[9].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],
@@ -300,7 +300,7 @@ class _HomePageState extends State<HomePage> {
               count: 0,
               light: null,
               dark: null));
-        else if (element.data()['category'] == "Watch")
+        else if (element.data()['category'] == "HeadPhones")
           prod[10].add(Products(
               productId: element.data()['productId'],
               productName: element.data()['productName'],
@@ -665,8 +665,8 @@ class DataSearch extends SearchDelegate<String> {
     "Laptop",
     "Cap",
     "Shirts",
-    "shoes",
-    "Watch",
+    "Trousers",
+    "HeadPhones",
   ];
 
   //List recentList = [];
