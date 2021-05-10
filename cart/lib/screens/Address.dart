@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cart/screens/Payment.dart';
 class Address extends StatefulWidget {
   @override
   _AddressState createState() => _AddressState();
@@ -99,7 +100,10 @@ class _AddressState extends State<Address> {
                       ),
                       InkWell(
                         onTap: () {
-
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CartPayment(amount: 0)));
                         },
                         child: Center(
                           // Changed to new button UI
@@ -327,7 +331,10 @@ class _AddressState extends State<Address> {
                       SizedBox(height: height * 0.03),
                       InkWell(
                         onTap: () {
-
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CartPayment(amount: 0)));
                         },
                         child: Center(
                           // Changed to new button UI

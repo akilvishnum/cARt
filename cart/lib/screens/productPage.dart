@@ -9,6 +9,7 @@ import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cart/screens/Payment.dart';
+import 'package:cart/screens/Address.dart';
 
 int variantsIndex = 0, colorIndex = 0;
 //productCount = 1;
@@ -294,8 +295,7 @@ class _ProductPageState extends State<ProductPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CartPayment(
-                                        amount: product.price * productCount)));
+                                    builder: (context) => Address()));
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(
