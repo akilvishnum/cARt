@@ -1,3 +1,4 @@
+import 'package:cart/screens/Payment.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:async';
@@ -14,7 +15,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  int count = 0;
+  int count = 0, total = 0;
   @override
   void initState() {
     super.initState();
@@ -105,7 +106,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   findTotal(double width) {
-    int total = 0;
+    total = 0;
     for (int i = 0; i < cartlist.length; i++) {
       total = total + (cartlist[i].price * productCount[i]);
     }
@@ -465,7 +466,8 @@ class _CartPageState extends State<CartPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => PaymentDonePage()));
+                                builder: (context) =>
+                                    CartPayment(amount: total)));
                       },
                       child: Center(
                         child: Column(
