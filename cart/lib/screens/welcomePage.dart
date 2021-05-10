@@ -1,7 +1,5 @@
 import 'package:cart/screens/SignupPage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:cart/screens/SplashScreen.dart';
 import 'package:cart/screens/LoginPage.dart';
 
 class WelcomePage extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:cart/screens/Payment.dart';
+import 'package:cart/screens/Address.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:async';
@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cart/Component/Products.dart';
 import 'package:cart/Component/cartProducts.dart';
-import 'package:cart/screens/PaymentDonePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartPage extends StatefulWidget {
@@ -466,8 +465,7 @@ class _CartPageState extends State<CartPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    CartPayment(amount: total)));
+                                builder: (context) => Address(amount: total)));
                       },
                       child: Center(
                         child: Column(

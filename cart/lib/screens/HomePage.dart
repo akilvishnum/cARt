@@ -6,11 +6,11 @@ import 'package:palette_generator/palette_generator.dart';
 import 'package:cart/screens/productPage.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:cart/Component/Products.dart';
 
 final recentList = [];
 int resultIndex = -1;
+int selectedindex = 0;
 
 class HomePage extends StatefulWidget {
   @override
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   //   ["watch 1", "watch 2", "watch 3"]
   // ];
   List<bool> selected = [];
-  int selectedindex = 0;
+  //int selectedindex = 0;
   int count;
   void initState() {
     // if (resultIndex != -1)
@@ -59,7 +59,8 @@ class _HomePageState extends State<HomePage> {
     //     resultIndex = -1;
     //   });
     selected.add(true);
-    for (int i = 0; i < categories.length - 1; i++) selected.add(false);
+    for (int i = 0; i < categories.length; i++) selected.add(false);
+    // selected[selectedindex] = true;
     fetchproducts();
   }
 
@@ -336,6 +337,8 @@ class _HomePageState extends State<HomePage> {
     count = (products[selectedindex].length / 2).round();
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
+    for (int i = 0; i < categories.length; i++) selected[i] = false;
+    selected[selectedindex] = true;
     print("count $count");
     return Scaffold(
         backgroundColor: Color.fromRGBO(229, 229, 229, 1),
@@ -653,17 +656,19 @@ class _PDisplayState extends State<PDisplay> {
 
 class DataSearch extends SearchDelegate<String> {
   final searchList = [
-    "Chairs",
+    "All",
+    "Eye Wear",
     "Sofa",
-    "Smart Phones",
-    "Head Phones",
-    "Caps",
-    "Glasses",
+    "Bag",
+    "Instruments",
+    "Mask",
+    "Laptop",
+    "Cap",
     "Shirts",
-    "Pants",
     "shoes",
-    "Watch"
+    "Watch",
   ];
+
   //List recentList = [];
   // List recentList = ["Shirts", "Pants", "shoes", "Watch"];
 
@@ -727,6 +732,9 @@ class DataSearch extends SearchDelegate<String> {
                       recentList.insert(0, suggestionList[index]);
                       if (recentList.length > 5) recentList.removeLast();
                     }
+                    selectedindex = searchList.indexOf(suggestionList[index]);
+                    print(
+                        "Search result:  ${searchList.indexOf(suggestionList[index])}");
                     Navigator.pop(context);
                     //showResults(context);
                   },

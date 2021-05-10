@@ -1,16 +1,45 @@
+import 'package:cart/screens/Payment.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class Address extends StatefulWidget {
+  int amount;
+  Address({this.amount});
   @override
   _AddressState createState() => _AddressState();
 }
 
 class _AddressState extends State<Address> {
+  String user, name, phonenumber, pincode, addr, state, country;
+  bool recentAddr = false;
+  Map<String, dynamic> address;
+  final _addressKey = new GlobalKey<FormState>();
+  void getDetails() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    user = preferences.getString("user");
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(user)
+        .get()
+        .then((value) {
+      setState(() {
+        address = value.data()['userContact'];
+        print(address);
+        if (value.data()['userContact']['name'] != null &&
+            value.data()['userContact']['name'] != "")
+          setState(() {
+            recentAddr = true;
+          });
+      });
+    });
+  }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    bool recentAddr = false;
     return Scaffold(
       backgroundColor: Color.fromRGBO(248, 248, 248, 1),
       body: SingleChildScrollView(
@@ -20,7 +49,8 @@ class _AddressState extends State<Address> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
-              Container( // Heading
+              Container(
+                  // Heading
                   height: height * 0.12,
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Column(
@@ -59,121 +89,134 @@ class _AddressState extends State<Address> {
                         ),
                       ),
                     ],
-                  )
-                ),
-                recentAddr ?
-                Container(
-                  // Already FILLed address
-                  width: width,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
-                      Container(
-                        padding: EdgeInsets.only(left: 3, right: 3, top: 5),
-                        child: Column(
-                          //mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:[
-                            Container(
-                              child: Text("RECENTLY USED",
-                                  style: TextStyle(fontSize: 18, fontFamily: 'Medium')),
+                  )),
+              recentAddr
+                  ? Container(
+                      // Already FILLed address
+                      width: width,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 3, right: 3, top: 5),
+                            child: Column(
+                              //mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Text("RECENTLY USED",
+                                      style: TextStyle(
+                                          fontSize: 18, fontFamily: 'Medium')),
+                                ),
+                                SizedBox(height: height * 0.005),
+                                Container(
+                                  child: Text(address['name'],
+                                      style: TextStyle(
+                                          fontSize: 20, fontFamily: 'Bold')),
+                                ),
+                                SizedBox(height: height * 0.005),
+                                Container(
+                                  child: Text(address['phoneNumber'],
+                                      style: TextStyle(
+                                          fontSize: 20, fontFamily: 'Bold')),
+                                ),
+                                SizedBox(height: height * 0.005),
+                                Container(
+                                  child: Text(
+                                      "${address['address']},\n${address['state']},\n${address['country']}-${address['pincode']}",
+                                      style: TextStyle(
+                                          fontSize: 20, fontFamily: 'Bold')),
+                                ),
+                                SizedBox(height: height * 0.03),
+                              ],
                             ),
-                            SizedBox(height: height * 0.005),
-                            Container(
-                              child: Text("Akil",
-                                  style: TextStyle(fontSize: 20, fontFamily: 'Bold')),
-                            ),
-                            SizedBox(height: height * 0.005),
-                            Container(
-                              child: Text("9047618511",
-                                  style: TextStyle(fontSize: 20, fontFamily: 'Bold')),
-                            ), SizedBox(height: height * 0.005),
-                            Container(
-                              child: Text("18 - CART Head Office \n Tamil Nadu - 1234 \n India",
-                                  style: TextStyle(fontSize: 20, fontFamily: 'Bold')),
-                            ),
-                            SizedBox(height: height * 0.03),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-
-                        },
-                        child: Center(
-                          // Changed to new button UI
-                          child: Column(
-                            children: [
-                              Stack(
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          CartPayment(amount: widget.amount)));
+                            },
+                            child: Center(
+                              // Changed to new button UI
+                              child: Column(
                                 children: [
-                                  Positioned(
-                                    child: Container(
-                                      height: 60,
-                                      width: width * 0.94,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    child: Container(
-                                      height: 60,
-                                      width: width * 0.94,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: <Color>[
-                                            Color.fromRGBO(255, 255, 255, 0.11),
-                                            Color.fromRGBO(255, 255, 255, 0)
-                                          ],
-                                          stops: [0.2, 0.6],
+                                  Stack(
+                                    children: [
+                                      Positioned(
+                                        child: Container(
+                                          height: 60,
+                                          width: width * 0.94,
+                                          decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    child: Container(
-                                      height: 60,
-                                      width: width * 0.94,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text("Continue with this address",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18,
-                                                  fontFamily: 'Bold',
-                                                  color: Colors.white)),
-                                        ],
+                                      Positioned(
+                                        child: Container(
+                                          height: 60,
+                                          width: width * 0.94,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: <Color>[
+                                                Color.fromRGBO(
+                                                    255, 255, 255, 0.11),
+                                                Color.fromRGBO(255, 255, 255, 0)
+                                              ],
+                                              stops: [0.2, 0.6],
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      Positioned(
+                                        child: Container(
+                                          height: 60,
+                                          width: width * 0.94,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text("Continue with this address",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                      fontFamily: 'Bold',
+                                                      color: Colors.white)),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          SizedBox(height: height * 0.04),
+                          Center(
+                            child: Text("Add new address",
+                                style: TextStyle(
+                                    fontSize: 20, fontFamily: 'Bold')),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: height * 0.04),
-                      Center(
-                        child:Text("Add new address",
-                            style: TextStyle(fontSize: 20, fontFamily: 'Bold')),
-                      ),
-                    ],
-                  ),
-                )
-                : Container(
-
-                ),
-                Container(
+                    )
+                  : Container(),
+              Container(
                 child: Form(
-                  // key: _loginkey,
+                  key: _addressKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,153 +224,230 @@ class _AddressState extends State<Address> {
                       SizedBox(height: height * 0.005),
                       Container(
                         child: Text("NAME",
-                            style: TextStyle(fontSize: 18, fontFamily: 'Medium')),
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'Medium')),
                       ),
                       SizedBox(height: height * 0.01),
                       Center(
                         child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(191, 191, 191, 100),
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                             width: width * 0.94,
                             height: 60,
                             child: Container(
                               child: TextFormField(
                                 onChanged: (val) {
-                                  // email = val;
+                                  name = val;
                                 },
                                 decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: 20, horizontal: 10)),
+                                validator: (val) {
+                                  if (val.isEmpty) {
+                                    return "Name can't be empty";
+                                  }
+                                  return null;
+                                },
                               ),
                             )),
                       ),
                       SizedBox(height: height * 0.03),
                       Container(
                         child: Text("PHONE NUMBER",
-                            style: TextStyle(fontSize: 18, fontFamily: 'Medium')),
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'Medium')),
                       ),
                       SizedBox(height: height * 0.01),
                       Center(
                         child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(191, 191, 191, 100),
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                             width: width * 0.94,
                             height: 60,
                             child: Container(
                               child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
-                                  border: InputBorder.none,
-                                ),
+                                onChanged: (val) {
+                                  phonenumber = val;
+                                },
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 20, horizontal: 10)),
+                                validator: (val) {
+                                  if (val.isEmpty) {
+                                    return "Phone Numbercan't be empty";
+                                  }
+                                  return null;
+                                },
                               ),
                             )),
                       ),
                       SizedBox(height: height * 0.03),
                       Container(
                         child: Text("PIN CODE",
-                            style: TextStyle(fontSize: 18, fontFamily: 'Medium')),
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'Medium')),
                       ),
                       SizedBox(height: height * 0.01),
                       Center(
                         child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(191, 191, 191, 100),
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                             width: width * 0.94,
                             height: 60,
                             child: Container(
                               child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
-                                  border: InputBorder.none,
-                                ),
+                                onChanged: (val) {
+                                  pincode = val;
+                                },
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 20, horizontal: 10)),
+                                validator: (val) {
+                                  if (val.isEmpty) {
+                                    return "Pincode can't be empty";
+                                  }
+                                  return null;
+                                },
                               ),
                             )),
                       ),
                       SizedBox(height: height * 0.03),
                       Container(
                         child: Text("ADDRESS",
-                            style: TextStyle(fontSize: 18, fontFamily: 'Medium')),
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'Medium')),
                       ),
                       SizedBox(height: height * 0.01),
                       Center(
                         child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(191, 191, 191, 100),
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                             width: width * 0.94,
                             height: 60,
                             child: Container(
                               child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
-                                  border: InputBorder.none,
-                                ),
+                                onChanged: (val) {
+                                  addr = val;
+                                },
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 20, horizontal: 10)),
+                                validator: (mail) {
+                                  if (mail.isEmpty) {
+                                    return "Address can't be empty";
+                                  }
+                                  return null;
+                                },
                               ),
                             )),
                       ),
                       SizedBox(height: height * 0.03),
                       Container(
                         child: Text("STATE",
-                            style: TextStyle(fontSize: 18, fontFamily: 'Medium')),
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'Medium')),
                       ),
                       SizedBox(height: height * 0.01),
                       Center(
                         child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(191, 191, 191, 100),
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                             width: width * 0.94,
                             height: 60,
                             child: Container(
                               child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
-                                  border: InputBorder.none,
-                                ),
+                                onChanged: (val) {
+                                  state = val;
+                                },
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 20, horizontal: 10)),
+                                validator: (mail) {
+                                  if (mail.isEmpty) {
+                                    return "State can't be empty";
+                                  }
+                                  return null;
+                                },
                               ),
                             )),
                       ),
                       SizedBox(height: height * 0.03),
                       Container(
                         child: Text("COUNTRY",
-                            style: TextStyle(fontSize: 18, fontFamily: 'Medium')),
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'Medium')),
                       ),
                       SizedBox(height: height * 0.01),
                       Center(
                         child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(191, 191, 191, 100),
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                             width: width * 0.94,
                             height: 60,
                             child: Container(
                               child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
-                                  border: InputBorder.none,
-                                ),
+                                onChanged: (val) {
+                                  country = val;
+                                },
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 20, horizontal: 10)),
+                                validator: (val) {
+                                  if (val.isEmpty) {
+                                    return "Country can't be empty";
+                                  }
+                                  return null;
+                                },
                               ),
                             )),
                       ),
                       SizedBox(height: height * 0.03),
                       InkWell(
-                        onTap: () {
-
+                        onTap: () async {
+                          if (_addressKey.currentState.validate()) {
+                            await FirebaseFirestore.instance
+                                .collection("Users")
+                                .doc(user)
+                                .update({
+                              'userContact': {
+                                'name': name,
+                                'phoneNumber': phonenumber,
+                                'address': addr,
+                                "state": state,
+                                'country': country,
+                                'pincode': pincode
+                              }
+                            }).then((_) {
+                              setState(() {
+                                getDetails();
+                                _addressKey.currentState.reset();
+                              });
+                            });
+                          }
                         },
                         child: Center(
                           // Changed to new button UI
@@ -368,7 +488,8 @@ class _AddressState extends State<Address> {
                                       height: 60,
                                       width: width * 0.94,
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [

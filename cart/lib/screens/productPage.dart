@@ -1,5 +1,6 @@
 import 'package:cart/Component/Products.dart';
 import 'package:cart/screens/ARDisplay.dart';
+import 'package:cart/screens/Address.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:palette_generator/palette_generator.dart';
@@ -8,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cart/screens/CartPage.dart';
 import 'package:model_viewer/model_viewer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cart/screens/Payment.dart';
 
 int variantsIndex = 0, colorIndex = 0;
 //productCount = 1;
@@ -294,7 +294,7 @@ class _ProductPageState extends State<ProductPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CartPayment(
+                                    builder: (context) => Address(
                                         amount: product.price * productCount)));
                             // Navigator.push(
                             //     context,

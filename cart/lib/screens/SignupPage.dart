@@ -1,5 +1,4 @@
 import 'package:cart/screens/LoginPage.dart';
-import 'package:cart/screens/welcomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -210,15 +209,14 @@ class _SignupPageState extends State<SignupPage> {
                             .set({
                           'userId': newUser,
                           'userEmail': email,
-                          'userContact': [
-                            {
-                              'addressLine1': "",
-                              'addressLine2': "",
-                              'city': "",
-                              'phoneNumber': "",
-                              'pincode': ""
-                            }
-                          ],
+                          'userContact': {
+                            'address': "",
+                            'name': "",
+                            'state': "",
+                            'country': "",
+                            'phoneNumber': "",
+                            'pincode': ""
+                          },
                           'cartDetails': []
                         }).then((_) {
                           Navigator.push(
