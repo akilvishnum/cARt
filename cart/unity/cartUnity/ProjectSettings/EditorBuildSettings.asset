@@ -50,6 +50,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/nwbg002.unity
     guid: a51c1382eccf14347ab9188eca4580f6
+  - enabled: 1
+    path: Assets/Scenes/wehs001.unity
+    guid: 2c73a801d97ea6e409a4ea4a1d11d07c
+  - enabled: 1
+    path: Assets/Scenes/wehs002.unity
+    guid: b97a1054c7f02774cb58a002b81dfe8a
+  - enabled: 1
+    path: Assets/Scenes/wetr001.unity
+    guid: 06a8d929333c79c4bb62bc03790be375
+  - enabled: 1
+    path: Assets/Scenes/nwst001.unity
+    guid: 685a746d90a1b8149953b120d239f84f
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e7795e01f2915184a9503b2d9b438391,
       type: 2}
