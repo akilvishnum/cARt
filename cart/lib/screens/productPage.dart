@@ -294,7 +294,8 @@ class _ProductPageState extends State<ProductPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CartPayment()));
+                                    builder: (context) => CartPayment(
+                                        amount: product.price * productCount)));
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(
