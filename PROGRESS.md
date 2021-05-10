@@ -143,10 +143,72 @@
 <td> <p> 
 	✔️ &nbsp; UI Design for Cart page 🧘🏽‍♂️  <br>
 	✔️ &nbsp; Created Target Marker for AR 🧘🏽‍♂️  <br>
-	✔️ &nbsp; Converted 3D models to FBX and GLB to be used for AR 🧘🏽‍♂️ 
+	✔️ &nbsp; Converted 3D models to FBX and GLB to be used for AR 🧘🏽‍♂️  <br>
 	✔️ &nbsp; Designed an image stating that payment was done successfully. 🧘🏽‍♂️ 
 	</p>
 </td>
 </tr>
+<tr>
+<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 21 Apr - 5 May  </p> </td>
+<td align = "center" > <p> Flutter </p> </td>
+<td> 
+		✔️ &nbsp; UI fixes 🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Added Image for Cart Empty 🧘🏽‍♂️ <br> 
+		✔️ &nbsp; Quantity Updation in Cart 👻 <br>	
+		✔️ &nbsp; Session added, Document Creation in firebase 👻 <br>	
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Unity </p> </td>
+<td> 
+
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> DB Population </p> </td>
+<td> 
+		✔️ &nbsp; Captured PNG images for all products 🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Populated Product Content for DB 👻🎯 <br> 
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Review PPT </p> </td>
+<td> 
+		✔️ &nbsp; Created Review PPT 👻🎯🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Output Video & Editing 👻 <br> 
+</td>
+</tr>
+
+<tr>
+<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 6 May - 11 May  </p> </td>
+<td align = "center" > <p> Report </p> </td>
+<td> 
+		✔️ &nbsp; Page to enter Address Page 🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Payment Page done 👻 <br>	
+		✔️ &nbsp; Database for address page done 👻 <br>	
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Unity </p> </td>
+<td> 
+
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> Report </p> </td>
+<td> 
+		✔️ &nbsp; Created a report for our project  👻🎯🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Presented Implementation Image 🧘🏽‍♂️ <br> 
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> PNG & GLB </p> </td>
+<td> 
+		✔️ &nbsp; Captured Image for all 3D models 🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Exported as GLB Files 🧘🏽‍♂️ <br> 
+</td>
+</tr>
+
+
 </table>
 
