@@ -1,4 +1,3 @@
-import 'package:cart/screens/HomePage.dart';
 import 'package:cart/screens/SignupPage.dart';
 import 'package:cart/screens/SplashScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -10,9 +10,6 @@ class ARDisplay extends StatefulWidget {
 
 class _ARDisplayState extends State<ARDisplay> {
   UnityWidgetController unityWidgetController;
-  void initState() {
-    //super.initState();
-  }
 
   void onUnityCreated(UnityWidgetController controller) {
     unityWidgetController = controller;
