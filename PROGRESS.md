@@ -127,6 +127,8 @@
 	⏳ &nbsp; TV scene testing 🎯 <br>
 	⏳ &nbsp; AR watch model trial 🎯 <br>
 	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
+	✔️ &nbsp; Sunglasses scene tested and made adjustments 👻 <br>
+	✔️ &nbsp; Made adjustments to Mask and Sofa scenes.👻 <br>
      </p>
 </td>
 </tr>
@@ -163,6 +165,8 @@
 		✔️ &nbsp; Body model created 🎯 <br>
 		✔️ &nbsp; Drums scene added 🎯 <br>
 		✔️ &nbsp; Shirt scene added 🎯 <br>
+		✔️ &nbsp; Sofa scenes tested and made adjustments 👻 <br>
+		✔️ &nbsp; All unity scenes tested and made adjustments 👻 <br>
 </td>
 </tr>
 <tr>
@@ -173,10 +177,10 @@
 </td>
 </tr>
 <tr>
-<td align = "center" > <p> Review PPT </p> </td>
+<td align = "center" > <p> Review 1 PPT </p> </td>
 <td> 
 		✔️ &nbsp; Created Review PPT 👻🎯🧘🏽‍♂️  <br> 
-		✔️ &nbsp; Output Video & Editing 👻 <br> 
+		✔️ &nbsp; Output Video & Editing 👻 <br>
 </td>
 </tr>
 
@@ -185,18 +189,24 @@
 <td align = "center" > <p> Report </p> </td>
 <td> 
 		✔️ &nbsp; Page to enter Address Page 🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Integrated Razorpay payment gateway with Flutter 👻 <br>	
 		✔️ &nbsp; Payment Page done 👻 <br>	
-		✔️ &nbsp; Database for address page done 👻 <br>	
+		✔️ &nbsp; Backend work for address page done 👻 <br>
+		✔️ &nbsp; Search filter completed 👻 <br>
+		✔️ &nbsp; UI navigations corrected 👻 <br>		
 </td>
 </tr>
 <tr>
 <td align = "center" > <p> Unity </p> </td>
 <td> 
+		✔️ &nbsp; Backpack scene added 👻 <br>	
+		✔️ &nbsp; Trolley Bag scene added 👻 <br>	
 		✔️ &nbsp; Suitcase scene added 🎯 <br>
 		✔️ &nbsp; Tie scene added 🎯 <br>
 		✔️ &nbsp; Red Shirt scene added 🎯 <br>
 		✔️ &nbsp; Headset(Orange and black) scene added 🎯 <br>
 		✔️ &nbsp; Trouser scene added 🎯 <br>
+		✔️ &nbsp; Adjustments done to Shirt,suitcase and headset scenes 👻 <br>	
 </td>
 </tr>
 <tr>
@@ -210,6 +220,7 @@
 <td align = "center" > <p> PNG & GLB </p> </td>
 <td> 
 		✔️ &nbsp; Captured Image for all 3D models 🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Captured Image for backpack 3D model 👻  <br> 
 		✔️ &nbsp; Exported as GLB Files 🧘🏽‍♂️ <br> 
 </td>
 </tr>
