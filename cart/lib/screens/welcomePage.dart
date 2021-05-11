@@ -1,6 +1,7 @@
 import 'package:cart/screens/SignupPage.dart';
 import 'package:flutter/material.dart';
 import 'package:cart/screens/LoginPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -65,22 +66,23 @@ class _WelcomePageState extends State<WelcomePage> {
                         onPressed: () {
                           // FirebaseFirestore.instance
                           //     .collection('Products')
-                          //     .doc("nwbg002")
+                          //     .doc("wesh001")
                           //     .set({
-                          //   'productId': 'nwbg002',
-                          //   'productName': 'Trolley Bag',
-                          //   'productType': 'Non-Wearable',
-                          //   'category': 'Bag',
-                          //   'price': 2439,
-                          //   'colorName': ["Yellow"],
-                          //   'colorHex': ["0xffffff00"],
+                          //   'productId': 'wesh001',
+                          //   'productName': 'Shirt',
+                          //   'productType': 'Wearable',
+                          //   'category': 'Shirts',
+                          //   'price': 300,
+                          //   'colorName': ["Blue"],
+                          //   'colorHex': ["0xff0000ff"],
                           //   'description':
-                          //       'Durable velcro closure on back,one size fits all adults. Pre-curved sandwich peak,same color as embroideries and eyelets. Perspiration-absorptive sweatband,comfortable in outdoor activities.',
-                          //   'variants': ['Blue cap'],
+                          //       'Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort. A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend.',
+                          //   'variants': ['Blue-white color'],
                           //   'specifications': {
-                          //     'Material': 'Cotton',
-                          //     'Flex Fit':
-                          //         'Head circumfrence 54-60cm/21.5-23 in.Adjustable Metal Buckle Back Closure.',
+                          //     'Material':
+                          //         '100% Cotton and ease wear and more comfort',
+                          //     'Size': 'Model is 6\'2\" and wearing size Medium',
+                          //     'Wash': 'Machine Wash'
                           //   }
                           // }).then((value) {
                           Navigator.push(
