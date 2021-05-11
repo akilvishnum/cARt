@@ -124,7 +124,6 @@
 	✔️ &nbsp; Spectacles scene added 🎯 <br>
 	✔️ &nbsp; Cap scene added 🎯 <br>
 	✔️ &nbsp; Mask scene added 🎯 <br>
-	✔️ &nbsp; Shirt scene added 🎯 <br>
 	⏳ &nbsp; TV scene testing 🎯 <br>
 	⏳ &nbsp; AR watch model trial 🎯 <br>
 	⏳ &nbsp; AR body tracking trial using AR Foundation 🎯 <br>
@@ -161,7 +160,9 @@
 <tr>
 <td align = "center" > <p> Unity </p> </td>
 <td> 
-
+		✔️ &nbsp; Body model created 🎯 <br>
+		✔️ &nbsp; Drums scene added 🎯 <br>
+		✔️ &nbsp; Shirt scene added 🎯 <br>
 </td>
 </tr>
 <tr>
@@ -191,7 +192,11 @@
 <tr>
 <td align = "center" > <p> Unity </p> </td>
 <td> 
-
+		✔️ &nbsp; Suitcase scene added 🎯 <br>
+		✔️ &nbsp; Tie scene added 🎯 <br>
+		✔️ &nbsp; Red Shirt scene added 🎯 <br>
+		✔️ &nbsp; Headset(Orange and black) scene added 🎯 <br>
+		✔️ &nbsp; Trouser scene added 🎯 <br>
 </td>
 </tr>
 <tr>
