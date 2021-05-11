@@ -197,6 +197,7 @@
 		✔️ &nbsp; Red Shirt scene added 🎯 <br>
 		✔️ &nbsp; Headset(Orange and black) scene added 🎯 <br>
 		✔️ &nbsp; Trouser scene added 🎯 <br>
+		✔️ &nbsp; Sweater scene added 🎯 <br>
 </td>
 </tr>
 <tr>
