@@ -13,3 +13,5 @@
 13) HeadSet - wehs001
 14) HeadSet_Black-wehs002
 15) Trouser - wetr001
+16) Tie - weti001
+17) Red_Shirt -wesh002
