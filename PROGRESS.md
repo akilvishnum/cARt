@@ -207,6 +207,7 @@
 		✔️ &nbsp; Headset(Orange and black) scene added 🎯 <br>
 		✔️ &nbsp; Trouser scene added 🎯 <br>
 		✔️ &nbsp; Adjustments done to Shirt,suitcase and headset scenes 👻 <br>	
+		✔️ &nbsp; Sweater scene added 🎯 <br>
 </td>
 </tr>
 <tr>
