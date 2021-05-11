@@ -37,6 +37,11 @@ class _AddressState extends State<Address> {
   }
 
   @override
+  void initState() {
+    getDetails();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -442,10 +447,15 @@ class _AddressState extends State<Address> {
                                 'pincode': pincode
                               }
                             }).then((_) {
-                              setState(() {
-                                getDetails();
-                                _addressKey.currentState.reset();
-                              });
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          CartPayment(amount: widget.amount)));
+                              // setState(() {
+                              //   Naviga
+                              //   _addressKey.currentState.reset();
+                              // });
                             });
                           }
                         },
