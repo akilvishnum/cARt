@@ -185,7 +185,7 @@
 </tr>
 
 <tr>
-<td rowspan = "4" style = "background-color: white; vertical-align: top"> <p> 6 May - 11 May  </p> </td>
+<td rowspan = "5" style = "background-color: white; vertical-align: top"> <p> 6 May - 11 May  </p> </td>
 <td align = "center" > <p> Report </p> </td>
 <td> 
 		✔️ &nbsp; Page to enter Address Page 🧘🏽‍♂️  <br> 
@@ -215,6 +215,13 @@
 <td> 
 		✔️ &nbsp; Created a report for our project  👻🎯🧘🏽‍♂️  <br> 
 		✔️ &nbsp; Presented Implementation Image 🧘🏽‍♂️ <br> 
+</td>
+</tr>
+<tr>
+<td align = "center" > <p> DB Population </p> </td>
+<td> 
+		✔️ &nbsp; Captured PNG images for all products 🧘🏽‍♂️  <br> 
+		✔️ &nbsp; Populated Product Content for DB 🎯 <br> 
 </td>
 </tr>
 <tr>
