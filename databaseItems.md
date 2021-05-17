@@ -112,3 +112,99 @@ MASK :
                                   'Cotton',
                             }
                           }
+
+----------------------------------------------------------------------------------------->
+
+Red Shirt :
+
+{
+                            'productId': 'nwsh002',
+                            'productName': 'Formal Shirt',
+                            'productType': 'Wearable',
+                            'category': 'Cloth',
+                            'price': 594,
+                            'colorName': ["Red"],
+                            'colorHex': ["0xffDC143C"],
+                            'description':
+                                'A subtle stripe highlights this clean and classic slim-fit long-sleeve Oxford shirt. Features a button-down collar and a single chest pocket. Versatile and always in style, this classic oxford shirt is a wardrobe essential.',
+                            'variants': ['Crimson color'],
+                            'specifications': {
+                              'Material': '100% Cotton',
+                              'Size': 	
+                                  'Medium',
+			      'Wash':
+				  'Machine Wash'	
+                            }
+                          }
+
+
+Sweater :
+
+{
+                            'productId': 'nwsh003',
+                            'productName': 'Sweater',
+                            'productType': 'Wearable',
+                            'category': 'Cloth',
+                            'price': 1059,
+                            'colorName': ["Dim grey"],
+                            'colorHex': ["0xff696969"],
+                            'description':
+                                'Comfortable and versatile, this sweater is perfect on its own or as a layer under a blazer or jacket. This classic V-neck sweater features ribbing on the collar, hem, and cuffs to keep you warm. Longer dropped shoulder, straighter armhole, and wider, shorter sleeves.',
+                            'variants': ['Dim-Grey color'],
+                            'specifications': {
+                              'Material': '50% Cotton, 50% Polyester',
+                              'Size': 	
+                                  'X-Large',
+			      'Wash':
+				  'Machine Wash'	
+                            }
+                          }
+
+
+Tie :
+
+{
+                            'productId': 'nwti001',
+                            'productName': 'Tie',
+                            'productType': 'Wearable',
+                            'category': 'Cloth',
+                            'price': 978,
+                            'colorName': ["Purple"],
+                            'colorHex': ["0xff800080"],
+                            'description':
+                                'Paisley is the perfect blending of retro and vogue styles which makes men more attractive and elegant in all formal and informal occasions like wedding,party,business,meeting,etc. Necktie+handkerchief+a pair of cufflinks, easy-matching for all shirts and suits!.',
+                            'variants': ['Purple color'],
+                            'specifications': {
+                              'Material': 'Stainless steel for cufflinks& silk for tie and hanky,1200 stitches woven craft guarantees durability and wearability.Intricate motifs on fabric are textured and gorgeous.',
+                              'Size': 	
+                                  '3.35 inches*59 inches of tie; 9 inches x 9 inches of pocket square,easy to tie knots,best size for men.',
+			      'Wash':
+				  'Dry Clean Only',
+			      'Width' : '3"'	
+                            }
+                          }
+
+Television :
+
+{
+                            'productId': 'nwtv001',
+                            'productName': 'Television',
+                            'productType': 'Non-Wearable',
+                            'category': 'Home-appliances',
+                            'price': 12002,
+                            'colorName': ["Black"],
+                            'colorHex': ["0xff000000"],
+                            'description':
+                                'Dimensions with Stand (W x H x D): 28.8" x 18.9" x 7.1" | Without Stand (W x H x D): 28.8" x 17.2" x 2.9" | Weight with Stand: 8.2 lbs | Weight without Stand: 8.0 lbs. HD, Resolution: High definition (720p) resolution for excellent detail, color and contrast. Dual band Wi-Fi: Get fast and easy access to your favorite content to the dual band Wi-Fi connection.',
+                            'variants': ['32-Inch'],
+                            'specifications': {
+                              	'Size': 	
+                                  '32-Inch',
+			      	'Mounting Type': 'Can be wall mounted',
+				'Resolution' :	'720p',
+				'Screen Size' :	'32 Inches',
+				'Refresh Rate' :	'60 Hz',
+				'Item Weight' :	'8.2 Pounds',
+				'Operating System' :	'Roku OS'
+                            }
+                          }
