@@ -64,32 +64,31 @@ class _WelcomePageState extends State<WelcomePage> {
                                 fontSize: 18,
                                 fontFamily: 'Bold')),
                         onPressed: () {
-                          // FirebaseFirestore.instance
-                          //     .collection('Products')
-                          //     .doc("wesh001")
-                          //     .set({
-                          //   'productId': 'wesh001',
-                          //   'productName': 'Shirt',
-                          //   'productType': 'Wearable',
-                          //   'category': 'Shirts',
-                          //   'price': 300,
-                          //   'colorName': ["Blue"],
-                          //   'colorHex': ["0xff0000ff"],
-                          //   'description':
-                          //       'Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort. A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend.',
-                          //   'variants': ['Blue-white color'],
-                          //   'specifications': {
-                          //     'Material':
-                          //         '100% Cotton and ease wear and more comfort',
-                          //     'Size': 'Model is 6\'2\" and wearing size Medium',
-                          //     'Wash': 'Machine Wash'
-                          //   }
-                          // }).then((value) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignupPage()));
-                          //});
+                          FirebaseFirestore.instance
+                              .collection('Products')
+                              .doc("wesw001")
+                              .set({
+                            'productId': 'wesw001',
+                            'productName': 'Sweater',
+                            'productType': 'Wearable',
+                            'category': 'Shirts',
+                            'price': 1059,
+                            'colorName': ["Dim grey"],
+                            'colorHex': ["0xff696969"],
+                            'description':
+                                'Comfortable and versatile, this sweater is perfect on its own or as a layer under a blazer or jacket. This classic V-neck sweater features ribbing on the collar, hem, and cuffs to keep you warm. Longer dropped shoulder, straighter armhole, and wider, shorter sleeves.',
+                            'variants': ['Dim-Grey color'],
+                            'specifications': {
+                              'Material': '50% Cotton, 50% Polyester',
+                              'Size': 'X-Large',
+                              'Wash': 'Machine Wash'
+                            }
+                          }).then((value) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignupPage()));
+                          });
                         },
                       )),
                       SizedBox(width: width * 0.03),

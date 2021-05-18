@@ -69,7 +69,7 @@ EditorBuildSettings:
     path: Assets/Scenes/wesh002.unity
     guid: 875b71a7a4aa012488b3f211076cee09
   - enabled: 1
-    path: Assets/Scenes/wesh003.unity
+    path: Assets/Scenes/wesw001.unity
     guid: 50ffc8b101ebe53488b6ece540dac7c3
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e7795e01f2915184a9503b2d9b438391,
