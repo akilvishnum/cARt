@@ -301,12 +301,12 @@ PrefabInstance:
     - target: {fileID: 7578340522097345573, guid: 0183c8cce83d73f408d6b12ce937d7fe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.38899994
+      value: -0.398
       objectReference: {fileID: 0}
     - target: {fileID: 7578340522097345573, guid: 0183c8cce83d73f408d6b12ce937d7fe,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.28
+      value: 0.014
       objectReference: {fileID: 0}
     - target: {fileID: 7578340522097345573, guid: 0183c8cce83d73f408d6b12ce937d7fe,
         type: 3}
