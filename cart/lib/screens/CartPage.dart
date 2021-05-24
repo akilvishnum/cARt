@@ -15,6 +15,8 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   int count = 0, total = 0;
+  List<String> productids = [];
+  List<int> quantity = [];
   @override
   void initState() {
     super.initState();
@@ -108,6 +110,10 @@ class _CartPageState extends State<CartPage> {
     total = 0;
     for (int i = 0; i < cartlist.length; i++) {
       total = total + (cartlist[i].price * productCount[i]);
+      if (!productids.contains(cartlist[i].productId)) {
+        productids.add(cartlist[i].productId);
+        quantity.add(productCount[i]);
+      }
     }
     return Text("Pay   ₹$total",
         style: TextStyle(
@@ -465,7 +471,10 @@ class _CartPageState extends State<CartPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Address(amount: total)));
+                                builder: (context) => Address(
+                                    amount: total,
+                                    productid: productids,
+                                    quantity: quantity)));
                       },
                       child: Center(
                         child: Column(
