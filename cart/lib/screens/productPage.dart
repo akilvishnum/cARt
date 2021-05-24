@@ -289,13 +289,33 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                         SizedBox(width: width * 0.04),
                         InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Address(
-                                        amount: product.price * productCount)));
+                          onTap: () async {
+                            SharedPreferences preferences =
+                                await SharedPreferences.getInstance();
+                            String user = preferences.getString("user");
+                            await FirebaseFirestore.instance
+                                .collection('Users')
+                                .doc(user)
+                                .update({
+                              'cartDetails': FieldValue.arrayUnion([
+                                {
+                                  'productId': product.productId,
+                                  'price': product.price,
+                                  'quantity': productCount,
+                                  'paid': false
+                                }
+                              ])
+                            }).then((_) {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Address(
+                                          amount: product.price * productCount,
+                                          productid: [product.productId],
+                                          quantity: [productCount])));
+                            });
+
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(

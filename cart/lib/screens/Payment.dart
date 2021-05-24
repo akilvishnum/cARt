@@ -1,15 +1,20 @@
 import 'package:cart/screens/PaymentDonePage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CartPayment extends StatefulWidget {
   int amount;
-  CartPayment({this.amount});
+  List<String> productid;
+  List<int> quantity;
+  CartPayment({this.amount, this.productid, this.quantity});
   @override
   _CartPaymentState createState() => _CartPaymentState();
 }
 
 class _CartPaymentState extends State<CartPayment> {
+  List<dynamic> cart = [];
   final _razorpay = Razorpay();
   TextEditingController controller = TextEditingController();
   @override
@@ -27,11 +32,42 @@ class _CartPaymentState extends State<CartPayment> {
     _razorpay.clear();
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    List<dynamic> cartdetails = [];
     print("Successfully paid");
     print(response.paymentId.toString());
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => PaymentDonePage()));
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String user = preferences.getString("user");
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(user)
+        .get()
+        .then((value) {
+      setState(() {
+        cartdetails = value.data()['cartDetails'];
+        cart = cartdetails;
+      });
+    }).then((_) {
+      print("Data: $cart");
+      print("Received: ${widget.productid} .... ${widget.quantity}");
+      for (int i = 0; i < cart.length; i++) {
+        if (cart[i]['paid'] == false) {
+          for (int j = 0; j < widget.productid.length; j++) {
+            if (cart[i]['productId'] == widget.productid[j] &&
+                cart[i]['quantity'] == widget.quantity[j]) {
+              cart[i]['paid'] = true;
+            }
+          }
+        }
+      }
+      FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user)
+          .update({'cartDetails': cart});
+    }).then((_) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => PaymentDonePage()));
+    });
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

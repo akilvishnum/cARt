@@ -6,7 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Address extends StatefulWidget {
   int amount;
-  Address({this.amount});
+  List<String> productid;
+  List<int> quantity;
+  Address({this.amount, this.productid, this.quantity});
   @override
   _AddressState createState() => _AddressState();
 }
@@ -142,8 +144,10 @@ class _AddressState extends State<Address> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          CartPayment(amount: widget.amount)));
+                                      builder: (context) => CartPayment(
+                                          amount: widget.amount,
+                                          productid: widget.productid,
+                                          quantity: widget.quantity)));
                             },
                             child: Center(
                               // Changed to new button UI
