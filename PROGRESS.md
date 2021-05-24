@@ -185,15 +185,16 @@
 </tr>
 
 <tr>
-<td rowspan = "5" style = "background-color: white; vertical-align: top"> <p> 6 May - 18 May  </p> </td>
-<td align = "center" > <p> Report </p> </td>
+<td rowspan = "5" style = "background-color: white; vertical-align: top"> <p> 6 May - 24 May  </p> </td>
+<td align = "center" > <p> Flutter</p> </td>
 <td> 
 		✔️ &nbsp; Page to enter Address Page 🧘🏽‍♂️  <br> 
 		✔️ &nbsp; Integrated Razorpay payment gateway with Flutter 👻 <br>	
 		✔️ &nbsp; Payment Page done 👻 <br>	
 		✔️ &nbsp; Backend work for address page done 👻 <br>
 		✔️ &nbsp; Search filter completed 👻 <br>
-		✔️ &nbsp; UI navigations corrected 👻 <br>		
+		✔️ &nbsp; UI navigations corrected 👻 <br>	
+		✔️ &nbsp; Fixed issues in payments and database consistency👻 <br>	
 </td>
 </tr>
 <tr>

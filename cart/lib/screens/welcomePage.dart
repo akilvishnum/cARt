@@ -88,7 +88,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => SignupPage()));
-                          // });
+                          //});
                         },
                       )),
                       SizedBox(width: width * 0.03),
